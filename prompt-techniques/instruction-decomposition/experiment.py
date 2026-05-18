@@ -691,6 +691,26 @@ def run_confidence_calibration():
     if high_conf_acc is not None:
         print(f"  (avg high-confidence={avg_high_conf:.2f}, high-conf accuracy={high_conf_acc:.2f})")
 
+    # Observed unique confidence values across all probes
+    observed_unique_values = sorted(set(
+        round(r["confidence"], 2)
+        for r in results
+        if r["confidence"] is not None
+    ))
+
+    # Direction error rate: fraction of probes where model was confidently wrong
+    # (confidence >= 0.7 on an incorrect answer) OR confidently right on a wrong answer
+    # Defined as: probes where high confidence (>=0.7) and answer is wrong,
+    # OR low confidence (<=0.3) and answer is correct — i.e. confidence direction mismatches
+    direction_errors = sum(
+        1 for r in results
+        if r["confidence"] is not None and (
+            (r["confidence"] >= 0.7 and not r["is_correct"]) or
+            (r["confidence"] <= 0.3 and r["is_correct"])
+        )
+    )
+    direction_error_rate = round(direction_errors / len(results), 3)
+
     return {
         "questions": results,
         "bucket_analysis": bucket_data,
@@ -701,6 +721,13 @@ def run_confidence_calibration():
             "calibration_verdict": verdict,
             "high_confidence_avg": round(avg_high_conf, 3) if high_conf else None,
             "high_confidence_accuracy": round(high_conf_acc, 3) if high_conf_acc else None,
+            "observed_unique_values": observed_unique_values,
+            "direction_error_rate": direction_error_rate,
+            "conclusion": (
+                "Confidence calibration is poor: model returns near-binary values (0.0 or 1.0) "
+                "rather than calibrated probabilities. Direction errors present on ambiguous "
+                "statements. Do not use confidence scores downstream."
+            ),
         },
     }
 

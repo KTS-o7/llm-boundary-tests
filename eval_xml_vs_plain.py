@@ -6,6 +6,7 @@ Tests 6 categories × 10 probes × 2 variants = 120 API calls
 """
 
 import json
+import math
 import re
 import time
 import requests
@@ -21,6 +22,17 @@ HEADERS = {
     "Authorization": f"Bearer {API_KEY}",
     "Content-Type": "application/json",
 }
+
+
+def wilson_ci_95(p: float, n: int):
+    """Wilson score 95% CI for a proportion p with n observations."""
+    if n == 0:
+        return (0.0, 1.0)
+    z = 1.96
+    denom = 1 + z**2 / n
+    centre = (p + z**2 / (2 * n)) / denom
+    margin = (z * math.sqrt(p * (1 - p) / n + z**2 / (4 * n**2))) / denom
+    return (round(max(0.0, centre - margin), 3), round(min(1.0, centre + margin), 3))
 
 # ---------------------------------------------------------------------------
 # API helper
@@ -499,6 +511,7 @@ def run_category(
     plain_mean = round(sum(r["plain_score"] for r in results) / len(results), 4)
     xml_mean = round(sum(r["xml_score"] for r in results) / len(results), 4)
     delta = round(xml_mean - plain_mean, 4)
+    n = len(results)
     if delta > 0.01:
         winner = "XML"
     elif delta < -0.01:
@@ -508,9 +521,12 @@ def run_category(
     return {
         "category": cat_name,
         "plain_score": plain_mean,
+        "plain_ci_95": wilson_ci_95(plain_mean, n),
         "xml_score": xml_mean,
+        "xml_ci_95": wilson_ci_95(xml_mean, n),
         "delta": delta,
         "winner": winner,
+        "n": n,
         "probes": results,
     }
 
@@ -612,6 +628,7 @@ def main():
     print_table(category_results, variation_data)
 
     # Save results
+    total_probes_per_variant = sum(len(r["probes"]) for r in category_results)
     output = {
         "model": MODEL,
         "categories": category_results,
@@ -628,6 +645,14 @@ def main():
             "best_xml_variation": variation_data["best_variation"],
         },
     }
+    op = output["summary"]["overall_plain"]
+    ox = output["summary"]["overall_xml"]
+    output["summary"]["overall_plain_ci_95"] = wilson_ci_95(op, total_probes_per_variant)
+    output["summary"]["overall_xml_ci_95"] = wilson_ci_95(ox, total_probes_per_variant)
+    output["summary"]["statistical_note"] = (
+        f"With {total_probes_per_variant} probes per category, 95% Wilson CIs are approximate. "
+        "Point estimates should be interpreted with ±CI uncertainty."
+    )
     output["summary"]["overall_winner"] = (
         "XML" if output["summary"]["overall_delta"] > 0.01
         else ("PLAIN" if output["summary"]["overall_delta"] < -0.01 else "TIE")

@@ -181,6 +181,8 @@ TEXTS = [
 
 assert len(TEXTS) == 50, f"Expected 50 texts, got {len(TEXTS)}"
 
+TEXTS_EXTENDED = (TEXTS * 3)[:150]
+
 # ─────────────────────────────────────────────
 # Classification prompt
 # ─────────────────────────────────────────────
@@ -314,51 +316,45 @@ def main():
     print("  LLM API Throughput Ceiling Benchmark")
     print(f"  Model : {MODEL}")
     print(f"  URL   : {API_URL}")
-    print(f"  Texts : {len(TEXTS)}")
+    print(f"  Texts : {len(TEXTS_EXTENDED)}")
     print(f"  Start : {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print("=" * 65)
 
-    # Phase 1: fixed concurrency levels (1, 5, 10)
-    phase1_levels = [1, 5, 10]
-    # Phase 2: ceiling search (15, 20, 25, 30, 40, 50)
-    phase2_levels = [15, 20, 25, 30, 40, 50]
+    # Concurrency sweep across all levels
+    concurrency_levels = [1, 5, 10, 15, 20, 25, 30, 35, 40]
 
     all_results = []
     baseline_latency = None
     ceiling_level = None
     ceiling_result = None
 
-    print("\n--- Phase 1: Baseline concurrency sweep ---")
-    for c in phase1_levels:
-        r = run_level(c, TEXTS)
+    print("\n--- Concurrency sweep ---")
+    for c in concurrency_levels:
+        r = run_level(c, TEXTS_EXTENDED)
         all_results.append(r)
         if baseline_latency is None:
             baseline_latency = r["p50_latency_s"]
 
-    print("\n--- Phase 2: Ceiling search ---")
-    for c in phase2_levels:
-        r = run_level(c, TEXTS)
-        all_results.append(r)
+        if len(all_results) >= 2:
+            latency_ratio = r["p50_latency_s"] / baseline_latency if baseline_latency else 1
+            prev = all_results[-2]
+            throughput_gain = (r["throughput_items_per_sec"] - prev["throughput_items_per_sec"]) / prev["throughput_items_per_sec"]
 
-        latency_ratio = r["p50_latency_s"] / baseline_latency if baseline_latency else 1
-        prev = all_results[-2]
-        throughput_gain = (r["throughput_items_per_sec"] - prev["throughput_items_per_sec"]) / prev["throughput_items_per_sec"]
-
-        if r["error_rate"] > 0.05:
-            print(f"  *** CEILING HIT at concurrency={c}: error_rate={r['error_rate']:.1%} > 5% ***")
-            ceiling_level = prev["concurrency"]
-            ceiling_result = prev
-            break
-        if latency_ratio > 3.0:
-            print(f"  *** CEILING HIT at concurrency={c}: p50 latency ratio={latency_ratio:.2f}x > 3x baseline ***")
-            ceiling_level = prev["concurrency"]
-            ceiling_result = prev
-            break
-        if throughput_gain < 0.05:
-            print(f"  *** THROUGHPUT PLATEAU at concurrency={c}: only {throughput_gain:.1%} gain vs previous level — ceiling is {prev['concurrency']} ***")
-            ceiling_level = prev["concurrency"]
-            ceiling_result = prev
-            break
+            if r["error_rate"] > 0.05:
+                print(f"  *** CEILING HIT at concurrency={c}: error_rate={r['error_rate']:.1%} > 5% ***")
+                ceiling_level = prev["concurrency"]
+                ceiling_result = prev
+                break
+            if latency_ratio > 3.0:
+                print(f"  *** CEILING HIT at concurrency={c}: p50 latency ratio={latency_ratio:.2f}x > 3x baseline ***")
+                ceiling_level = prev["concurrency"]
+                ceiling_result = prev
+                break
+            if throughput_gain < 0.05:
+                print(f"  *** THROUGHPUT PLATEAU at concurrency={c}: only {throughput_gain:.1%} gain vs previous level — ceiling is {prev['concurrency']} ***")
+                ceiling_level = prev["concurrency"]
+                ceiling_result = prev
+                break
     else:
         # Never hit ceiling — highest level tested is the ceiling
         ceiling_level = all_results[-1]["concurrency"]
@@ -399,7 +395,7 @@ def main():
         "meta": {
             "api_url": API_URL,
             "model": MODEL,
-            "n_texts": len(TEXTS),
+            "n_texts": len(TEXTS_EXTENDED),
             "run_at": datetime.now().isoformat(),
         },
         "results": all_results,

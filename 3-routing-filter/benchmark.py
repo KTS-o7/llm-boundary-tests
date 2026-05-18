@@ -320,6 +320,7 @@ def run_benchmark():
         "dataset_size":           len(DATASET),
         "fast_model":             FAST_MODEL,
         "slow_model_latency_s":   SLOW_LATENCY,
+        "slow_model_note":        "Simulated via time.sleep(3.0). Time-saving figures are relative to this fixed latency, not a real second model. Routing accuracy and tier_accuracy figures are real.",
         "routing_accuracy_pct":   round(routing_accuracy, 1),
         "tier_accuracy": {
             t: round(v, 1) for t, v in tier_accuracy.items()
@@ -356,7 +357,7 @@ def run_benchmark():
     print(f"")
     print(f"  Time WITH routing     : {total_with_routing:.1f}s")
     print(f"  Time WITHOUT routing  : {total_without_routing:.1f}s  (all-slow baseline)")
-    print(f"  Time saved            : {time_saved:.1f}s  ({pct_saved:.1f}%)")
+    print(f"  Time saved            : {time_saved:.1f}s  ({pct_saved:.1f}%) (simulated slow model)")
     print(f"  Routing overhead      : {overhead_total:.1f}s total  ({avg_route_lat:.2f}s avg/query)")
     print(f"")
     print(f"  Confusion Matrix (rows=actual, cols=predicted):")

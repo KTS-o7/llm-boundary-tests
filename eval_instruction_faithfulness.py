@@ -5,6 +5,7 @@ Measures how well the model follows explicit formatting, schema, and constraint 
 """
 
 import json
+import math
 import re
 import time
 import statistics
@@ -14,6 +15,18 @@ from typing import Any
 import urllib.request
 import urllib.error
 import ssl
+
+# ── Wilson score 95% CI ───────────────────────────────────────────────────────
+def wilson_ci_95(p: float, n: int):
+    """Wilson score 95% CI for a proportion p with n observations."""
+    if n == 0:
+        return (0.0, 1.0)
+    z = 1.96
+    denom = 1 + z**2 / n
+    centre = (p + z**2 / (2 * n)) / denom
+    margin = (z * math.sqrt(p * (1 - p) / n + z**2 / (4 * n**2))) / denom
+    return (round(max(0.0, centre - margin), 3), round(min(1.0, centre + margin), 3))
+
 
 # ── API config ────────────────────────────────────────────────────────────────
 API_URL   = "https://ai.shenthar.me/v1/chat/completions"
@@ -1176,11 +1189,14 @@ def analyze_results(all_results: list[dict]) -> dict:
         top_simplified = Counter(simplified).most_common(1)
         top_failure_simplified = top_simplified[0][0] if top_simplified else "none"
 
+        mean_f = round(statistics.mean(scores), 3)
+        n_p = len(results)
         category_stats[cat] = {
-            "mean_faithfulness": round(statistics.mean(scores), 3),
-            "pct_fully_compliant": round(100 * fully_compliant / len(results), 1),
+            "mean_faithfulness": mean_f,
+            "ci_95": list(wilson_ci_95(mean_f, n_p)),
+            "pct_fully_compliant": round(100 * fully_compliant / n_p, 1),
             "top_failure_mode": top_failure_simplified,
-            "n_probes": len(results),
+            "n_probes": n_p,
         }
 
     return category_stats
@@ -1253,6 +1269,7 @@ def main():
         "model": MODEL,
         "total_probes": len(all_results),
         "overall_faithfulness_score": overall_score,
+        "overall_ci_95": list(wilson_ci_95(overall_score, len(all_results))),
         "category_stats": category_stats,
         "degradation_curve": {str(k): v for k, v in degradation_curve.items()},
         "faithfulness_drops_below_0_7_at_constraint_count": threshold,

@@ -8,7 +8,7 @@
 
 ## Abstract
 
-We present a systematic empirical evaluation of a self-hosted Llama 3.1 8B Instruct model (`taalas-llama3.1-8b`) served via an OpenAI-compatible REST API. The evaluation spans six capability domains — high-throughput classification, structured information extraction, intelligent query routing, parallel document processing, real-time interactive latency, and agentic tool-call routing — alongside a red-team adversarial safety assessment and three evaluation dimensions: instruction faithfulness, intent faithfulness, and recall. We further conduct a controlled study of five prompt engineering techniques including few-shot prompting, XML-formatted system prompts, chain-of-thought scratchpad, role/persona priming, output anchoring, and instruction decomposition. We introduce three novel evaluation parameters for this deployment context: hallucination rate, output consistency at temperature=0, and confidence calibration. Our results establish that the model operates with an effective context window of approximately 6,900 tokens (empirically verified via recall probes), achieves a throughput ceiling of 47.3 items/second at 30 concurrent threads with p50 latency of 494 ms, and scores B-tier overall (0.779) across faithfulness dimensions. We find that role/persona priming (+6.3 pp), selective few-shot examples (+8–10 pp on weak task types), and output prefix anchoring (+3.4 pp JSON validity) are the only prompt engineering techniques that reliably improve performance. XML system prompts, chain-of-thought scratchpad, and instruction decomposition all degrade performance on this model. A single uncertainty instruction reduces hallucination rate from 60% to 12%.
+We present a systematic empirical evaluation of a self-hosted Llama 3.1 8B Instruct model (`taalas-llama3.1-8b`) served via an OpenAI-compatible REST API. The evaluation spans six capability domains — high-throughput classification, structured information extraction, intelligent query routing, parallel document processing, real-time interactive latency, and agentic tool-call routing — alongside a red-team adversarial safety assessment and three evaluation dimensions: instruction faithfulness, intent faithfulness, and recall. We further conduct a controlled study of five prompt engineering techniques including few-shot prompting, XML-formatted system prompts, chain-of-thought scratchpad, role/persona priming, output anchoring, and instruction decomposition. We introduce three deployment-specific evaluation parameters for this deployment context: hallucination rate, output consistency at temperature=0, and confidence calibration. Our results establish that the model operates with an effective context window of approximately 6,900 tokens (empirically verified via recall probes), achieves a throughput ceiling of 47.3 items/second at 30 concurrent threads with p50 latency of 494 ms, and scores B-tier overall (0.779) across faithfulness dimensions. We find that role/persona priming (+6.3 pp), selective few-shot examples (+8–10 pp on weak task types), and output prefix anchoring (+3.4 pp JSON validity) are the only prompt engineering techniques that reliably improve performance. XML system prompts, chain-of-thought scratchpad, and instruction decomposition all degrade performance on this model. A single uncertainty instruction reduces hallucination rate from 60% to 12%.
 
 ---
 
@@ -28,7 +28,7 @@ We present a systematic empirical evaluation of a self-hosted Llama 3.1 8B Instr
 12. [Instruction Faithfulness Evaluation](#12-instruction-faithfulness-evaluation)
 13. [Intent Faithfulness Evaluation](#13-intent-faithfulness-evaluation)
 14. [Prompt Engineering Technique Comparison](#14-prompt-engineering-technique-comparison)
-15. [Novel Evaluation Parameters](#15-novel-evaluation-parameters)
+15. [Deployment-Specific Evaluation Parameters](#15-deployment-specific-evaluation-parameters)
 16. [Discussion](#16-discussion)
 17. [Recommendations](#17-recommendations)
 18. [Conclusion](#18-conclusion)
@@ -48,7 +48,7 @@ Our contributions are:
 3. **A structured red-team protocol** — 20 adversarial tests across 7 attack categories with a reproducible scoring rubric.
 4. **Three evaluation dimensions** — recall, instruction faithfulness, and intent faithfulness — measured with live API calls against ground-truth datasets.
 5. **Controlled prompt engineering study** — A/B evaluation of six techniques with quantified per-technique deltas.
-6. **Three novel deployment-specific parameters** — hallucination rate, temperature-0 consistency, and confidence calibration.
+6. **Three deployment-specific evaluation parameters** — hallucination rate, temperature-0 consistency, and confidence calibration.
 
 ---
 
@@ -131,6 +131,8 @@ A dataset of 50 diverse real texts (product reviews, support tickets, news headl
 
 The throughput ceiling is **30 concurrent threads at 47.34 items/second**. The transition from 30 to 40 threads produced a -1.6% throughput change (47.34 → 46.59 items/s), indicating the server's inference capacity is saturated. The p50 latency remained near-constant at approximately 0.5 s across all concurrency levels, indicating clean server-side queuing rather than per-request slowdown under load. The single transient error at concurrency=25 (an empty response body) was a server hiccup, not rate limiting. No HTTP 429 (Too Many Requests) responses were observed at any tested concurrency.
 
+Note: the initial run used 50 items per sweep level, which was insufficient at mid-concurrency (causing 10 threads to drop below 5 threads in throughput — a noise artefact). The benchmark was updated to 150 items across concurrency levels [1, 5, 10, 15, 20, 25, 30, 35, 40] for a stable curve. The ceiling of ~47 items/sec at 30 threads is robust to this correction.
+
 **Practical implication:** A 30-thread pool can classify approximately 170,000 items per hour at full saturation with zero error rate.
 
 ---
@@ -161,7 +163,7 @@ A synthetic business news article was constructed with 32 known ground-truth ent
 
 ### 5.4 Analysis
 
-**Sweet spot: 1,500–2,000 words (~2,600–3,400 tokens)**, achieving F1 of 0.872–0.889 with full consistency across runs.
+The **floor point** (lowest extraction quality) occurs at ≤200 words, where F1 drops to ~0.40 due to insufficient entity coverage — most ground-truth entities simply do not yet appear in the truncated text. The **sweet spot** (peak extraction quality) is 1,500–2,000 words (F1 = 0.872–0.889), achieving full consistency across runs (~2,600–3,400 tokens).
 
 Counter-intuitively, short documents (200–500 words) perform worst — not because of model failure, but because most ground-truth entities do not yet appear in the truncated text. True model failure manifests at 2,500 words where consistency collapses (F1 std = 0.085), suggesting a processing boundary near 4,200 tokens.
 
@@ -206,7 +208,7 @@ Actual COMPLEX      0        0       20
 |---|---|
 | Time with routing | 170.4 s |
 | Time without routing (baseline) | 180.0 s |
-| Time saved | 9.6 s (5.3%) |
+| Time saved | 9.6 s (5.3%) *(note: slow-model latency is simulated via a fixed 3-second sleep; time-saving figures are relative to this simulation, not a real second model — routing accuracy of 81.7% is empirically measured)* |
 | Queries handled by fast model | 20/60 (33.3%) |
 | Average routing call latency | 0.604 s |
 
@@ -214,7 +216,7 @@ Actual COMPLEX      0        0       20
 
 The router is decisive at the extremes: perfect on COMPLEX (0 false negatives), near-perfect on SIMPLE (5% miss rate). The MEDIUM tier is the boundary zone — 9 of 20 MEDIUM queries were over-escalated to COMPLEX. This is a **safe failure mode**: queries are sent to a more capable model rather than answered inadequately. The dangerous failure (COMPLEX routed to SIMPLE) had zero occurrences.
 
-The 5.3% time savings is modest because the routing overhead (0.604 s per query × 60 = 36.3 s) largely offsets the savings from handling 20 SIMPLE queries locally. Savings scale with the gap between fast and slow model latency; with a 10-second slow model, savings would reach approximately 35%.
+The 5.3% time savings is modest because the routing overhead (0.604 s per query × 60 = 36.3 s) largely offsets the savings from handling 20 SIMPLE queries locally *(note: slow-model latency is simulated via a fixed 3-second sleep; time-saving figures are relative to this simulation, not a real second model — routing accuracy of 81.7% is empirically measured)*. Savings scale with the gap between fast and slow model latency; with a 10-second slow model, savings would reach approximately 35%.
 
 ---
 
@@ -573,7 +575,7 @@ Six prompt engineering techniques were evaluated in controlled A/B experiments, 
 
 ---
 
-## 15. Novel Evaluation Parameters
+## 15. Deployment-Specific Evaluation Parameters
 
 ### 15.1 Hallucination Rate
 
@@ -603,9 +605,9 @@ Factual and mathematical queries (e.g., capital cities, arithmetic) were perfect
 
 **Method:** 30 questions with verifiable ground-truth answers; model asked to return `{"answer": "...", "confidence": 0.0–1.0}`.
 
-**Finding:** The model assigned `confidence: 1.0` to **every single query** regardless of difficulty. The 2 wrong answers also received `confidence: 1.0`. Mean calibration error: 0.017 (numerically low only because accuracy happened to be 93.3%).
+**Finding:** Confidence calibration is poor but not degenerate: the model returns near-binary values (predominantly 0.0 or 1.0, with occasional intermediate values such as 0.5, 0.7, 0.98). The 2 wrong answers also received `confidence: 1.0`. Mean calibration error: 0.017 (numerically low only because accuracy happened to be 93.3%). Direction errors occur on ambiguous statements (e.g., high confidence on false statements). Calibration ECE is not computable from binary outputs. Do not use confidence scores as a reliability signal downstream.
 
-The model has **no working uncertainty estimation**. Self-reported confidence values are degenerate constants and carry no calibration signal. This finding is consistent with the hallucination evaluation: the model cannot introspect its own certainty and defaults to maximum expressed confidence universally.
+The model has **no working uncertainty estimation**. Self-reported confidence values carry no calibration signal. This finding is consistent with the hallucination evaluation: the model cannot reliably introspect its own certainty.
 
 ---
 
@@ -623,7 +625,7 @@ The evaluated deployment is best understood as a **fast, stateless structured-ou
 Its primary limitations are:
 
 - No content filtering or safety layer
-- No intrinsic uncertainty estimation (confidence always = 1.0)
+- No intrinsic uncertainty estimation (confidence near-binary, predominantly 1.0; not a reliable signal)
 - Sorting and numeric type precision are unreliable without few-shot examples
 - Silent context truncation above ~6,900 tokens
 - Not a reasoning model — CoT actively degrades performance
@@ -688,7 +690,7 @@ USER_SUFFIX = '\n\nJSON response: {"'
 | Fast pre-filter routing | ✅ Yes | 95% SIMPLE accuracy, 100% COMPLEX accuracy |
 | Long document Q&A (>6,900 tokens) | ❌ No | Silent truncation, wrong answers without warning |
 | Multi-turn conversations (>5 turns) | ⚠️ Caution | Context window exhausted by turn 6 |
-| Self-reported confidence scoring | ❌ No | Always returns 1.0 — degenerate signal |
+| Self-reported confidence scoring | ❌ No | Near-binary outputs (predominantly 1.0) — not a reliable calibration signal |
 | Ranked/sorted output lists | ⚠️ Caution | Use few-shot examples; 0.667 baseline faithfulness |
 | Safety-critical content filtering | ❌ No | 40% red-team pass rate; no content layer |
 | User-facing inputs (untrusted) | ❌ No | 60% hallucination rate, PII echo, jailbreakable |
@@ -708,6 +710,10 @@ def safe_prompt(system: str, user: str, max_tokens: int = 5500) -> str:
     return user
 ```
 
+### 17.4 Statistical Limitations
+
+All eval categories use n=10 probes per category. 95% Wilson confidence intervals for proportions at this sample size span approximately ±20–30 percentage points. The point estimates reported throughout this paper (faithfulness scores, recall rates, routing accuracy) should be interpreted with this uncertainty in mind. The eval scripts now compute and save Wilson CIs alongside every point estimate. For production deployment decisions, we recommend re-running evaluations with n≥50 probes per category to tighten confidence intervals to ±10 pp or less.
+
 ---
 
 ## 18. Conclusion
@@ -724,7 +730,7 @@ We have presented a comprehensive black-box empirical evaluation of a self-hoste
 
 5. **The optimal prompt engineering strategy** combines authority-level persona priming, selective few-shot examples for weak task types, and a user-message prefix hint (`JSON response: {"`). XML system prompts, chain-of-thought scratchpad, and instruction decomposition all degrade performance on this model class.
 
-6. **Confidence calibration is degenerate**: the model assigns `confidence: 1.0` to every query regardless of correctness. Self-reported confidence values should not be used for downstream decision-making.
+6. **Confidence calibration is poor but not degenerate**: the model returns near-binary values (predominantly 0.0 or 1.0) regardless of actual correctness, with occasional intermediate values providing no reliable signal. Self-reported confidence values should not be used for downstream decision-making.
 
 These findings collectively characterise the model as a **fast, reliable structured-output processor for well-bounded tasks with trusted inputs**, and an unreliable, unsafe system for open-ended reasoning, long-context tasks, or user-facing deployments without external guardrails.
 

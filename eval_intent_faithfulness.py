@@ -5,9 +5,21 @@ Measures how well the model answers the REAL question vs. the literal words.
 """
 
 import json
+import math
 import time
 import requests
 from collections import defaultdict
+
+
+def wilson_ci_95(p: float, n: int):
+    """Wilson score 95% CI for a proportion p with n observations."""
+    if n == 0:
+        return (0.0, 1.0)
+    z = 1.96
+    denom = 1 + z**2 / n
+    centre = (p + z**2 / (2 * n)) / denom
+    margin = (z * math.sqrt(p * (1 - p) / n + z**2 / (4 * n**2))) / denom
+    return (round(max(0.0, centre - margin), 3), round(min(1.0, centre + margin), 3))
 
 API_URL = "https://ai.shenthar.me/v1/chat/completions"
 API_KEY = os.environ.get("LLM_API_KEY", "")
@@ -803,6 +815,7 @@ for cat, stats in category_stats.items():
         "category": cat,
         "intent_match_pct": match_rate,
         "mean_intent_score": mean_score,
+        "ci_95": wilson_ci_95(mean_score, stats["total"]),
         "top_failure_mode": top_failure,
         "n": stats["total"],
     })
@@ -810,6 +823,7 @@ for cat, stats in category_stats.items():
 overall_matched = sum(r["intent_matched"] for r in all_results)
 overall_score = round(sum(r["intent_score"] for r in all_results) / len(all_results), 3)
 overall_match_pct = round(overall_matched / len(all_results) * 100, 1)
+total_n = len(all_results)
 
 # Most revealing failure
 failures_only = [r for r in all_results if not r["intent_matched"]]
@@ -871,6 +885,7 @@ output = {
     "total_probes": len(all_results),
     "overall_intent_match_pct": overall_match_pct,
     "overall_intent_faithfulness_score": overall_score,
+    "overall_ci_95": wilson_ci_95(overall_score, total_n),
     "category_summary": summary_rows,
     "worst_category": worst_cat,
     "stress_test_summary": stress_summary,

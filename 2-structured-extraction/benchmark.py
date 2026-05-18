@@ -632,7 +632,6 @@ def run_benchmark():
     print()
 
     results = []
-    inflection_point = None
 
     header = (f"{'words':>6}  {'~tokens':>8}  {'precision':>9}  "
               f"{'recall':>7}  {'f1':>6}  {'consistent':>10}")
@@ -697,10 +696,6 @@ def run_benchmark():
               f"std={metrics['f1_std']:.3f}  "
               f"consistent={consistent_str}")
 
-        # Track inflection point
-        if inflection_point is None and (metrics["f1"] < 0.8 or not metrics["consistent"]):
-            inflection_point = row
-
     # -----------------------------------------------------------------------
     # SUMMARY TABLE
     # -----------------------------------------------------------------------
@@ -764,16 +759,20 @@ def run_benchmark():
     # -----------------------------------------------------------------------
     # SAVE RESULTS
     # -----------------------------------------------------------------------
+    floor_point = min(results, key=lambda x: x["f1"]) if results else None
+    sweet_spot  = max(results, key=lambda x: x["f1"]) if results else None
+
     output_path = "results.json"
     with open(output_path, "w") as fh:
         json.dump(
             {
-                "model":            MODEL,
-                "api_url":          API_URL,
-                "repeats":          REPEATS,
-                "ground_truth":     GROUND_TRUTH,
-                "inflection_point": inflection_point,
-                "results":          results,
+                "model":        MODEL,
+                "api_url":      API_URL,
+                "repeats":      REPEATS,
+                "ground_truth": GROUND_TRUTH,
+                "floor_point":  floor_point,
+                "sweet_spot":   sweet_spot,
+                "results":      results,
             },
             fh,
             indent=2,
