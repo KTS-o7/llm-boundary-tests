@@ -1,0 +1,380 @@
+{
+  "meta": {
+    "run_at": "2026-05-18T13:17:44.658120",
+    "model": "taalas-llama3.1-8b",
+    "api_url": "https://ai.shenthar.me/v1/chat/completions"
+  },
+  "domains": {
+    "domain1": {
+      "recall_at_1": 1.0,
+      "recall_at_3": 1.0,
+      "recall_floor": "never",
+      "degradation_curve": {
+        "L1": 1.0,
+        "L2": 1.0,
+        "L3": 1.0,
+        "L4": 1.0,
+        "L5": 1.0
+      },
+      "notes": "Recall = fraction of 3 required JSON fields (sentiment/category/urgency) returned",
+      "raw": {
+        "L1": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "L2": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "L3": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "L4": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "L5": [
+          1.0,
+          1.0
+        ]
+      }
+    },
+    "domain2": {
+      "recall_at_1": 0.1771,
+      "recall_at_3": 0.4826,
+      "recall_floor": "200w",
+      "degradation_curve": {
+        "200": 0.25,
+        "500": 0.4167,
+        "1000": 0.73,
+        "1500": 0.9109,
+        "2000": 0.9587,
+        "2500": 0.8981,
+        "3000": 0.9903,
+        "3500": 1.0,
+        "4000": 0.9194,
+        "live_150w": 0.1771,
+        "live_300w": 0.3125,
+        "live_500w": 0.9583,
+        "live_800w": 0.8958,
+        "live_1200w": 0.8854
+      },
+      "notes": "Recall = fraction of 32 GT entities found. Low recall at short docs (entities absent), peaks ~3500w",
+      "live_probes": [
+        {
+          "words": 150,
+          "mean_recall": 0.1771,
+          "per_run": [
+            0.1875,
+            0.1562,
+            0.1875
+          ]
+        },
+        {
+          "words": 300,
+          "mean_recall": 0.3125,
+          "per_run": [
+            0.3438,
+            0.3125,
+            0.2812
+          ]
+        },
+        {
+          "words": 500,
+          "mean_recall": 0.9583,
+          "per_run": [
+            0.9688,
+            0.9375,
+            0.9688
+          ]
+        },
+        {
+          "words": 800,
+          "mean_recall": 0.8958,
+          "per_run": [
+            1.0,
+            0.6875,
+            1.0
+          ]
+        },
+        {
+          "words": 1200,
+          "mean_recall": 0.8854,
+          "per_run": [
+            1.0,
+            0.6875,
+            0.9688
+          ]
+        }
+      ],
+      "existing_recall_by_words": {
+        "200": 0.25,
+        "500": 0.4167,
+        "1000": 0.73,
+        "1500": 0.9109,
+        "2000": 0.9587,
+        "2500": 0.8981,
+        "3000": 0.9903,
+        "3500": 1.0,
+        "4000": 0.9194
+      }
+    },
+    "domain3": {
+      "recall_at_1": 1.0,
+      "recall_at_3": 1.0,
+      "recall_floor": "never",
+      "degradation_curve": {
+        "L1": 1.0,
+        "L2": 1.0,
+        "L3": 1.0
+      },
+      "existing_simple_recall": 0.95,
+      "notes": "Recall = fraction of SIMPLE queries correctly identified as SIMPLE (TP rate for SIMPLE tier)",
+      "simple_by_level": {
+        "L1": {
+          "correct": 5,
+          "total": 5
+        },
+        "L2": {
+          "correct": 5,
+          "total": 5
+        },
+        "L3": {
+          "correct": 5,
+          "total": 5
+        }
+      }
+    },
+    "domain4": {
+      "recall_at_1": 0.122,
+      "recall_at_3": 0.5854,
+      "recall_floor": "3000w",
+      "best_chunking_recall": 1.0,
+      "degradation_curve": {
+        "500w_0ov_parallel": 0.9268,
+        "500w_50ov_parallel": 0.9024,
+        "500w_50ov_sequential": 1.0,
+        "1000w_0ov_parallel": 0.878,
+        "1000w_100ov_parallel": 0.8049,
+        "2000w_200ov_parallel": 0.7805,
+        "3000w_300ov_parallel": 0.4878
+      },
+      "notes": "Recall = fraction of 41 GT entities found. 500w/50ov parallel is optimal strategy.",
+      "strategy_recalls": [
+        {
+          "chunk_words": 500,
+          "overlap_words": 0,
+          "mode": "parallel",
+          "entities_found": 38,
+          "recall": 0.9268
+        },
+        {
+          "chunk_words": 500,
+          "overlap_words": 50,
+          "mode": "parallel",
+          "entities_found": 37,
+          "recall": 0.9024
+        },
+        {
+          "chunk_words": 1000,
+          "overlap_words": 0,
+          "mode": "parallel",
+          "entities_found": 36,
+          "recall": 0.878
+        },
+        {
+          "chunk_words": 1000,
+          "overlap_words": 100,
+          "mode": "parallel",
+          "entities_found": 33,
+          "recall": 0.8049
+        },
+        {
+          "chunk_words": 2000,
+          "overlap_words": 200,
+          "mode": "parallel",
+          "entities_found": 32,
+          "recall": 0.7805
+        },
+        {
+          "chunk_words": 3000,
+          "overlap_words": 300,
+          "mode": "parallel",
+          "entities_found": 20,
+          "recall": 0.4878
+        },
+        {
+          "chunk_words": 500,
+          "overlap_words": 50,
+          "mode": "sequential",
+          "entities_found": 41,
+          "recall": 1.0
+        }
+      ],
+      "live_probes": [
+        {
+          "label": "100w",
+          "mean_recall": 0.122,
+          "runs": [
+            0.0976,
+            0.0976,
+            0.1707
+          ]
+        },
+        {
+          "label": "250w",
+          "mean_recall": 0.8049,
+          "runs": [
+            0.8049,
+            0.8293,
+            0.7805
+          ]
+        },
+        {
+          "label": "600w",
+          "mean_recall": 0.8293,
+          "runs": [
+            0.8293,
+            0.7805,
+            0.878
+          ]
+        }
+      ]
+    },
+    "domain5": {
+      "recall_at_1": 0.8,
+      "recall_at_3": 0.9333,
+      "recall_floor": "never",
+      "degradation_curve": {
+        "PING": 0.8,
+        "ONE_LINER": 1.0,
+        "SHORT": 1.0,
+        "MEDIUM": 1.0,
+        "LONG": 1.0
+      },
+      "notes": "Recall = % expected JSON fields present. PING=1 field, ONE_LINER=1, SHORT=2, MEDIUM=3, LONG=5",
+      "category_details": {
+        "PING": {
+          "required_fields": [
+            "reply"
+          ],
+          "mean_recall": 0.8,
+          "per_probe": [
+            1.0,
+            1.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        "ONE_LINER": {
+          "required_fields": [
+            "answer"
+          ],
+          "mean_recall": 1.0,
+          "per_probe": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "SHORT": {
+          "required_fields": [
+            "answer",
+            "explanation"
+          ],
+          "mean_recall": 1.0,
+          "per_probe": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "MEDIUM": {
+          "required_fields": [
+            "answer",
+            "explanation",
+            "examples"
+          ],
+          "mean_recall": 1.0,
+          "per_probe": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "LONG": {
+          "required_fields": [
+            "answer",
+            "explanation",
+            "examples",
+            "caveats",
+            "summary"
+          ],
+          "mean_recall": 1.0,
+          "per_probe": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        }
+      }
+    },
+    "domain6": {
+      "recall_at_1": 1.0,
+      "recall_at_3": 0.8333,
+      "recall_floor": "never",
+      "overall_live_recall": 0.8,
+      "existing_accuracy": 1.0,
+      "degradation_curve": {
+        "L1": 1.0,
+        "L2": 0.6667,
+        "L3": 0.8333,
+        "L4": 0.8333,
+        "L5": 0.6667
+      },
+      "notes": "Recall = fraction of 30 probes where correct tool was selected. Existing run: 40/40=1.0",
+      "results_by_complexity": {
+        "L1": {
+          "correct": 6,
+          "total": 6
+        },
+        "L2": {
+          "correct": 4,
+          "total": 6
+        },
+        "L3": {
+          "correct": 5,
+          "total": 6
+        },
+        "L4": {
+          "correct": 5,
+          "total": 6
+        },
+        "L5": {
+          "correct": 4,
+          "total": 6
+        }
+      }
+    }
+  }
+}

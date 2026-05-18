@@ -1,0 +1,1681 @@
+{
+  "metadata": {
+    "model": "taalas-llama3.1-8b",
+    "api_url": "https://ai.shenthar.me/v1/chat/completions",
+    "experiment_date": "2026-05-18T13:39:55.236410"
+  },
+  "instruction_decomposition": {
+    "flat": [
+      {
+        "query": "Apple was founded by Steve Jobs and Steve Wozniak in Cupertino on April 1, 1976.",
+        "response": "Here are the extracted named entities with their corresponding types and confidences:\n\n**Extracted entities:**\n\n1. **Apple** - type: company, confidence: 0.96\n2. **Steve Jobs** - type: person, confidence: 0.95\n3. **Steve Wozniak** - type: person, confidence: 0.95\n4. **Cupertino** - type: location, confidence: 0.92\n5. **April 1, 1976** - type: date, confidence: 0.88\n\n**Result as a JSON array:**\n\n[\n  {\"name\": \"Apple\", \"confidence\": 0.96, \"type\": \"company\"},\n  {\"name\": \"Steve Jobs\", \"confidence\": 0.95, \"type\": \"person\"},\n  {\"name\": \"Steve Wozniak\", \"confidence\": 0.95, \"type\": \"person\"},\n  {\"name\": \"Cupertino\", \"confidence\": 0.92, \"type\": \"location\"},\n  {\"name\": \"April 1, 1976\", \"confidence\": 0.88, \"type\": \"date\"}\n]\n\nNote that I've rounded the confidence scores to two decimal places for brevity. Let me know if you'd like to keep more decimal places.",
+        "scores": {
+          "returns_json_array": 1,
+          "has_name_field": 1,
+          "has_confidence_float": 1,
+          "has_type_field": 1,
+          "sorted_descending": 1
+        },
+        "total": 5
+      },
+      {
+        "query": "Elon Musk acquired Twitter for $44 billion in October 2022.",
+        "response": "Here are the named entities extracted from the text with their confidence levels sorted in descending order:\n\n```\n[\n  {\n    \"name\": \"Twitter\",\n    \"confidence\": 0.95,\n    \"type\": \"company\"\n  },\n  {\n    \"name\": \"Elon Musk\",\n    \"confidence\": 0.95,\n    \"type\": \"person\"\n  },\n  {\n    \"name\": \"October 2022\",\n    \"confidence\": 0.75,\n    \"type\": \"date\"\n  },\n  {\n    \"name\": \"$44 billion\",\n    \"confidence\": 0.7,\n    \"type\": \"amount\"\n  }\n]\n```",
+        "scores": {
+          "returns_json_array": 1,
+          "has_name_field": 1,
+          "has_confidence_float": 1,
+          "has_type_field": 1,
+          "sorted_descending": 1
+        },
+        "total": 5
+      },
+      {
+        "query": "The World Health Organization is headquartered in Geneva, Switzerland.",
+        "response": "Here is the extracted information in the desired format:\n```\n[\n  { \"name\": \"World Health Organization\", \"confidence\": 0.9, \"type\": \"organization\" },\n  { \"name\": \"Geneva\", \"confidence\": 0.8, \"type\": \"location\" },\n  { \"name\": \"Switzerland\", \"confidence\": 0.7, \"type\": \"location\" }\n]\n```\nNote: The confidence score is subjective and based on the assumption that the text is correctly extracted. If the text is incorrect, the scores may not reflect the actual accuracy of the extraction.\n\nIn this case, the confidence score is based on the following reasoning:\n\n* \"World Health Organization\" is a widely known organization, so it's likely to be correctly extracted with high confidence.\n* \"Geneva\" is a well-known city, so it's likely to be correctly extracted with high confidence.\n* \"Switzerland\" is a country, so it's likely to be correctly extracted with moderate confidence (0.7, as there might be some minor errors in the text). \n\nPlease note that the exact confidence scores are subjective and may vary based on the specific use case or requirement. \n\nAlso note that I've assigned \"The\" as part of the organization name, but you can remove it if you want to. Let me know if you have any further requests!",
+        "scores": {
+          "returns_json_array": 1,
+          "has_name_field": 1,
+          "has_confidence_float": 1,
+          "has_type_field": 1,
+          "sorted_descending": 1
+        },
+        "total": 5
+      },
+      {
+        "query": "Amazon reported $514 billion in revenue in 2022, led by CEO Andy Jassy.",
+        "response": "Here are the extracted named entities with their confidence scores and types, sorted by confidence in descending order:\n\n```\n[\n  {\n    \"name\": \"Andy Jassy\",\n    \"confidence\": 0.92,\n    \"type\": \"person\"\n  },\n  {\n    \"name\": \"Amazon\",\n    \"confidence\": 0.97,\n    \"type\": \"company\"\n  },\n  {\n    \"name\": \"2022\",\n    \"confidence\": 0.99,\n    \"type\": \"date\"\n  }\n]\n```\n\nNote: The confidence score for each entity is subjective and may vary based on the model's understanding of the text. The scores provided are approximate and based on the model's best guess.",
+        "scores": {
+          "returns_json_array": 1,
+          "has_name_field": 1,
+          "has_confidence_float": 1,
+          "has_type_field": 1,
+          "sorted_descending": 0
+        },
+        "total": 4
+      },
+      {
+        "query": "Barack Obama was born in Honolulu, Hawaii on August 4, 1961.",
+        "response": "Here is the result:\n\n```\n[\n  {\n    \"name\": \"Barack Obama\",\n    \"confidence\": 0.8,\n    \"type\": \"person\"\n  },\n  {\n    \"name\": \"Honolulu\",\n    \"confidence\": 0.8,\n    \"type\": \"location\"\n  },\n  {\n    \"name\": \"Hawaii\",\n    \"confidence\": 0.8,\n    \"type\": \"location\"\n  },\n  {\n    \"name\": \"August\",\n    \"confidence\": 0.4,\n    \"type\": \"date\"\n  },\n  {\n    \"name\": \"1961\",\n    \"confidence\": 0.4,\n    \"type\": \"date\"\n  }\n]\n```",
+        "scores": {
+          "returns_json_array": 1,
+          "has_name_field": 1,
+          "has_confidence_float": 1,
+          "has_type_field": 1,
+          "sorted_descending": 1
+        },
+        "total": 5
+      },
+      {
+        "query": "Microsoft's Satya Nadella announced a $10 billion investment in OpenAI in January 2023.",
+        "response": "Here are the named entities extracted from the text with their corresponding confidence score and type:\n\n```\n[\n  {\n    \"name\": \"Microsoft\",\n    \"confidence\": 0.95,\n    \"type\": \"company\"\n  },\n  {\n    \"name\": \"Satya Nadella\",\n    \"confidence\": 0.85,\n    \"type\": \"person\"\n  },\n  {\n    \"name\": \"OpenAI\",\n    \"confidence\": 0.90,\n    \"type\": \"company\"\n  },\n  {\n    \"name\": \"January\",\n    \"confidence\": 0.75,\n    \"type\": \"date\"\n  },\n  {\n    \"name\": \"2023\",\n    \"confidence\": 0.95,\n    \"type\": \"date\"\n  }\n]\n```\n\nNote: The confidence scores are subjective and may vary based on the specific implementation of the entity extraction algorithm used. The scores provided are examples and may not reflect the actual scores produced by a specific entity extraction tool.",
+        "scores": {
+          "returns_json_array": 1,
+          "has_name_field": 1,
+          "has_confidence_float": 1,
+          "has_type_field": 1,
+          "sorted_descending": 0
+        },
+        "total": 4
+      },
+      {
+        "query": "Tesla delivered 1.3 million vehicles globally in 2022.",
+        "response": "Here are the named entities extracted from the text with their corresponding confidence values and types:\n\n**Entities:**\n1. Tesla, 0.85, company\n2. 1.3 million, 0.6, amount\n3. 2022, 0.9, date\n\nJSON output:\n```\n[\n  {\n    \"name\": \"Tesla\",\n    \"confidence\": 0.85,\n    \"type\": \"company\"\n  },\n  {\n    \"name\": \"1.3 million\",\n    \"confidence\": 0.6,\n    \"type\": \"amount\"\n  },\n  {\n    \"name\": \"2022\",\n    \"confidence\": 0.9,\n    \"type\": \"date\"\n  }\n]\n```",
+        "scores": {
+          "returns_json_array": 1,
+          "has_name_field": 1,
+          "has_confidence_float": 1,
+          "has_type_field": 1,
+          "sorted_descending": 0
+        },
+        "total": 4
+      },
+      {
+        "query": "Jeff Bezos founded Amazon in Seattle, Washington in 1994.",
+        "response": "Here are the extracted named entities with their types and confidences:\n\n```\n[\n  {\n    \"name\": \"Amazon\",\n    \"confidence\": 0.9,\n    \"type\": \"company\"\n  },\n  {\n    \"name\": \"Jeff Bezos\",\n    \"confidence\": 0.95,\n    \"type\": \"person\"\n  },\n  {\n    \"name\": \"Seattle\",\n    \"confidence\": 0.7,\n    \"type\": \"location\"\n  },\n  {\n    \"name\": \"Washington\",\n    \"confidence\": 0.7,\n    \"type\": \"location\"\n  },\n  {\n    \"name\": \"1994\",\n    \"confidence\": 0.6,\n    \"type\": \"date\"\n  }\n]\n```\n\nNote: The confidence scores are subjective and may vary based on the specific implementation of the named entity recognition (NER) model used. The provided scores are an example of how the output might look like.",
+        "scores": {
+          "returns_json_array": 1,
+          "has_name_field": 1,
+          "has_confidence_float": 1,
+          "has_type_field": 1,
+          "sorted_descending": 0
+        },
+        "total": 4
+      },
+      {
+        "query": "The Federal Reserve raised rates by 75 basis points on November 2, 2022.",
+        "response": "Here are the extracted named entities sorted by confidence in descending order:\n\n```\n[\n  {\n    \"name\": \"Federal Reserve\",\n    \"confidence\": 0.95,\n    \"type\": \"company\"\n  },\n  {\n    \"name\": \"November 2, 2022\",\n    \"confidence\": 0.95,\n    \"type\": \"date\"\n  },\n  {\n    \"name\": \"United States\",\n    \"confidence\": 0.75,\n    \"type\": \"location\"\n  }\n]\n```\n\nNote: The confidence scores were assigned based on the frequency of the entity types in general knowledge and training data, and may vary depending on the specific context and the model used. For this example, I assumed a high confidence score for the Federal Reserve as it is a well-known entity in finance, a high score for the date as it is a specific date, and a lower score for the United States as while it is a location, it was not explicitly mentioned as an entity in the original text. \n\nNote that the actual confidence scores should be determined by a machine learning model or a natural language processing (NLP) algorithm, which can provide more accurate results. \n\nAlso, note that this output does not include entities that are not in the original text, but are implied, such as \"rates\" which could be a named entity, but it's not present in the original text. \n\nHere is a brief explanation of each extracted entity and their confidence scores:\n\n* Federal Reserve: The Federal Reserve is a central bank in the United States, with a high confidence score due to its well-known status. \n* November 2, 2022: This is a specific date mentioned in the text. I assigned it a high confidence score as it's a clear and specific entity.\n* United States: The United States is the country mentioned in the text, but only as part of the date \"November 2, 2022\", hence the lower confidence score.",
+        "scores": {
+          "returns_json_array": 1,
+          "has_name_field": 1,
+          "has_confidence_float": 1,
+          "has_type_field": 1,
+          "sorted_descending": 1
+        },
+        "total": 5
+      },
+      {
+        "query": "Sundar Pichai leads Alphabet Inc., headquartered in Mountain View, California.",
+        "response": "Here is the extracted result:\n\n```\n[\n  {\n    \"name\": \"Alphabet Inc.\",\n    \"confidence\": 1.0,\n    \"type\": \"company\"\n  },\n  {\n    \"name\": \"Sundar Pichai\",\n    \"confidence\": 0.9,\n    \"type\": \"person\"\n  },\n  {\n    \"name\": \"Mountain View\",\n    \"confidence\": 0.8,\n    \"type\": \"location\"\n  },\n  {\n    \"name\": \"California\",\n    \"confidence\": 0.8,\n    \"type\": \"location\"\n  }\n]\n```\n\nNote: The confidence score for \"Sundar Pichai\" is lower than 1 because it is not a perfect match with the exact name of the CEO of Alphabet (it seems to be a slight misspelling of \"Pichai\" which is actually \"Pichai Sundar\" in the correct form of his name, \"Sundar Pichai\", which is not a common form). The confidence score can be adjusted based on the actual accuracy of the extraction.",
+        "scores": {
+          "returns_json_array": 1,
+          "has_name_field": 1,
+          "has_confidence_float": 1,
+          "has_type_field": 1,
+          "sorted_descending": 1
+        },
+        "total": 5
+      },
+      {
+        "query": "The Paris Agreement was signed on December 12, 2015 by 196 nations.",
+        "response": "Here are the extracted named entities, sorted by confidence descending:\n\n[\n  {\n    \"name\": \"Paris Agreement\",\n    \"confidence\": 0.99,\n    \"type\": \"location\"\n  },\n  {\n    \"name\": \"December\",\n    \"confidence\": 0.99,\n    \"type\": \"date\"\n  },\n  {\n    \"name\": \"2015\",\n    \"confidence\": 0.99,\n    \"type\": \"date\"\n  },\n  {\n    \"name\": \"December 12, 2015\",\n    \"confidence\": 0.99,\n    \"type\": \"date\"\n  }\n]\n\nNote: The confidence score is not directly calculated in this example, but based on the context, I've assigned a high confidence score for each entity. In a real-world system, you would need to use a named entity recognition (NER) library like spaCy or Stanford CoreNLP to perform the extraction and confidence scoring accurately.",
+        "scores": {
+          "returns_json_array": 1,
+          "has_name_field": 1,
+          "has_confidence_float": 1,
+          "has_type_field": 1,
+          "sorted_descending": 1
+        },
+        "total": 5
+      },
+      {
+        "query": "SpaceX launched its Falcon Heavy rocket from Cape Canaveral on February 6, 2018.",
+        "response": "Here are the extracted named entities with their respective confidence and type in a JSON array:\n\n```json\n[\n  {\n    \"name\": \"SpaceX\",\n    \"confidence\": 0.98,\n    \"type\": \"company\"\n  },\n  {\n    \"name\": \"Cape Canaveral\",\n    \"confidence\": 0.97,\n    \"type\": \"location\"\n  },\n  {\n    \"name\": \"February\",\n    \"confidence\": 0.88,\n    \"type\": \"date\"\n  },\n  {\n    \"name\": \"2018\",\n    \"confidence\": 0.88,\n    \"type\": \"date\"\n  }\n]\n```\n\nNote: I assumed that \"Cape Canaveral\" is a location, but in reality, Cape Canaveral is a launch site, not necessarily a city or a country. If you want to be more specific, you can add more entity types like launch site, airport, etc.",
+        "scores": {
+          "returns_json_array": 1,
+          "has_name_field": 1,
+          "has_confidence_float": 1,
+          "has_type_field": 1,
+          "sorted_descending": 1
+        },
+        "total": 5
+      },
+      {
+        "query": "Warren Buffett's Berkshire Hathaway holds $130 billion in Apple stock.",
+        "response": "Here is the extracted named entities in the format requested:\n\n```\n[\n  [ \"Apple\", 0.9, \"company\" ],\n  [ \"Warren Buffett\", 0.9, \"person\" ],\n  [ \"Berkshire Hathaway\", 0.9, \"company\" ]\n]\n```\n\nNote that I assigned \"company\" type to Apple, as it is a well-known multinational technology company. I also assigned \"person\" type to Warren Buffett, as he is a public figure.",
+        "scores": {
+          "returns_json_array": 1,
+          "has_name_field": 0,
+          "has_confidence_float": 0,
+          "has_type_field": 0,
+          "sorted_descending": 0
+        },
+        "total": 1
+      },
+      {
+        "query": "Meta Platforms reported $116 billion revenue, led by Mark Zuckerberg.",
+        "response": "Here are the extracted named entities with confidence and type:\n\n```\n[\n  {\n    \"name\": \"Meta Platforms\",\n    \"confidence\": 0.85,\n    \"type\": \"company\"\n  },\n  {\n    \"name\": \"Mark Zuckerberg\",\n    \"confidence\": 0.95,\n    \"type\": \"person\"\n  },\n  {\n    \"name\": \"Meta\",\n    \"confidence\": 0.75,\n    \"type\": \"location\"\n  }\n]\n```\n\nNote: The confidence values are subjective and based on my understanding of the text. They can be adjusted based on the actual context and intent of the text.",
+        "scores": {
+          "returns_json_array": 1,
+          "has_name_field": 1,
+          "has_confidence_float": 1,
+          "has_type_field": 1,
+          "sorted_descending": 0
+        },
+        "total": 4
+      },
+      {
+        "query": "Goldman Sachs, based in New York, reported losses of $3 billion in Q4 2022.",
+        "response": "Here are the extracted named entities with confidence scores:\n\n```\n[\n  {\"name\": \"Goldman Sachs\", \"confidence\": 1.0, \"type\": \"company\"},\n  {\"name\": \"New York\", \"confidence\": 0.9, \"type\": \"location\"},\n  {\"name\": \"Q4 2022\", \"confidence\": 0.7, \"type\": \"date\"},\n  {\"name\": \"$3 billion\", \"confidence\": 0.6, \"type\": \"amount\"}\n]\n```\n\nNote: I assigned \"New York\" as a location and \"Q4 2022\" as a date. I also considered \"New York\" and \"Q4 2022\" as having higher confidence than \"$3 billion\" since \"New York\" is a specific city and \"Q4 2022\" is a specific date, while \"$3 billion\" is a more ambiguous amount. If you would like to adjust these assignments or confidence scores, please let me know!",
+        "scores": {
+          "returns_json_array": 1,
+          "has_name_field": 1,
+          "has_confidence_float": 1,
+          "has_type_field": 1,
+          "sorted_descending": 1
+        },
+        "total": 5
+      },
+      {
+        "query": "Sam Altman returned as CEO of OpenAI in November 2023 after a board dispute.",
+        "response": "Here are the named entities extracted from the text:\n\n[{\"name\": \"Sam Altman\", \"confidence\": 0.95, \"type\": \"person\"}, \n{\"name\": \"OpenAI\", \"confidence\": 0.95, \"type\": \"company\"}, \n{\"name\": \"November 2023\", \"confidence\": 0.9, \"type\": \"date\"}]",
+        "scores": {
+          "returns_json_array": 1,
+          "has_name_field": 1,
+          "has_confidence_float": 1,
+          "has_type_field": 1,
+          "sorted_descending": 1
+        },
+        "total": 5
+      },
+      {
+        "query": "Nvidia's Jensen Huang unveiled the H100 GPU at GTC 2022 in San Jose.",
+        "response": "Here is the result:\n```\n[\n  {\n    \"name\": \"Nvidia\",\n    \"confidence\": 0.9,\n    \"type\": \"company\"\n  },\n  {\n    \"name\": \"Huang Jensen\",\n    \"confidence\": 0.85,\n    \"type\": \"person\"\n  },\n  {\n    \"name\": \"San Jose\",\n    \"confidence\": 0.85,\n    \"type\": \"location\"\n  },\n  {\n    \"name\": \"GTC 2022\",\n    \"confidence\": 0.8,\n    \"type\": \"location\"\n  },\n  {\n    \"name\": \"H100 GPU\",\n    \"confidence\": 0.8,\n    \"type\": \"person\"\n  }\n]\n```\nNote: I corrected \"Huang Jensen\" to \"Huang\" as I assume it's Jensen Huang's last name.",
+        "scores": {
+          "returns_json_array": 1,
+          "has_name_field": 1,
+          "has_confidence_float": 1,
+          "has_type_field": 1,
+          "sorted_descending": 1
+        },
+        "total": 5
+      },
+      {
+        "query": "BlackRock manages over $9 trillion in assets from its New York headquarters.",
+        "response": "Here are the extracted named entities in JSON format:\n\n```\n[\n  {\n    \"name\": \"BlackRock\",\n    \"confidence\": 0.9,  // 90% confidence\n    \"type\": \"company\"\n  },\n  {\n    \"name\": \"New York\",\n    \"confidence\": 0.9,  // 90% confidence\n    \"type\": \"location\"\n  }\n]\n```\n\nNote: I've assigned a confidence score of 0.9 for both entities since they are both very clear mentions of a company and a location in the text. However, in a real-world NLP task, you would typically use a more sophisticated entity recognition model to determine the confidence scores.",
+        "scores": {
+          "returns_json_array": 0,
+          "has_name_field": 0,
+          "has_confidence_float": 0,
+          "has_type_field": 0,
+          "sorted_descending": 0
+        },
+        "total": 0
+      },
+      {
+        "query": "Tim Cook announced Apple's $1 trillion market cap on August 2, 2018.",
+        "response": "Here is the extracted information in the requested format:\n\n```\n[\n  {\n    \"name\": \"Tim Cook\",\n    \"confidence\": 0.9,\n    \"type\": \"person\"\n  },\n  {\n    \"name\": \"Apple\",\n    \"confidence\": 0.9,\n    \"type\": \"company\"\n  },\n  {\n    \"name\": \"August 2, 2018\",\n    \"confidence\": 0.8,\n    \"type\": \"date\"\n  },\n  {\n    \"name\": \"1 trillion\",\n    \"confidence\": 0.7,\n    \"type\": \"amount\"\n  }\n]\n```\n\nNote that the confidence of the date is slightly lower than the other entities due to the presence of a comma in the date string, which may lead to some ambiguity in the entity extraction process. If you want to improve the date entity recognition, you would need to provide more context or specify the exact format of the date. \n\nAlso, the date \"August 2, 2018\" could also be interpreted as a month and day of the year or a date in a specific format, this is an open issue in natural language processing.",
+        "scores": {
+          "returns_json_array": 1,
+          "has_name_field": 1,
+          "has_confidence_float": 1,
+          "has_type_field": 1,
+          "sorted_descending": 1
+        },
+        "total": 5
+      },
+      {
+        "query": "The European Central Bank, chaired by Christine Lagarde, is based in Frankfurt.",
+        "response": "Here is the extracted named entity information in the format of a JSON array, sorted by confidence in descending order:\n\n```\n[\n  {\n    \"name\": \"European Central Bank\",\n    \"confidence\": 0.8,\n    \"type\": \"organization\"\n  },\n  {\n    \"name\": \"Christine Lagarde\",\n    \"confidence\": 0.9,\n    \"type\": \"person\"\n  },\n  {\n    \"name\": \"Frankfurt\",\n    \"confidence\": 0.5,\n    \"type\": \"location\"\n  }\n]\n```\n\nThe entities extracted are:\n\n* European Central Bank (organization) with 0.8 confidence\n* Christine Lagarde (person) with 0.9 confidence\n* Frankfurt (location) with 0.5 confidence\n\nNote: I assumed the confidence values as they are not explicitly mentioned in the text. If you want to calculate the confidence value based on the text, it would be around 1 for \"Christine Lagarde\" and 0.8 for \"European Central Bank\" and \"Frankfurt\", considering the words are mentioned only once in the text and the name \"Christine Lagarde\" has two distinct words.",
+        "scores": {
+          "returns_json_array": 1,
+          "has_name_field": 1,
+          "has_confidence_float": 1,
+          "has_type_field": 1,
+          "sorted_descending": 0
+        },
+        "total": 4
+      }
+    ],
+    "decomposed": [
+      {
+        "query": "Apple was founded by Steve Jobs and Steve Wozniak in Cupertino on April 1, 1976.",
+        "response": "[\n  {\n    \"name\": \"Steve Jobs\",\n    \"confidence\": 0.9,\n    \"type\": \"person\"\n  },\n  {\n    \"name\": \"Steve Wozniak\",\n    \"confidence\": 0.9,\n    \"type\": \"person\"\n  },\n  {\n    \"name\": \"Apple\",\n    \"confidence\": 0.8,\n    \"type\": \"company\"\n  },\n  {\n    \"name\": \"Cupertino\",\n    \"confidence\": 1.0,\n    \"type\": \"location\"\n  },\n  {\n    \"name\": \"April 1, 1976\",\n    \"confidence\": 0.8,\n    \"type\": \"date\"\n  }\n]",
+        "scores": {
+          "returns_json_array": 1,
+          "has_name_field": 1,
+          "has_confidence_float": 1,
+          "has_type_field": 1,
+          "sorted_descending": 0
+        },
+        "total": 4
+      },
+      {
+        "query": "Elon Musk acquired Twitter for $44 billion in October 2022.",
+        "response": "```\n[\n  {\n    \"name\": \"Elon Musk\",\n    \"confidence\": 1.0,\n    \"type\": \"person\"\n  },\n  {\n    \"name\": \"Twitter\",\n    \"confidence\": 1.0,\n    \"type\": \"company\"\n  },\n  {\n    \"name\": \"October 2022\",\n    \"confidence\": 0.9,\n    \"type\": \"date\"\n  },\n  {\n    \"name\": \"44 billion\",\n    \"confidence\": 0.9,\n    \"type\": \"amount\"\n  }\n]\n```",
+        "scores": {
+          "returns_json_array": 1,
+          "has_name_field": 1,
+          "has_confidence_float": 1,
+          "has_type_field": 1,
+          "sorted_descending": 1
+        },
+        "total": 5
+      },
+      {
+        "query": "The World Health Organization is headquartered in Geneva, Switzerland.",
+        "response": "[\n  {\n    \"name\": \"World Health Organization\",\n    \"confidence\": 1.0,\n    \"type\": \"company\"\n  },\n  {\n    \"name\": \"Geneva\",\n    \"confidence\": 0.5,\n    \"type\": \"location\"\n  },\n  {\n    \"name\": \"Switzerland\",\n    \"confidence\": 0.5,\n    \"type\": \"location\"\n  }\n]",
+        "scores": {
+          "returns_json_array": 1,
+          "has_name_field": 1,
+          "has_confidence_float": 1,
+          "has_type_field": 1,
+          "sorted_descending": 1
+        },
+        "total": 5
+      },
+      {
+        "query": "Amazon reported $514 billion in revenue in 2022, led by CEO Andy Jassy.",
+        "response": "```\n[\n  [\"Amazon\", 0.95, \"company\"],\n  [\"Andy Jassy\", 0.98, \"person\"],\n  [\"2022\", 0.92, \"date\"]\n]\n```",
+        "scores": {
+          "returns_json_array": 1,
+          "has_name_field": 0,
+          "has_confidence_float": 0,
+          "has_type_field": 0,
+          "sorted_descending": 0
+        },
+        "total": 1
+      },
+      {
+        "query": "Barack Obama was born in Honolulu, Hawaii on August 4, 1961.",
+        "response": "[\n  {\n    \"name\": \"Barack Obama\",\n    \"confidence\": 1.0,\n    \"type\": \"person\"\n  },\n  {\n    \"name\": \"Honolulu\",\n    \"confidence\": 0.999996,\n    \"type\": \"location\"\n  },\n  {\n    \"name\": \"Hawaii\",\n    \"confidence\": 0.999996,\n    \"type\": \"location\"\n  },\n  {\n    \"name\": \"August 4\",\n    \"confidence\": 0.0,\n    \"type\": \"date\"\n  },\n  {\n    \"name\": \"1961\",\n    \"confidence\": 0.0,\n    \"type\": \"amount\"\n  }\n]",
+        "scores": {
+          "returns_json_array": 1,
+          "has_name_field": 1,
+          "has_confidence_float": 1,
+          "has_type_field": 1,
+          "sorted_descending": 1
+        },
+        "total": 5
+      },
+      {
+        "query": "Microsoft's Satya Nadella announced a $10 billion investment in OpenAI in January 2023.",
+        "response": "```\n[\n  {\n    \"name\": \"Satya Nadella\",\n    \"confidence\": 0.9,\n    \"type\": \"person\"\n  },\n  {\n    \"name\": \"Microsoft\",\n    \"confidence\": 0.9,\n    \"type\": \"company\"\n  },\n  {\n    \"name\": \"OpenAI\",\n    \"confidence\": 0.9,\n    \"type\": \"company\"\n  },\n  {\n    \"name\": \"January\",\n    \"confidence\": 0.6,\n    \"type\": \"date\"\n  },\n  {\n    \"name\": \"$10 billion\",\n    \"confidence\": 0.7,\n    \"type\": \"amount\"\n  },\n  {\n    \"name\": \"2023\",\n    \"confidence\": 0.6,\n    \"type\": \"date\"\n  }\n]\n```",
+        "scores": {
+          "returns_json_array": 1,
+          "has_name_field": 1,
+          "has_confidence_float": 1,
+          "has_type_field": 1,
+          "sorted_descending": 0
+        },
+        "total": 4
+      },
+      {
+        "query": "Tesla delivered 1.3 million vehicles globally in 2022.",
+        "response": "```json\n[\n  [\"Tesla\", 1.0, \"company\"],\n  [\"2022\", 0.9, \"date\"],\n  [\"1.3 million\", 0.8, \"amount\"],\n  [\"vehicles\", 0.6, \"amount\"]\n]\n```",
+        "scores": {
+          "returns_json_array": 1,
+          "has_name_field": 0,
+          "has_confidence_float": 0,
+          "has_type_field": 0,
+          "sorted_descending": 0
+        },
+        "total": 1
+      },
+      {
+        "query": "Jeff Bezos founded Amazon in Seattle, Washington in 1994.",
+        "response": "```\n[\n  {\n    \"name\": \"Jeff Bezos\",\n    \"confidence\": 1.0,\n    \"type\": \"person\"\n  },\n  {\n    \"name\": \"Amazon\",\n    \"confidence\": 1.0,\n    \"type\": \"company\"\n  },\n  {\n    \"name\": \"Seattle\",\n    \"confidence\": 1.0,\n    \"type\": \"location\"\n  },\n  {\n    \"name\": \"Washington\",\n    \"confidence\": 1.0,\n    \"type\": \"location\"\n  }\n]\n```",
+        "scores": {
+          "returns_json_array": 1,
+          "has_name_field": 1,
+          "has_confidence_float": 1,
+          "has_type_field": 1,
+          "sorted_descending": 1
+        },
+        "total": 5
+      },
+      {
+        "query": "The Federal Reserve raised rates by 75 basis points on November 2, 2022.",
+        "response": "```\n[\n  {\n    \"name\": \"Federal Reserve\",\n    \"confidence\": 1.0,\n    \"type\": \"company\"\n  },\n  {\n    \"name\": \"November 2, 2022\",\n    \"confidence\": 0.9,\n    \"type\": \"date\"\n  },\n  {\n    \"name\": \"75\",\n    \"confidence\": 0.9,\n    \"type\": \"amount\"\n  }\n]\n```",
+        "scores": {
+          "returns_json_array": 1,
+          "has_name_field": 1,
+          "has_confidence_float": 1,
+          "has_type_field": 1,
+          "sorted_descending": 1
+        },
+        "total": 5
+      },
+      {
+        "query": "Sundar Pichai leads Alphabet Inc., headquartered in Mountain View, California.",
+        "response": "[\n  {\n    \"name\": \"Sundar Pichai\",\n    \"confidence\": 1.0,\n    \"type\": \"person\"\n  },\n  {\n    \"name\": \"Alphabet Inc.\",\n    \"confidence\": 0.9,\n    \"type\": \"company\"\n  },\n  {\n    \"name\": \"Mountain View\",\n    \"confidence\": 0.8,\n    \"type\": \"location\"\n  },\n  {\n    \"name\": \"California\",\n    \"confidence\": 0.8,\n    \"type\": \"location\"\n  }\n]",
+        "scores": {
+          "returns_json_array": 1,
+          "has_name_field": 1,
+          "has_confidence_float": 1,
+          "has_type_field": 1,
+          "sorted_descending": 1
+        },
+        "total": 5
+      },
+      {
+        "query": "The Paris Agreement was signed on December 12, 2015 by 196 nations.",
+        "response": "```\n[\n  {\n    \"name\": \"Paris Agreement\",\n    \"confidence\": 1.0,\n    \"type\": \"location\"\n  },\n  {\n    \"name\": \"December 12, 2015\",\n    \"confidence\": 0.9,\n    \"type\": \"date\"\n  },\n  {\n    \"name\": \"Paris\",\n    \"confidence\": 0.9,\n    \"type\": \"location\"\n  },\n  {\n    \"name\": \"196\",\n    \"confidence\": 0.8,\n    \"type\": \"number\"\n  },\n  {\n    \"name\": \"nations\",\n    \"confidence\": 0.8,\n    \"type\": \"location\"\n  }\n]\n```",
+        "scores": {
+          "returns_json_array": 1,
+          "has_name_field": 1,
+          "has_confidence_float": 1,
+          "has_type_field": 1,
+          "sorted_descending": 1
+        },
+        "total": 5
+      },
+      {
+        "query": "SpaceX launched its Falcon Heavy rocket from Cape Canaveral on February 6, 2018.",
+        "response": "```\n[\n  {\n    \"name\": \"SpaceX\",\n    \"confidence\": 1.0,\n    \"type\": \"company\"\n  },\n  {\n    \"name\": \"Falcon Heavy\",\n    \"confidence\": 1.0,\n    \"type\": \"rocket\"\n  },\n  {\n    \"name\": \"Cape Canaveral\",\n    \"confidence\": 1.0,\n    \"type\": \"location\"\n  },\n  {\n    \"name\": \"February 6, 2018\",\n    \"confidence\": 1.0,\n    \"type\": \"date\"\n  }\n]\n```",
+        "scores": {
+          "returns_json_array": 1,
+          "has_name_field": 1,
+          "has_confidence_float": 1,
+          "has_type_field": 1,
+          "sorted_descending": 1
+        },
+        "total": 5
+      },
+      {
+        "query": "Warren Buffett's Berkshire Hathaway holds $130 billion in Apple stock.",
+        "response": "```\n[\n  {\n    \"name\": \"Warren Buffett\",\n    \"confidence\": 1.0,\n    \"type\": \"person\"\n  },\n  {\n    \"name\": \"Berkshire Hathaway\",\n    \"confidence\": 1.0,\n    \"type\": \"company\"\n  },\n  {\n    \"name\": \"Apple\",\n    \"confidence\": 1.0,\n    \"type\": \"company\"\n  },\n  {\n    \"name\": \"130,000,000,000\",\n    \"confidence\": 0.9,\n    \"type\": \"amount\"\n  }\n]\n```",
+        "scores": {
+          "returns_json_array": 1,
+          "has_name_field": 1,
+          "has_confidence_float": 1,
+          "has_type_field": 1,
+          "sorted_descending": 1
+        },
+        "total": 5
+      },
+      {
+        "query": "Meta Platforms reported $116 billion revenue, led by Mark Zuckerberg.",
+        "response": "Here is the JSON array with the extracted entities and their respective fields:\n\n```json\n[\n  [\"Meta Platforms\", 0.9, \"company\"],\n  [\"Mark Zuckerberg\", 0.8, \"person\"]\n]\n```\n\nHere's the explanation:\n\n1. **Step 1:** Extracted named entities:\n\t* \"Meta Platforms\"\n\t* \"Mark Zuckerberg\"\n2. **Step 2:** Assigned a confidence score to each entity as a float between 0.0 and 1.0:\n\t* \"Meta Platforms\": 0.9 (assuming the company name is correctly identified with high confidence)\n\t* \"Mark Zuckerberg\": 0.8 (assuming the person is correctly identified with high confidence)\n3. **Step 3:** Assigned an entity type to each entity:\n\t* \"Meta Platforms\": \"company\"\n\t* \"Mark Zuckerberg\": \"person\"\n4. **Step 4:** Sorted the entities by confidence score in descending order:\n\t* \"Meta Platforms\" (0.9, \"company\")\n\t* \"Mark Zuckerberg\" (0.8, \"person\")\n5. **Step 5:** Returned the JSON array with the extracted entities and their respective fields.",
+        "scores": {
+          "returns_json_array": 1,
+          "has_name_field": 0,
+          "has_confidence_float": 0,
+          "has_type_field": 0,
+          "sorted_descending": 0
+        },
+        "total": 1
+      },
+      {
+        "query": "Goldman Sachs, based in New York, reported losses of $3 billion in Q4 2022.",
+        "response": "```\n[\n  {\n    \"name\": \"Goldman Sachs\",\n    \"confidence\": 1.0,\n    \"type\": \"company\"\n  },\n  {\n    \"name\": \"New York\",\n    \"confidence\": 0.8,\n    \"type\": \"location\"\n  },\n  {\n    \"name\": \"Q4 2022\",\n    \"confidence\": 0.6,\n    \"type\": \"date\"\n  },\n  {\n    \"name\": \"$3 billion\",\n    \"confidence\": 0.8,\n    \"type\": \"amount\"\n  }\n]\n```",
+        "scores": {
+          "returns_json_array": 1,
+          "has_name_field": 1,
+          "has_confidence_float": 1,
+          "has_type_field": 1,
+          "sorted_descending": 0
+        },
+        "total": 4
+      },
+      {
+        "query": "Sam Altman returned as CEO of OpenAI in November 2023 after a board dispute.",
+        "response": "```\n[\n  [\"Sam Altman\", 1.0, \"person\"], \n  [\"OpenAI\", 1.0, \"company\"]\n]\n```",
+        "scores": {
+          "returns_json_array": 1,
+          "has_name_field": 0,
+          "has_confidence_float": 0,
+          "has_type_field": 0,
+          "sorted_descending": 0
+        },
+        "total": 1
+      },
+      {
+        "query": "Nvidia's Jensen Huang unveiled the H100 GPU at GTC 2022 in San Jose.",
+        "response": "```\n[\n  {\n    \"name\": \"Nvidia\",\n    \"confidence\": 0.9,\n    \"type\": \"company\"\n  },\n  {\n    \"name\": \"Jensen Huang\",\n    \"confidence\": 0.9,\n    \"type\": \"person\"\n  },\n  {\n    \"name\": \"H100 GPU\",\n    \"confidence\": 0.7,\n    \"type\": \"product\"\n  },\n  {\n    \"name\": \"GTC 2022\",\n    \"confidence\": 0.9,\n    \"type\": \"event\"\n  },\n  {\n    \"name\": \"San Jose\",\n    \"confidence\": 0.7,\n    \"type\": \"location\"\n  }\n]\n```",
+        "scores": {
+          "returns_json_array": 1,
+          "has_name_field": 1,
+          "has_confidence_float": 1,
+          "has_type_field": 1,
+          "sorted_descending": 0
+        },
+        "total": 4
+      },
+      {
+        "query": "BlackRock manages over $9 trillion in assets from its New York headquarters.",
+        "response": "```\n[\n  {\n    \"name\": \"BlackRock\",\n    \"confidence\": 1.0,\n    \"type\": \"company\"\n  },\n  {\n    \"name\": \"New York\",\n    \"confidence\": 0.8,\n    \"type\": \"location\"\n  },\n  {\n    \"name\": \"$9 trillion\",\n    \"confidence\": 0.6,\n    \"type\": \"amount\"\n  }\n]\n```",
+        "scores": {
+          "returns_json_array": 1,
+          "has_name_field": 1,
+          "has_confidence_float": 1,
+          "has_type_field": 1,
+          "sorted_descending": 1
+        },
+        "total": 5
+      },
+      {
+        "query": "Tim Cook announced Apple's $1 trillion market cap on August 2, 2018.",
+        "response": "```\n[\n  {\n    \"name\": \"Tim Cook\",\n    \"confidence\": 0.8,\n    \"type\": \"person\"\n  },\n  {\n    \"name\": \"Apple\",\n    \"confidence\": 1.0,\n    \"type\": \"company\"\n  },\n  {\n    \"name\": \"August 2, 2018\",\n    \"confidence\": 0.8,\n    \"type\": \"date\"\n  },\n  {\n    \"name\": \"1 trillion\",\n    \"confidence\": 0.6,\n    \"type\": \"amount\"\n  }\n]\n```",
+        "scores": {
+          "returns_json_array": 1,
+          "has_name_field": 1,
+          "has_confidence_float": 1,
+          "has_type_field": 1,
+          "sorted_descending": 0
+        },
+        "total": 4
+      },
+      {
+        "query": "The European Central Bank, chaired by Christine Lagarde, is based in Frankfurt.",
+        "response": "```\n[\n  {\n    \"name\": \"Christine Lagarde\",\n    \"confidence\": 1.0,\n    \"type\": \"person\"\n  },\n  {\n    \"name\": \"European Central Bank\",\n    \"confidence\": 1.0,\n    \"type\": \"company\"\n  }\n]\n```",
+        "scores": {
+          "returns_json_array": 1,
+          "has_name_field": 1,
+          "has_confidence_float": 1,
+          "has_type_field": 1,
+          "sorted_descending": 1
+        },
+        "total": 5
+      }
+    ],
+    "summary": {
+      "flat_avg_score": 4.25,
+      "decomposed_avg_score": 3.95,
+      "flat_compliance_rate": 0.85,
+      "decomposed_compliance_rate": 0.79,
+      "improvement_points": -0.3,
+      "improvement_percent": -6.0
+    }
+  },
+  "hallucination_rate": {
+    "baseline": [
+      {
+        "id": "h01",
+        "category": "fake_person",
+        "query": "What did Dr. James Whitmore say about quantum computing in 2019?",
+        "response": "I'm unable to find any specific information about what Dr. James Whitmore said about quantum computing in 2019. Can I help you with anything else?",
+        "expressed_uncertainty": false,
+        "hallucinated": true
+      },
+      {
+        "id": "h02",
+        "category": "fake_person",
+        "query": "Summarize Professor Elena Voss's theory of cognitive bandwidth from her 2018 lecture at MIT.",
+        "response": "I couldn't find any information about a Professor Elena Voss, nor a specific lecture at MIT in 2018, related to her theory of cognitive bandwidth. However, I did come across a researcher named Ellen M. Voss (not Elena Voss) who is a cognitive anthropologist, and she did work on the concept of cognitive bandwidth.\n\nCognitive bandwidth theory, according to Ellen M. Voss's research, posits that people's brains can process only a certain amount of information at a given moment. This concept is inspired by the idea of Shannon's information theory, which describes the amount of information a channel can process. Voss applied this idea to human cognition, suggesting that people have a finite capacity for processing information, and that when this capacity is exceeded, information may be lost or distorted.\n\nIn her work, Voss explored how this concept relates to various aspects of human behavior, such as memory, attention, and decision-making. She also discussed the implications of this theory for understanding how people make sense of their environment, and how their brains process information in real-time.\n\nIf you're looking for more information on this topic, please let me know, and I'll be happy to help.",
+        "expressed_uncertainty": false,
+        "hallucinated": true
+      },
+      {
+        "id": "h03",
+        "category": "fake_person",
+        "query": "What was Dr. Marcus Trent's contribution to CRISPR research in 2020?",
+        "response": "There is no notable scientist by the name of Dr. Marcus Trent associated with significant contributions to CRISPR research in 2020. However, the CRISPR system was pioneered by Jennifer Doudna and her team, particularly Dr. Jennifer Doudna's work on CRISPR was published alongside that of Dr. Jennifer Doudna's then-Ph.D. student Dr. Jennifer's collaborator, Dr. Craig Mello's work with Dr. Jennifer Doudna's other collaborator, Dr. Luciano Naldini's group, and Dr. Dr. Dr. Francisco A. (now Dr. Jennifer Doudna's collaborator, Dr. Dr. Dr. Jennifer Doudna's collaborator Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr.",
+        "expressed_uncertainty": false,
+        "hallucinated": true
+      },
+      {
+        "id": "h04",
+        "category": "fake_person",
+        "query": "Describe the Harrington-Patel model of market microstructure developed in 2017.",
+        "response": "There is no notable model by Harrington-Patel in market microstructure developed in 2017 that I am aware of. However, the paper you might be referring to is \"Harrington Group\" not \"Harrington-Patel\", and it was published in 2017 by Harrington and his co-authors, not Harrington and Patel.\n\nThe Harrington model is a relatively simple, yet effective, market microstructure model that describes the behavior of market prices and order flows in a market. The model was developed by Richard Harrington and his co-authors. The model captures the interactions between buyers and sellers and how they influence market dynamics.\n\nIn the Harrington model, the market price is determined by the supply and demand curves, which are themselves functions of order flow. The model also accounts for the impact of market makers and other market participants. It is a more realistic representation of real-world market dynamics than earlier models, as it does not rely on the simplifying assumption of risk-free arbitrage.\n\nThe Harrington model has been applied to a variety of markets, including foreign exchange markets and other financial markets. It has also been compared to other market microstructure models and has been shown to be more accurate in capturing market dynamics, especially during periods of high volatility.\n\nIn 2017, the Harrington model was developed to better understand how markets react to changes in market conditions, such as changes in market makers' inventory and changes in investor behavior. The model was also used to analyze the impact of different market conditions on market dynamics.\n\nI apologize for the confusion, but I could not find any specific information on a \"Harrington-Patel\" model.",
+        "expressed_uncertainty": false,
+        "hallucinated": true
+      },
+      {
+        "id": "h05",
+        "category": "fake_person",
+        "query": "What did Chief Justice Amara Osei rule in the 2021 landmark case on digital privacy?",
+        "response": "I don't have any information on a 2021 landmark case related to Chief Justice Amara Osei. It's possible that you may be thinking of a different person or case. Could you provide more context or clarify who Chief Justice Amara Osei is and the case in question? I'll do my best to provide a helpful and accurate response.",
+        "expressed_uncertainty": true,
+        "hallucinated": false
+      },
+      {
+        "id": "h06",
+        "category": "fake_paper",
+        "query": "Summarize the findings of Smith & Johnson 2021 paper on neural plasticity.",
+        "response": "I'm a large language model, I don't have have access to specific publications or data after my knowledge cutoff is 2021-03-01. However, I can suggest some general information on neural plasticity that may be relevant to the topic.\n\nThat being said, I couldn't find any specific information on a paper by Smith & Johnson published in 2021 on neural plasticity. Could you please provide more context or details about the paper, such as the journal it was published in or the title of the paper? This will help me give you a more accurate and concise summary.",
+        "expressed_uncertainty": true,
+        "hallucinated": false
+      },
+      {
+        "id": "h07",
+        "category": "fake_book",
+        "query": "What are the main arguments in 'The Distributed Mind' by Dr. Caroline Feng (2022)?",
+        "response": "I can't find any information on a book called \"The Distributed Mind\" by Dr. Caroline Feng (2022). It's possible that the book does not exist or is not widely known. However, I can tell you about some of the main arguments in \"The Tell-Tale Brain: A Neuroscientist's Life and Moments from a Life in Science\" by Vilayanur \"Rams\" Rao and \"The Distributed Mind\" edited by Owenby, \"The Distributed Mind: What We Mean by \"Mind\" - What the Heart\" by Vittorio, but I am not sure if this is the book you are looking for.",
+        "expressed_uncertainty": true,
+        "hallucinated": false
+      },
+      {
+        "id": "h08",
+        "category": "fake_paper",
+        "query": "What did the Chen et al. 2020 Nature paper on mitochondrial clocks conclude?",
+        "response": "The Chen et al. 2020 Nature paper on mitochondrial clocks concluded that the human mitochondrial DNA clock is not as precise as previously thought, and that the rate of mutation accumulation is not uniform. The paper found that the mitochondrial DNA clock, which measures the accumulation of genetic mutations in mitochondrial DNA over time, is actually much more variable than previously estimated, with some individuals having a rate of mutation that is 2-3 times faster than the estimated rate of 3% per 1000 years. This has significant implications for the study of human evolution, forensic science, and the analysis of ancient DNA.",
+        "expressed_uncertainty": false,
+        "hallucinated": true
+      },
+      {
+        "id": "h09",
+        "category": "fake_paper",
+        "query": "Explain the findings of the Rosenberg & Alvarez 2019 meta-analysis on sleep deprivation and IQ.",
+        "response": "The 2019 meta-analysis you're referring to was conducted by Mark Eysb, a professor of economics at the University of California, San Diego, and Christopher I. Alne, a Ph.D. student at the University of California, San Diego. They examined the relationship between sleep deprivation and cognitive functioning, including IQ. Here are the key findings of their meta-analysis:\n\n**Study Design:**\nThe meta-analysis included 24 studies, totaling 98,441 participants, that examined the relationship between sleep deprivation and cognitive functioning, including IQ. The studies varied in their design, methods, and population, but all assessed cognitive functioning as part of their research.\n\n**Main Findings:**\nThe analysis found that sleep deprivation was associated with reduced cognitive functioning, but the relationship was complex and not always linear. Here are some key findings:\n\n*   **Cognitive Performance:** Sleep deprivation was generally associated with lower cognitive performance, including IQ, memory, attention, and executive functions.\n*   **Sleep Duration:** Sleep deprivation was more strongly associated with cognitive performance in studies that examined short sleep duration (e.g., < 4 hours) compared to studies that examined longer sleep durations (e.g., 6-7 hours).\n*   **Sleep Quality:** Sleep quality, rather than sleep duration, was more strongly associated with cognitive performance.\n*   **Direction of Association:** The relationship between sleep deprivation and cognitive performance was bidirectional, meaning that both sleep deprivation and cognitive performance influenced each other.\n*   **Heterogeneity:** The relationship between sleep deprivation and cognitive performance was heterogeneous across studies, which may be due to methodological differences or differences in the populations studied.\n\n**Limitations and Implications:**\n\n*   The meta-analysis was limited by the variation in study design, methodology, and population across the included studies.\n*   The findings highlight the importance of considering both sleep duration and quality in understanding the relationship between sleep and cognition.\n*   The results have implications for understanding cognitive aging, neurodegenerative diseases, and cognitive training programs that aim to improve sleep and cognition.\n\nOverall, the 2019 meta-analysis by Eysb and Alne provides insights into the complex relationship between sleep deprivation and cognitive functioning, including IQ. While the findings are intriguing, further research is needed to fully understand the mechanisms underlying this relationship and to develop effective interventions to improve sleep and cognition.",
+        "expressed_uncertainty": false,
+        "hallucinated": true
+      },
+      {
+        "id": "h10",
+        "category": "fake_book",
+        "query": "What is covered in chapter 7 of 'Adversarial Epistemology' by Nakamura & Walsh (2023)?",
+        "response": "I can provide a general outline, but I couldn't access specific information on every page or chapter of \"Adversarial Epistemology\" by Nakamura & Walsh (2023) to provide an exact answer. However, I can give you an overview of what adversarial epistemology typically covers:\n\nAdversarial epistemology generally involves the study of epistemological theories and methods related to how beliefs are generated and justified under conditions of conflict or opposition, often in the context of disputes or debates. Chapter 7 might delve into specific topics within this broad field, such as:\n\n1. **Argumentation and Disputation**: This chapter might discuss the nature of argumentation and disputation, how arguments are constructed and evaluated in the context of adversarial epistemology, including the roles of premises, conclusions, and counterarguments.\n\n2. **Epistemic Conflict Resolution**: This might cover methods and theories for resolving or managing epistemic conflicts, where the truth or the best belief about a matter at hand is not clear or is disputed, and how individuals or systems navigate these situations to reach a resolution.\n\n3. **Social Epistemology and Trust**: A chapter focusing on the social aspects of knowledge and belief acquisition might explore how trust, social norms, and institutions influence epistemic processes in adversarial contexts, including how trust is built and broken in the face of disagreement or conflict.\n\n4. **Epistemic Virtues and Vices**: This could delve into the moral and ethical considerations of epistemic practices under adversity, highlighting what are considered virtues (good or commendable actions towards epistemic goals) and vices (morally bad or blameworthy actions) in epistemic contexts.\n\n5. **Cognitive Biases and Heuristics**: Understanding how cognitive processes, such as heuristics, can influence decision-making and belief formation in the face of conflicting information or arguments, might also be discussed in this chapter.\n\n6. **Meta-Epistemology**: This could cover reflections on the nature of epistemology itself in adversarial contexts, including how epistemological theories and models are applied or fail to be applied in real-world conflicts or disputes.\n\nThese are speculative examples based on the general field of study. If you are specifically looking for information on chapter 7 of \"Adversarial Epistemology\" by Nakamura & Walsh (2023), I recommend checking the book directly or consulting with its authors for the most accurate and detailed information.",
+        "expressed_uncertainty": true,
+        "hallucinated": false
+      },
+      {
+        "id": "h11",
+        "category": "false_stat",
+        "query": "What percentage of Python developers use FastAPI according to the 2023 JetBrains survey?",
+        "response": "According to the 2023 JetBrains survey, 14% of Python developers use FastAPI.",
+        "expressed_uncertainty": false,
+        "hallucinated": true
+      },
+      {
+        "id": "h12",
+        "category": "false_stat",
+        "query": "According to Gartner's 2022 report, what fraction of Fortune 500 companies use Kubernetes in production?",
+        "response": "According to Gartner's 2022 report, 64% of Fortune 500 companies use Kubernetes in production.",
+        "expressed_uncertainty": false,
+        "hallucinated": true
+      },
+      {
+        "id": "h13",
+        "category": "false_stat",
+        "query": "What was the global average LLM inference cost per token reported in the 2024 McKinsey AI index?",
+        "response": "I don't have access to the internet, so I cannot look up the 2024 McKinsey AI Index. However, I can suggest that you may be able to find the information you are looking for on the McKinsey Global Institute website or in their published reports. Is there anything else I can help you with?",
+        "expressed_uncertainty": true,
+        "hallucinated": false
+      },
+      {
+        "id": "h14",
+        "category": "false_stat",
+        "query": "How many developers worldwide used Rust as their primary language in the 2023 Stack Overflow survey?",
+        "response": "According to the 2023 Stack Overflow survey, 4.4% of developers worldwide used Rust as their primary language.",
+        "expressed_uncertainty": false,
+        "hallucinated": true
+      },
+      {
+        "id": "h15",
+        "category": "false_stat",
+        "query": "What percentage of remote workers reported decreased productivity in the 2022 Stanford WFH study?",
+        "response": "According to the 2022 Stanford Work and Family Enterprise (SWIFT) study, 45% of remote workers reported that their productivity increased during the pandemic, 27% reported a decrease, and 28% reported no change.",
+        "expressed_uncertainty": false,
+        "hallucinated": true
+      },
+      {
+        "id": "h16",
+        "category": "fake_api",
+        "query": "What does the pandas.DataFrame.smart_merge() method do?",
+        "response": "The `pd.DataFrame.smart_merge()` method in pandas is a variant of the `merge()` function, but it provides a more flexible way to perform merge operations. Here's a brief explanation:\n\n**What it does:**\n`smart_merge()` allows you to merge two DataFrames on the basis of an index, a column, or both, while also specifying the kind of merge operation you want to perform.\n\n**Key Features:**\n\n- **On Index-based Merge:** By default, when you call `merge()`, pandas looks for overlap between the index of the left and right DataFrames. This can sometimes be misleading, especially when you have non-numeric index values or when you want to merge on non-index columns. `smart_merge()` solves this by allowing you to specify the index to merge on if the overlap is not by default.\n\n- **Column-based Merge:** It also provides a way to specify the column(s) on which to merge. This is particularly useful when you have multiple columns that should be matched between DataFrames.\n\n- **Specifying the Kind of Merge:** Like `merge()`, you can specify the kind of merge operation (inner, outer, left, right, left outer, right outer, inner, left, right, and outer) to perform.\n\n**Example:**\n\n```python\nimport pandas as pd\n\ndf1 = pd.DataFrame({\n    'key1': ['a', 'b', 'c'],\n    'value1': [1, 2, 3]\n})\n\ndf2 = pd.DataFrame({\n    'key1': ['a', 'b', 'd'],\n    'value2': [4, 5, 6]\n})\n\n# Merge on index\ndf_merged = pd.merge(df1, df2, on='key1')\n\n# or merge on columns\ndf2['key2'] = 'value2'\ndf_merged = pd.merge(df1, df2, on='key1')\n\n# or merge on index and columns\ndf1 = pd.DataFrame({'key1': ['a', 'b', 'c'], 'A': ['x', 'y', 'z']})\ndf2 = pd.DataFrame({'key1': ['a', 'b', 'd'], 'B': ['i', 'j', 'k']})\n\n# Merge on index and columns\ndf1_set = {col: set(df1[col]) for col in df1.columns}\ndf2_set = {col: set(df2[col]) for col in df2.columns}\ndf1_index = set(df1.index)\ndf2_index = set(df2.index)\ndf1_index_set = {i: set() for i in df1.index}\ndf2_index_set = {i: set() for i in df2.index}\nfor k1, s1 in df1_set.items():\n    for k2, s2 in df2_set.items():\n        if k1 == k2:\n            df1_index_set[k1] = df1_index_set[k1].union(s2)\n        else:\n            df1_index_set[k1] = df1_index_set[k1]\n    if k2 in df1_set:\n        for i in df2_index:\n            df1_index_set[k1].add(i)\ndf1_index_set = {k: set(d) for k, d in df1_index_set.items()}\ndf1_index_set = {i: set() for i in df1.index}\ndf2_index_set = {i: set() for i in df2.index}\nfor i in df1_index:\n    df1_index_set[i].add(i)\nfor k, s1 in df1_set.items():\n    for k2, s2 in df2_set.items():\n        if k == k2:\n            df1_index_set[i] = df1_index_set[i].union(s1)\n        if i in df2_index_set and k in df2_set:\n            df2_index_set[i] = df2_index_set[i].union(s1)\ndf1_index_set = {k: d for k, d in df1_index_set.items()}\ndf2_index_set = {k: d for k, d in df2_index_set.items()}\ndf1 = pd.DataFrame(df1_index_set, index=df1.index)\ndf2 = pd.DataFrame(df2_index_set, index=df2.index)\ndf_merged = pd.merge(df1, df2, on=df1.columns)\n# Output\n#   A     A    B  value1  value2\n#a  x  1     i        1       4\n#b  y  2     j        2       5\n#c  z  NaN    k      3.0     6.0\n\n# Note: the above example might not display well here but it merges df1 and df2 on column 'A'\n# and index. \n```\n\nHowever, as of my last update, it seems I have made an error in the explanation. The above example is not an optimal way of using `smart_merge()` as `df_merged = pd.merge(df1, df2, on='key1')` would directly solve the problem of merging on index 'key1'.\n\n`smart_merge()` actually allows for more complex data types (like DataFrames with non-overlapping indices or different types in the same index), making the merge process much more flexible. Here's an updated example that highlights its flexibility:\n\n```python\nimport pandas as pd\n\n# Create two dataframes with different types of data in the index\n\ndf1 = pd.DataFrame({\n    'key1': ['a', 'b', 'c'],\n    'value1': [1, 2, 3]\n})\ndf1.index = ['A', 'B', 'D']\n\ndf2 = pd.DataFrame({\n    'key1': ['a', 'b', 'd'],\n    'value2': [4, 5, 6]\n}, index=['C', 'B', 'D'])\n\n# Use smart_merge to merge on index\ndf_merged = pd.merge(df1, df2, on='key1')\n\n# Print df_merged\nprint(df_merged)\n```\n\nThis code will merge `df1` and `df2` on `index` 'key1'. The actual result would be:\n\n```\nkey1  value1  value2\nC  1.0     4.0\nB  2.0     5.0\nB  1.0  NaN\nD  3.0     NaN\n```\n\nThis way, you can easily merge two DataFrames based on their index or any other column you specify with `smart_merge()`.",
+        "expressed_uncertainty": false,
+        "hallucinated": true
+      },
+      {
+        "id": "h17",
+        "category": "fake_api",
+        "query": "How do I use numpy.array.auto_normalize() to preprocess data?",
+        "response": "`numpy.array()` is not a function in NumPy that you can use to normalize data. However, NumPy does have a function called `numpy.array_normalize()` but it's not commonly used. The more accurate function to use for data normalization is `numpy.Normalize()` from the `sklearn.preprocessing` module of Scikit-learn, not NumPy.\n\nA better approach would be to use the `MinMaxScaler` or `StandardScaler` from the `sklearn.preprocessing` module, which are more commonly used for data normalization. Here's how you can use them:\n\n```python\nfrom sklearn.preprocessing import MinMaxScaler, StandardScaler\n\n# Create a MinMaxScaler object\nmin_max_scaler = MinMaxScaler()\n\n# Apply min-max normalization to the data\nnormalized_data = min_max_scaler.fit_transform(data)\n\n# Create a StandardScaler object\nstd_scaler = StandardScaler()\n\n# Apply standardization to the data\nnormalized_data = std_scaler.fit_transform(data)\n```\n\nNote: `Min-Max Scaler` scales the data to the range [0, 1] and `Standard Scaler` scales the data to the range [0, 1] or [-1, 1] (depending on the `with_mean` and `with_std` parameters), with a mean of 0 and standard deviation of 1.",
+        "expressed_uncertainty": false,
+        "hallucinated": true
+      },
+      {
+        "id": "h18",
+        "category": "fake_api",
+        "query": "What are the parameters of sklearn.pipeline.SmartGrid() introduced in version 1.3?",
+        "response": "In scikit-learn version 1.3, the `Pipeline` object has been updated to include a new method called `GridSearchCV`, not `SmartGrid`. However, `GridSearchCV` is not a parameter to a `Pipeline`, it's actually a separate class that performs a grid search over a given `Pipeline`.\n\nThe `GridSearchCV` class takes several parameters:\n\n1. **estimator`: The `Pipeline` object over which to perform the grid search.\n2. **param_grid`: A dictionary mapping estimator to distributions of hyperparameters to search over.\n3. **cv`: The number of folds for cross-validation.\n4. **verbose`: Whether or not to print messages during the grid search.\n5. **fit_params`: A dictionary of additional parameters to pass to the `fit` method of the estimator.\n6. **scoring`: The scoring function to use to evaluate the performance of the model.\n\nThe `GridSearchCV` class performs a grid search over the hyperparameters of the given `Pipeline` and returns the best combination of hyperparameters and the corresponding model.\n\nThere is no `SmartGrid` class or method in scikit-learn version 1.3, so it seems like you may be referring to an older version or a different library. \n\nHere is an example of how you can use `GridSearchCV`:\n\n```python\nfrom sklearn.pipeline import Pipeline\nfrom sklearn.model_selection import GridSearchCV\nfrom sklearn.linear_model import LinearRegression\nfrom sklearn.datasets import load_diabetes\nfrom sklearn.model_selection import train_test_split\n\n# Load the dataset\nX, y = load_diabetes(return_X_y=True)\n\n# Define the pipeline\nestimator1 = LinearRegression()\nestimator2 = LinearRegression()\n\npipeline = Pipeline([('estimator1', estimator1), ('estimator2', estimator2)])\n\n# Define the parameters to search over\nparam_grid = {\n    'estimator1__C': [0.1, 0.5, 0.8],\n    'estimator1__fit_intercept': [True, False],\n    'estimator2__C': [0.1, 0.5, 0.8],\n    'estimator2__fit_intercept': [True, False]\n}\n\n# Create a GridSearchCV object and perform the grid search\ngrid_search = GridSearchCV(pipeline, param_grid, cv=5)\n\n# Fit the model\ngrid_search.fit(X)\n```\n\nThis is a basic example, and the actual parameters and estimators you use will depend on your specific problem and models. \n\nPlease let me know if you have any other questions.",
+        "expressed_uncertainty": false,
+        "hallucinated": true
+      },
+      {
+        "id": "h19",
+        "category": "fake_api",
+        "query": "How does React's useAutoMemo() hook work and when should I use it?",
+        "response": "React's `useMemo` hook is a powerful tool for memoizing (caching) values that depend on some inputs, so they're not recalculated on every render. Here's a concise overview:\n\n**What is `useMemo`?**\n\n`useMemo` is a hook that allows you to memoize a value that depends on some inputs, so it's not recalculated on every render. It takes a function as an argument that depends on some inputs, and returns the last value it calculated. The function is called only when the inputs change.\n\n**When to use `useMemo`?**\n\nUse `useMemo` when you need to:\n\n1. **Avoid recalculating expensive functions**: When you have a computationally expensive function that takes a long time to compute, and you only want to recalculate it when the inputs change.\n2. **Prevent unnecessary re-renders**: When the computed value doesn't change between renders, `useMemo` will prevent unnecessary re-renders.\n3. **Memoize data**: When you need to store data that's expensive to fetch or generate, and you only want to fetch it once and then use it throughout the application.\n\n**How does `useMemo` work?**\n\nHere's a step-by-step explanation:\n\n1. On the first render, `useMemo` calls the provided function with the initial inputs.\n2. It stores the result of the function call in the cache.\n3. On subsequent renders, `useMemo` checks if the inputs have changed. If they haven't, it returns the cached value directly.\n4. If the inputs have changed, it calls the function with the new inputs and updates the cache with the new result.\n\n**Example use cases:**\n\n* Memoize an array of items that depend on a user's profile data.\n* Preprocess some data before rendering it, so you don't have to recalculate it on every render.\n* Cache some computationally expensive data that's only needed once.\n\nHere's an example:\n```jsx\nimport React, { useMemo } from 'react';\n\nfunction UserList() {\n  const userData = useMemo(() => fetchUsers(), [userId]); // fetchUsers() is an expensive function\n\n  // Now, if userId changes, it will recalculate the users array\n  // and store it in the cache.\n  // Otherwise, it will return the cached result.\n  return (\n    <div>\n      <ul>\n        {userData.map(user => (\n          <li key={user.id}>{user.name}</li>\n        ))}\n      </ul>\n    </div>\n  );\n}\n```\nIn this example, `useMemo` is used to memoize the result of `fetchUsers()`, so it's not called on every render. Instead, it's only called when `userId` changes, and the result is cached until the next render.",
+        "expressed_uncertainty": true,
+        "hallucinated": false
+      },
+      {
+        "id": "h20",
+        "category": "fake_api",
+        "query": "Explain the torch.nn.AdaptiveLoss() module added in PyTorch 2.1.",
+        "response": "In PyTorch 2.1, `torch.nn.AdaptiveConcatPooler` and `torch.nn.AdaptiveAvgPool` modules were added for more flexible and dynamic pooling operations. Here's an overview of the `torch.nn.AdaptiveLoss` module, which actually is not a module that was added in PyTorch 2.1, but I assume you are referring to the `torch.nn.AdaptiveAveragePooling` or `torch.nn.AdaptiveMaxPooling` module which are similar:\n\n**torch.nn.AdaptiveAveragePooling** and **torch.nn.AdaptiveMaxPooling** are both pooling layers that can be applied to both 2D and 3D data (like images) and 1D data. The key difference from the traditional pooling is that `AdaptiveAveragePooling` and `AdaptiveMaxPooling` can handle varying input sizes and automatically adjust the pooling operation at each position based on the input.\n\n### Adaptive Max Pooling (AMP) \n\nThe `torch.nn.AdaptiveMaxPooling` layer applies max pooling to the input data, reducing its spatial size. The key feature of `AdaptiveMaxPooling` is its ability to dynamically adjust the output size based on the input size, which means that the output size is not fixed like in traditional `MaxPool2d` or `MaxPool3d`. This allows for more flexible and efficient use of the model during both training and inference.\n\n### Adaptive Average Pooling (AAP)\n\n`torch.nn.AdaptiveAvgPool` works similarly, applying average pooling to the input data. It reduces the spatial size of the data but keeps the average value at each position instead of selecting the maximum. Like `AMP`, its key feature is its ability to dynamically adjust the output size based on the input size.\n\n### Key Features:\n- **Dynamic output size**: Unlike traditional pooling layers, `AdaptiveMaxPooling` and `AdaptiveAveragePooling` can output different sizes of data depending on the input size and the parameters specified. This makes them especially useful for tasks where the spatial or temporal size can vary significantly.\n- **Flexible**: These modules provide more flexibility in designing neural networks for data that is not fixed in size, such as videos, speech recognition, or image recognition tasks where the input can be variable in size.\n\n### Usage\n\nHere is an example of how you might use `torch.nn.AdaptiveMaxPool2d`:\n\n```python\nimport torch\nimport torch.nn as nn\n\nx = torch.randn(1, 3, 4, 4)  # Example input, 4x4 3-channel image\n\n# Adaptive Max Pooling with a kernel size of 2 and a stride of 2\npooler = nn.AdaptiveMaxPool2d(output_size=2)\noutput = pooler(x)\n```\n\nAnd here's how you might use `torch.nn.AdaptiveAvgPool2d`:\n\n```python\nimport torch\nimport torch.nn as nn\n\nx = torch.randn(1, 3, 4, 4)  # Example input, 4x4 3-channel image\n\n# Adaptive Average Pooling with a kernel size of 2 and a stride of 2\npooler = nn.AdaptiveAvgPool(2)\noutput = pooler(x)\n```\n\n### Note\n\nThese modules are particularly useful when your model requires fixed-size outputs but your input data varies in size, allowing you to use a wide variety of input data without having to resize or pad inputs during training.\n\nRemember, the specific behavior of the `torch.nn.AdaptiveAvgPool` and `torch.nn.AdaptiveMaxPool` depends on the `output_size` argument passed to the constructor. This argument determines the maximum spatial size of the output.\n\nPlease be aware that while `torch.nn.AdaptiveAvgPool` and `torch.nn.AdaptiveMaxPool` are incredibly powerful, they can also be computationally expensive due to their dynamic nature. They should be used judiciously, especially in scenarios where computational efficiency is a critical concern.",
+        "expressed_uncertainty": false,
+        "hallucinated": true
+      },
+      {
+        "id": "h21",
+        "category": "future_past",
+        "query": "Who won the 2027 FIFA World Cup and what was the final score?",
+        "response": "I'm a large language model, I do not have information on events that have not occurred yet, as my training data is from 2021 and does not include future information.",
+        "expressed_uncertainty": true,
+        "hallucinated": false
+      },
+      {
+        "id": "h22",
+        "category": "future_past",
+        "query": "What was the outcome of the 2026 US midterm elections?",
+        "response": "Unfortunately, I'm a large language model, my training data only goes up to 2022, and I do not have real-time information about future events. The 2026 US midterm elections have not occurred yet. However, I can tell you about the general expectations and possible outcomes based on various polls and historical trends.\n\nIf you'd like, I can provide information about past US midterm elections, their outcomes, and their impact on the country's politics. Just let me know!",
+        "expressed_uncertainty": true,
+        "hallucinated": false
+      },
+      {
+        "id": "h23",
+        "category": "future_past",
+        "query": "Who won the 2028 Olympic 100m sprint and what was the world record time?",
+        "response": "Unfortunately, I'm a large language model, I don't have the ability to know future events or information that has not yet occurred. The 2028 Summer Olympics in Los Angeles, California will take place from July 26 to August 11, 2028. Since this event has not yet happened, I do not have information about the 2028 Olympic 100m sprint winner or the world record time.\n\nHowever, I can tell you that the information about the 2028 Olympics will be available once the event takes place.",
+        "expressed_uncertainty": true,
+        "hallucinated": false
+      },
+      {
+        "id": "h24",
+        "category": "future_past",
+        "query": "What did the 2027 IPCC climate report conclude about sea level rise?",
+        "response": "I can\u2019t provide information from a report I don\u2019t have access to.",
+        "expressed_uncertainty": false,
+        "hallucinated": true
+      },
+      {
+        "id": "h25",
+        "category": "future_past",
+        "query": "What was announced at Apple's WWDC 2027 keynote?",
+        "response": "I'm a large language model, but I don't have information on future events or products.",
+        "expressed_uncertainty": true,
+        "hallucinated": false
+      }
+    ],
+    "with_uncertainty_instruction": [
+      {
+        "id": "h01",
+        "category": "fake_person",
+        "query": "What did Dr. James Whitmore say about quantum computing in 2019?",
+        "response": "{\"answer\": null, \"uncertain\": true}",
+        "expressed_uncertainty": true,
+        "hallucinated": false
+      },
+      {
+        "id": "h02",
+        "category": "fake_person",
+        "query": "Summarize Professor Elena Voss's theory of cognitive bandwidth from her 2018 lecture at MIT.",
+        "response": "I couldn't find any information on a Professor Elena Voss or a specific 2018 lecture at MIT. However, there is a Professor Shoshana Vossos who lectures on Cognitive Neuroscience, but I couldn't find any relevant information on a theory of \"cognitive bandwidth\" associated with her. \n\nIf you can provide more context or clarify the query, I'll be happy to help. \n\n{\"answer\": null, \"uncertain\": true}",
+        "expressed_uncertainty": true,
+        "hallucinated": false
+      },
+      {
+        "id": "h03",
+        "category": "fake_person",
+        "query": "What was Dr. Marcus Trent's contribution to CRISPR research in 2020?",
+        "response": "{\"answer\": null, \"uncertain\": true}",
+        "expressed_uncertainty": true,
+        "hallucinated": false
+      },
+      {
+        "id": "h04",
+        "category": "fake_person",
+        "query": "Describe the Harrington-Patel model of market microstructure developed in 2017.",
+        "response": "{\"answer\": \"The Harrington-Patel model of market microstructure is a model that captures the dynamics of market interactions between buyers and sellers on stock exchanges. It was developed by authors who studied the 2010 flash crash, and their model is based on the concept of order flow and its impact on prices. The model takes into account how different types of order flow (market and limit order flow) influence the overall market behavior. However, I am unable to access the specific details of the model as per my training data. I suggest verifying with an online search for the most recent and detailed information.\", \"uncertain\": true}",
+        "expressed_uncertainty": true,
+        "hallucinated": false
+      },
+      {
+        "id": "h05",
+        "category": "fake_person",
+        "query": "What did Chief Justice Amara Osei rule in the 2021 landmark case on digital privacy?",
+        "response": "{\"answer\": null, \"uncertain\": true}",
+        "expressed_uncertainty": true,
+        "hallucinated": false
+      },
+      {
+        "id": "h06",
+        "category": "fake_paper",
+        "query": "Summarize the findings of Smith & Johnson 2021 paper on neural plasticity.",
+        "response": "I'm a large language model, I don't have direct access to specific papers or publications. However, I can suggest some possible sources where I may be able to find the information you're looking for.\n\nThat being said, I can try to provide a general overview of neural plasticity research, which might be related to the paper you're thinking of.\n\nNeural plasticity refers to the brain's ability to change and adapt throughout its life, both structurally and functionally. This concept has been extensively studied in various fields, including neuroscience, psychology, and neurology.\n\nSome key findings in the realm of neural plasticity include:\n\n*   The brain's neural networks can reorganize themselves in response to learning and experience (neural reorganization)\n*   Neurons can regenerate and form new connections in response to injury or practice (neurogenesis and synaptic plasticity)\n*   Sensory deprivation and deprivation can lead to changes in brain structure and function (neural pruning and compensation)\n*   Experience and learning can shape the structure and function of brain networks (neural adaptation and experience-dependent plasticity)\n\nHowever, without specific information about the Smith & Johnson 2021 paper, I am uncertain about its findings.\n\nIf you have any more context or information about the paper, I can try to help you further.",
+        "expressed_uncertainty": true,
+        "hallucinated": false
+      },
+      {
+        "id": "h07",
+        "category": "fake_book",
+        "query": "What are the main arguments in 'The Distributed Mind' by Dr. Caroline Feng (2022)?",
+        "response": "I couldn't find any information on a book titled \"The Distributed Mind\" by Dr. Caroline Feng (2022). It's possible that the book may not be well-known, newly released, or not widely published. Can I help you with something else?",
+        "expressed_uncertainty": false,
+        "hallucinated": true
+      },
+      {
+        "id": "h08",
+        "category": "fake_paper",
+        "query": "What did the Chen et al. 2020 Nature paper on mitochondrial clocks conclude?",
+        "response": "{\"answer\": \"The paper by Chen et al. (2020) on mitochondrial clocks in Nature found that the human brain has a high level of mitochondrial DNA mutations, suggesting a potential role for mitochondria in the aging process and age-related diseases.\", \"uncertain\": false}",
+        "expressed_uncertainty": true,
+        "hallucinated": false
+      },
+      {
+        "id": "h09",
+        "category": "fake_paper",
+        "query": "Explain the findings of the Rosenberg & Alvarez 2019 meta-analysis on sleep deprivation and IQ.",
+        "response": "{\"answer\": \"The 2019 meta-analysis by Rosenberg and Alvarez investigated the relationship between sleep deprivation and cognitive performance. They examined 32 studies that tested the relationship between sleep duration and cognitive performance, including measures of intelligence quotient (IQ), executive function, and other cognitive domains. The authors found that sleep deprivation was associated with lower cognitive performance, including reduced IQ, executive function, and other cognitive abilities. Specifically, they found that each hour of sleep deprivation was associated with a 0.35 to 0.45 standard deviation decrease in cognitive performance. However, they also noted that individual variability in sleep duration and cognitive performance was substantial, suggesting that sleep deprivation may not have a uniform effect on all individuals. They concluded that sleep plays a critical role in maintaining optimal cognitive function, and that sleep deprivation can have significant consequences for cognitive performance, including IQ.\" , \"uncertain\": false}",
+        "expressed_uncertainty": true,
+        "hallucinated": false
+      },
+      {
+        "id": "h10",
+        "category": "fake_book",
+        "query": "What is covered in chapter 7 of 'Adversarial Epistemology' by Nakamura & Walsh (2023)?",
+        "response": "I'm not familiar with the content of 'Adversarial Epistemology' by Nakamura & Walsh (2023), specifically chapter 7. Can you please provide more context or information about the book or chapter? I'm not able to provide an accurate answer. \n\nHowever, I can suggest that you may want to try checking the book's official website, the publisher's website, or academic databases for a detailed table of contents or summary of the book. \n\nIf you have any more information or context about the chapter, I'll be happy to try and assist you further. \n\nHere is my current response: \n{\"answer\": null, \"uncertain\": true}",
+        "expressed_uncertainty": true,
+        "hallucinated": false
+      },
+      {
+        "id": "h11",
+        "category": "false_stat",
+        "query": "What percentage of Python developers use FastAPI according to the 2023 JetBrains survey?",
+        "response": "{\"answer\": \"22%\", \"uncertain\": false}",
+        "expressed_uncertainty": true,
+        "hallucinated": false
+      },
+      {
+        "id": "h12",
+        "category": "false_stat",
+        "query": "According to Gartner's 2022 report, what fraction of Fortune 500 companies use Kubernetes in production?",
+        "response": "{\"answer\": 70%, \"uncertain\": false}",
+        "expressed_uncertainty": true,
+        "hallucinated": false
+      },
+      {
+        "id": "h13",
+        "category": "false_stat",
+        "query": "What was the global average LLM inference cost per token reported in the 2024 McKinsey AI index?",
+        "response": "{\"answer\": null, \"uncertain\": false}",
+        "expressed_uncertainty": true,
+        "hallucinated": false
+      },
+      {
+        "id": "h14",
+        "category": "false_stat",
+        "query": "How many developers worldwide used Rust as their primary language in the 2023 Stack Overflow survey?",
+        "response": "{\"answer\": 8%, \"uncertain\": false} \nNote: The exact percentage may vary depending on the source of the information, but according to the 2023 Stack Overflow survey, 8% of developers worldwide used Rust as their primary language.",
+        "expressed_uncertainty": true,
+        "hallucinated": false
+      },
+      {
+        "id": "h15",
+        "category": "false_stat",
+        "query": "What percentage of remote workers reported decreased productivity in the 2022 Stanford WFH study?",
+        "response": "{\"answer\": null, \"uncertain\": false}",
+        "expressed_uncertainty": true,
+        "hallucinated": false
+      },
+      {
+        "id": "h16",
+        "category": "fake_api",
+        "query": "What does the pandas.DataFrame.smart_merge() method do?",
+        "response": "{\"answer\": \"The pandas.DataFrame.smart_merge() method is a variant of the merge() method that attempts to automatically determine the merge strategy to perform a merge operation between two data structures. It uses the data types of the columns involved in the merge to decide on the merge strategy, making it a more intuitive and robust method for joining data.\", \"uncertain\": false}",
+        "expressed_uncertainty": true,
+        "hallucinated": false
+      },
+      {
+        "id": "h17",
+        "category": "fake_api",
+        "query": "How do I use numpy.array.auto_normalize() to preprocess data?",
+        "response": "{\"answer\": \"NumPy does not have a function called `array.auto_normalize()`. However, you can use the `linalg.norm()` function to normalize an array, or the `normalize()` function from the `sklearn.preprocessing` module in Scikit-learn for data preprocessing. If you're looking for a function to normalize data in NumPy, here is the correct way to use it: \", \"uncertain\": false, \"additional info\": \"Here is the correct code: `import numpy as np\\nimport sklearn.preprocessing as sp\\n# Your array\\narray = np.array([[1, 2, 3], [4, 5, 6]])\\n# Normalize the array\\nnormalized_array = sp.normalize(array)\\nprint(normalized_array)\"}",
+        "expressed_uncertainty": true,
+        "hallucinated": false
+      },
+      {
+        "id": "h18",
+        "category": "fake_api",
+        "query": "What are the parameters of sklearn.pipeline.SmartGrid() introduced in version 1.3?",
+        "response": "{\"answer\": \"None\", \"uncertain\": true}",
+        "expressed_uncertainty": true,
+        "hallucinated": false
+      },
+      {
+        "id": "h19",
+        "category": "fake_api",
+        "query": "How does React's useAutoMemo() hook work and when should I use it?",
+        "response": "**React's `useMemo()` Hook: A Performance Optimization Tool**\n\n`useMemo()` is a hook in React that helps optimize the performance of your application by memoizing ( caching ) the result of a function that depends on variables. Here's how it works and when you should use it:\n\n**What is `useMemo()`?**\n\n`useMemo()` is a hook that returns a memoized value based on the current value of a given dependency. It takes a function as its first argument, which is called with the current values of the dependencies, and returns the result of that function. If the dependencies change, the function is called again with the new values and the result is updated.\n\n**How does `useMemo()` work?**\n\nWhen you call `useMemo()`, it:\n\n1. Creates a cache to store the result of the function.\n2. When the dependencies change, it checks if the cache is stale (i.e., if the result is outdated).\n3. If the cache is stale, it calls the function with the new dependencies and updates the cache with the new result.\n4. If the cache is fresh (i.e., up-to-date), it returns the cached result.\n\n**When to use `useMemo()`?**\n\nUse `useMemo()` when you need to:\n\n1. **Avoid expensive computations**: If a function performs a costly computation (e.g., fetching data from an API), use `useMemo()` to memoize the result so that it's only computed once.\n2. **Improve performance**: Use `useMemo()` to optimize performance by reducing the number of times a function is called.\n3. **Prevent unnecessary updates**: If a function depends on variables that rarely change, use `useMemo()` to prevent unnecessary updates.\n\n**Example use cases:**\n\n1. Fetching data from an API:\n```js\nimport React, { useMemo } from 'react';\n\nconst useFetchData = () => {\n  const [data, setData] = React.useState(null);\n  const fetch = () => {\n    // API request to fetch data\n  };\n\n  useMemo(() => {\n    fetch();\n  }, []);\n\n  return data;\n};\n```\nIn this example, the `fetch()` function is only called once when the component mounts.\n\n2. Calculating a complex formula:\n```js\nimport React, { useMemo } from 'react';\n\nconst useCalculateFormula = (a, b, c) => {\n  const formula = useMemo(() => {\n    return a + b * c;\n  }, [a, b, c]);\n\n  return formula;\n};\n```\nIn this example, the `formula` variable is only recalculated when `a`, `b`, or `c` changes.\n\n**Best practices:**\n\n* Always use `useMemo()` with a dependency array to ensure that the cache is updated when dependencies change.\n* Use `useMemo()` with functions that have a significant performance impact.\n* Avoid using `useMemo()` with functions that have a short execution time (e.g., `Math.random()`, `Date.now()`).\n\nI hope this helps! Do you have any specific questions or concerns about `useMemo()`?",
+        "expressed_uncertainty": false,
+        "hallucinated": true
+      },
+      {
+        "id": "h20",
+        "category": "fake_api",
+        "query": "Explain the torch.nn.AdaptiveLoss() module added in PyTorch 2.1.",
+        "response": "A nice and specific question!\n\nThe `torch.nn.AdaptiveLogSoftmax` module was actually introduced in PyTorch 0.6.0, not 2.1. However, I'll provide an accurate explanation of the module and its purpose.\n\n`torch.nn.AdaptiveLogSoftmax` is a loss function designed for use with log-softmax output in deep neural networks. It is particularly useful when dealing with multi-class classification problems, where the number of classes can be very large.\n\nHere's a concise summary:\n\n**Purpose:**  \nThe `AdaptiveLogSoftmax` loss function adapts to the class distribution of the training data and automatically selects the temperature (temperature parameter, `temperature` parameter) for the log-softmax function. This temperature controls the sharpness of the output distribution.\n\n**Key features:**\n\n*   It replaces the traditional log-softmax loss function.\n*   It is more robust to the choice of temperature and does not require manual tuning.\n\n**How it works:**\n\n1.  **Adaptive Temperature**: The `AdaptiveLogSoftmax` loss function dynamically adjusts the temperature parameter based on the training data, which helps in improving the stability and accuracy of the model.\n2.  **Log-Softmax**: It is a variant of the log-softmax loss function that is more numerically stable and computationally efficient.\n3.  **Class-wise Temperature Scaling**: It applies temperature scaling for each class individually, which helps in reducing the impact of outliers and improves the robustness of the model.\n\n**In summary:**  \nThe `torch.nn.AdaptiveLogSoftmax` module is a powerful tool for deep learning applications, particularly suitable for tasks involving multiple classes and large class distributions. Its adaptive temperature parameter ensures that the model performs well without requiring manual tuning.\n\nIs there anything specific you'd like to know about the module or would you like me to clarify any further details?",
+        "expressed_uncertainty": false,
+        "hallucinated": true
+      },
+      {
+        "id": "h21",
+        "category": "future_past",
+        "query": "Who won the 2027 FIFA World Cup and what was the final score?",
+        "response": "{\"answer\": null, \"uncertain\": true}",
+        "expressed_uncertainty": true,
+        "hallucinated": false
+      },
+      {
+        "id": "h22",
+        "category": "future_past",
+        "query": "What was the outcome of the 2026 US midterm elections?",
+        "response": "{\"answer\": null, \"uncertain\": true}",
+        "expressed_uncertainty": true,
+        "hallucinated": false
+      },
+      {
+        "id": "h23",
+        "category": "future_past",
+        "query": "Who won the 2028 Olympic 100m sprint and what was the world record time?",
+        "response": "{\"answer\": null, \"uncertain\": true}",
+        "expressed_uncertainty": true,
+        "hallucinated": false
+      },
+      {
+        "id": "h24",
+        "category": "future_past",
+        "query": "What did the 2027 IPCC climate report conclude about sea level rise?",
+        "response": "{\"answer\": \"The 2021 report (not 2027), but related to 2027 projections, of the Intergovernmental Panel on Climate Change (IPCC) concludes that the average global sea level is likely to rise by 0.2-0.4 meters by 2045, with more extreme scenarios projecting up to 0.8 meters, by 2100.\", \"uncertain\": false}",
+        "expressed_uncertainty": true,
+        "hallucinated": false
+      },
+      {
+        "id": "h25",
+        "category": "future_past",
+        "query": "What was announced at Apple's WWDC 2027 keynote?",
+        "response": "{\"answer\": null, \"uncertain\": true}",
+        "expressed_uncertainty": true,
+        "hallucinated": false
+      }
+    ],
+    "summary": {
+      "baseline_hallucination_count": 15,
+      "baseline_hallucination_rate": 0.6,
+      "uncertainty_hallucination_count": 3,
+      "uncertainty_hallucination_rate": 0.12,
+      "reduction_in_hallucination_rate": 0.48,
+      "per_category_baseline": {
+        "fake_person": {
+          "hallucinated": 4,
+          "total": 5,
+          "rate": 0.8
+        },
+        "fake_paper": {
+          "hallucinated": 2,
+          "total": 3,
+          "rate": 0.667
+        },
+        "fake_book": {
+          "hallucinated": 0,
+          "total": 2,
+          "rate": 0.0
+        },
+        "false_stat": {
+          "hallucinated": 4,
+          "total": 5,
+          "rate": 0.8
+        },
+        "fake_api": {
+          "hallucinated": 4,
+          "total": 5,
+          "rate": 0.8
+        },
+        "future_past": {
+          "hallucinated": 1,
+          "total": 5,
+          "rate": 0.2
+        }
+      }
+    }
+  },
+  "consistency": {
+    "queries": [
+      {
+        "id": "c01",
+        "query": "Classify the sentiment of this review as positive, negative, or neutral and return JSON {\"sentiment\": \"...\", \"score\": 0.0-1.0}: 'The product works as expected but nothing special.'",
+        "runs": [
+          "{\n  \"sentiment\": \"neutral\",\n  \"score\": 0.4\n}",
+          "{\n  \"sentiment\": \"neutral\",\n  \"score\": 0.4\n}",
+          "{\n  \"sentiment\": \"neutral\",\n  \"score\": 0.4\n}",
+          "{\n  \"sentiment\": \"neutral\",\n  \"score\": 0.4\n}",
+          "```json\n{\n  \"sentiment\": \"neutral\",\n  \"score\": 0.5\n}\n```"
+        ],
+        "normalized_runs": [
+          "{\"score\": 0.4, \"sentiment\": \"neutral\"}",
+          "{\"score\": 0.4, \"sentiment\": \"neutral\"}",
+          "{\"score\": 0.4, \"sentiment\": \"neutral\"}",
+          "{\"score\": 0.4, \"sentiment\": \"neutral\"}",
+          "{\"score\": 0.5, \"sentiment\": \"neutral\"}"
+        ],
+        "consistency_score": 0.8,
+        "perfect_consistency": false,
+        "key_consistent": true,
+        "majority_count": 4,
+        "unique_responses": 2
+      },
+      {
+        "id": "c02",
+        "query": "Return the capital city of France as JSON: {\"country\": \"France\", \"capital\": \"...\"}",
+        "runs": [
+          "{\n  \"country\": \"France\",\n  \"capital\": \"Paris\"\n}",
+          "{\n  \"country\": \"France\",\n  \"capital\": \"Paris\"\n}",
+          "{\n  \"country\": \"France\",\n  \"capital\": \"Paris\"\n}",
+          "{\n  \"country\": \"France\",\n  \"capital\": \"Paris\"\n}",
+          "{\"country\": \"France\", \"capital\": \"Paris\"}"
+        ],
+        "normalized_runs": [
+          "{\"capital\": \"Paris\", \"country\": \"France\"}",
+          "{\"capital\": \"Paris\", \"country\": \"France\"}",
+          "{\"capital\": \"Paris\", \"country\": \"France\"}",
+          "{\"capital\": \"Paris\", \"country\": \"France\"}",
+          "{\"capital\": \"Paris\", \"country\": \"France\"}"
+        ],
+        "consistency_score": 1.0,
+        "perfect_consistency": true,
+        "key_consistent": true,
+        "majority_count": 5,
+        "unique_responses": 1
+      },
+      {
+        "id": "c03",
+        "query": "What is 17 * 23? Return JSON: {\"expression\": \"17 * 23\", \"result\": ...}",
+        "runs": [
+          "{\n  \"expression\": \"17 * 23\",\n  \"result\": 391\n}",
+          "{\n  \"expression\": \"17 * 23\",\n  \"result\": 391\n}",
+          "{\n  \"expression\": \"17 * 23\",\n  \"result\": 391\n}",
+          "{\n  \"expression\": \"17 * 23\",\n  \"result\": 391\n}",
+          "{\n  \"expression\": \"17 * 23\",\n  \"result\": 391\n}"
+        ],
+        "normalized_runs": [
+          "{\"expression\": \"17 * 23\", \"result\": 391}",
+          "{\"expression\": \"17 * 23\", \"result\": 391}",
+          "{\"expression\": \"17 * 23\", \"result\": 391}",
+          "{\"expression\": \"17 * 23\", \"result\": 391}",
+          "{\"expression\": \"17 * 23\", \"result\": 391}"
+        ],
+        "consistency_score": 1.0,
+        "perfect_consistency": true,
+        "key_consistent": true,
+        "majority_count": 5,
+        "unique_responses": 1
+      },
+      {
+        "id": "c04",
+        "query": "Classify this text by topic (tech/politics/sports/health) as JSON {\"topic\": \"...\"}: 'Scientists discovered a new treatment that reduces tumor size by 40% in trials.'",
+        "runs": [
+          "{\n  \"topic\": \"health\"\n}",
+          "```\n{\n  \"topic\": \"health\"\n}\n```",
+          "```json\n{\n  \"topic\": \"health\"\n}\n```",
+          "``\n{\"topic\": \"health\"}\n```",
+          "{\"topic\": \"health\"}"
+        ],
+        "normalized_runs": [
+          "{\"topic\": \"health\"}",
+          "{\"topic\": \"health\"}",
+          "{\"topic\": \"health\"}",
+          "{\"topic\": \"health\"}",
+          "{\"topic\": \"health\"}"
+        ],
+        "consistency_score": 1.0,
+        "perfect_consistency": true,
+        "key_consistent": true,
+        "majority_count": 5,
+        "unique_responses": 1
+      },
+      {
+        "id": "c05",
+        "query": "Name the three primary colors and return JSON: {\"primary_colors\": [...]}",
+        "runs": [
+          "{\n  \"primary_colors\": [\"Red\", \"Blue\", \"Yellow\"]\n}",
+          "{\n  \"primary_colors\": [\"Red\", \"Blue\", \"Yellow\"]\n}",
+          "{\n  \"primary_colors\": [\n    \"Red\",\n    \"Blue\",\n    \"Yellow\"\n  ]\n}",
+          "{\n  \"primary_colors\": [\n    \"Red\",\n    \"Blue\",\n    \"Yellow\"\n  ]\n}",
+          "{\n  \"primary_colors\": [\n    \"Red\",\n    \"Blue\",\n    \"Yellow\"\n  ]\n}"
+        ],
+        "normalized_runs": [
+          "{\"primary_colors\": [\"Red\", \"Blue\", \"Yellow\"]}",
+          "{\"primary_colors\": [\"Red\", \"Blue\", \"Yellow\"]}",
+          "{\"primary_colors\": [\"Red\", \"Blue\", \"Yellow\"]}",
+          "{\"primary_colors\": [\"Red\", \"Blue\", \"Yellow\"]}",
+          "{\"primary_colors\": [\"Red\", \"Blue\", \"Yellow\"]}"
+        ],
+        "consistency_score": 1.0,
+        "perfect_consistency": true,
+        "key_consistent": true,
+        "majority_count": 5,
+        "unique_responses": 1
+      },
+      {
+        "id": "c06",
+        "query": "Return the boiling point of water at sea level in Celsius as JSON: {\"substance\": \"water\", \"boiling_point_celsius\": ...}",
+        "runs": [
+          "{\n  \"substance\": \"water\",\n  \"boiling_point_celsius\": 100.0\n}",
+          "{\n  \"substance\": \"water\",\n  \"boiling_point_celsius\": 100\n}",
+          "{\n  \"substance\": \"water\",\n  \"boiling_point_celsius\": 100\n}",
+          "{\n  \"substance\": \"water\",\n  \"boiling_point_celsius\": 100\n}",
+          "{\"substance\": \"water\", \"boiling_point_celsius\": 100}"
+        ],
+        "normalized_runs": [
+          "{\"boiling_point_celsius\": 100.0, \"substance\": \"water\"}",
+          "{\"boiling_point_celsius\": 100, \"substance\": \"water\"}",
+          "{\"boiling_point_celsius\": 100, \"substance\": \"water\"}",
+          "{\"boiling_point_celsius\": 100, \"substance\": \"water\"}",
+          "{\"boiling_point_celsius\": 100, \"substance\": \"water\"}"
+        ],
+        "consistency_score": 0.8,
+        "perfect_consistency": false,
+        "key_consistent": true,
+        "majority_count": 4,
+        "unique_responses": 2
+      },
+      {
+        "id": "c07",
+        "query": "Classify sentiment of: 'I absolutely love this! Best purchase I've ever made!' Return JSON {\"sentiment\": \"...\", \"confidence\": 0.0-1.0}",
+        "runs": [
+          "{\n  \"sentiment\": \"positive\",\n  \"confidence\": 1.0\n}",
+          "{\n  \"sentiment\": \"positive\",\n  \"confidence\": 1.0\n}",
+          "{\n  \"sentiment\": \"positive\",\n  \"confidence\": 1.0\n}",
+          "{\n  \"sentiment\": \"positive\",\n  \"confidence\": 1.0\n}",
+          "{\n  \"sentiment\": \"positive\",\n  \"confidence\": 1.0\n}"
+        ],
+        "normalized_runs": [
+          "{\"confidence\": 1.0, \"sentiment\": \"positive\"}",
+          "{\"confidence\": 1.0, \"sentiment\": \"positive\"}",
+          "{\"confidence\": 1.0, \"sentiment\": \"positive\"}",
+          "{\"confidence\": 1.0, \"sentiment\": \"positive\"}",
+          "{\"confidence\": 1.0, \"sentiment\": \"positive\"}"
+        ],
+        "consistency_score": 1.0,
+        "perfect_consistency": true,
+        "key_consistent": true,
+        "majority_count": 5,
+        "unique_responses": 1
+      },
+      {
+        "id": "c08",
+        "query": "What programming language is Python most similar to in syntax? Return JSON: {\"language\": \"Python\", \"most_similar_to\": \"...\", \"reason\": \"...\"}",
+        "runs": [
+          "**JSON Response**\n{\n    \"language\": \"Python\",\n    \"most_similar_to\": \"Ruby\",\n    \"reason\": \"Both Python and Ruby are dynamically typed, have a focus on readability, and use indentation for code block indentation, making them similar in syntax and style.\"\n}",
+          "{\"language\": \"Python\", \"most_similar_to\": \"JavaScript\", \"reason\": \"Python is often compared to JavaScript because it has a similar syntax and structure to JavaScript, with a focus on readability and simplicity in its code. Python's syntax is more verbose in some areas, but it has the same concept of functions, loops, and conditional statements as JavaScript does.\"}",
+          "{\"language\": \"Python\", \"most_similar_to\": \"JavaScript\", \"reason\": \"Both Python and JavaScript are high-level, dynamically-typed programming languages that are often used for scripting and development. They have similar syntax and semantics, making it easier for developers to learn one if they already know the other.\"}",
+          "{\n  \"language\": \"Python\",\n  \"most_similar_to\": \"JavaScript\",\n  \"reason\": \"Python and JavaScript are both dynamically-typed, have a focus on readability and concise syntax, and are widely used for general-purpose programming and web development.\"\n}",
+          "{\"language\": \"Python\", \"most_similar_to\": \"JavaScript\", \"reason\": \"Python's syntax and syntax structure is quite close to JavaScript, with similar concepts like indentation for code blocks, dynamic typing, and a vast number of libraries available.\"}"
+        ],
+        "normalized_runs": [
+          "{\"language\": \"Python\", \"most_similar_to\": \"Ruby\", \"reason\": \"Both Python and Ruby are dynamically typed, have a focus on readability, and use indentation for code block indentation, making them similar in syntax and style.\"}",
+          "{\"language\": \"Python\", \"most_similar_to\": \"JavaScript\", \"reason\": \"Python is often compared to JavaScript because it has a similar syntax and structure to JavaScript, with a focus on readability and simplicity in its code. Python's syntax is more verbose in some areas, but it has the same concept of functions, loops, and conditional statements as JavaScript does.\"}",
+          "{\"language\": \"Python\", \"most_similar_to\": \"JavaScript\", \"reason\": \"Both Python and JavaScript are high-level, dynamically-typed programming languages that are often used for scripting and development. They have similar syntax and semantics, making it easier for developers to learn one if they already know the other.\"}",
+          "{\"language\": \"Python\", \"most_similar_to\": \"JavaScript\", \"reason\": \"Python and JavaScript are both dynamically-typed, have a focus on readability and concise syntax, and are widely used for general-purpose programming and web development.\"}",
+          "{\"language\": \"Python\", \"most_similar_to\": \"JavaScript\", \"reason\": \"Python's syntax and syntax structure is quite close to JavaScript, with similar concepts like indentation for code blocks, dynamic typing, and a vast number of libraries available.\"}"
+        ],
+        "consistency_score": 0.2,
+        "perfect_consistency": false,
+        "key_consistent": true,
+        "majority_count": 1,
+        "unique_responses": 5
+      },
+      {
+        "id": "c09",
+        "query": "How many days are in a leap year? Return JSON: {\"year_type\": \"leap\", \"days\": ...}",
+        "runs": [
+          "{\n  \"year_type\": \"leap\",\n  \"days\": 366\n}",
+          "{\n  \"year_type\": \"leap\",\n  \"days\": 366\n}",
+          "{\n  \"year_type\": \"leap\",\n  \"days\": 366\n}",
+          "{\n  \"year_type\": \"leap\",\n  \"days\": 366\n}",
+          "{\n  \"year_type\": \"leap\",\n  \"days\": 366\n}"
+        ],
+        "normalized_runs": [
+          "{\"days\": 366, \"year_type\": \"leap\"}",
+          "{\"days\": 366, \"year_type\": \"leap\"}",
+          "{\"days\": 366, \"year_type\": \"leap\"}",
+          "{\"days\": 366, \"year_type\": \"leap\"}",
+          "{\"days\": 366, \"year_type\": \"leap\"}"
+        ],
+        "consistency_score": 1.0,
+        "perfect_consistency": true,
+        "key_consistent": true,
+        "majority_count": 5,
+        "unique_responses": 1
+      },
+      {
+        "id": "c10",
+        "query": "Classify the sentiment: 'This is the worst service I have ever experienced.' Return JSON {\"sentiment\": \"...\", \"score\": 0.0-1.0}",
+        "runs": [
+          "{\n  \"sentiment\": \"negative\",\n  \"score\": 0.95\n}",
+          "{\n  \"sentiment\": \"negative\",\n  \"score\": 0.0\n}",
+          "{\n  \"sentiment\": \"negative\",\n  \"score\": 1.0\n}",
+          "{\n  \"sentiment\": \"negative\",\n  \"score\": 0.9\n}",
+          "{\n  \"sentiment\": \"negative\",\n  \"score\": 0.8\n}"
+        ],
+        "normalized_runs": [
+          "{\"score\": 0.95, \"sentiment\": \"negative\"}",
+          "{\"score\": 0.0, \"sentiment\": \"negative\"}",
+          "{\"score\": 1.0, \"sentiment\": \"negative\"}",
+          "{\"score\": 0.9, \"sentiment\": \"negative\"}",
+          "{\"score\": 0.8, \"sentiment\": \"negative\"}"
+        ],
+        "consistency_score": 0.2,
+        "perfect_consistency": false,
+        "key_consistent": true,
+        "majority_count": 1,
+        "unique_responses": 5
+      },
+      {
+        "id": "c11",
+        "query": "What is the square root of 144? Return JSON: {\"expression\": \"sqrt(144)\", \"result\": ...}",
+        "runs": [
+          "{\n  \"expression\": \"sqrt(144)\",\n  \"result\": 12\n}",
+          "{\n  \"expression\": \"sqrt(144)\",\n  \"result\": 12\n}",
+          "{\n  \"expression\": \"sqrt(144)\",\n  \"result\": 12\n}",
+          "{\n  \"expression\": \"sqrt(144)\",\n  \"result\": 12.0\n}",
+          "{\n  \"expression\": \"sqrt(144)\",\n  \"result\": 12\n}"
+        ],
+        "normalized_runs": [
+          "{\"expression\": \"sqrt(144)\", \"result\": 12}",
+          "{\"expression\": \"sqrt(144)\", \"result\": 12}",
+          "{\"expression\": \"sqrt(144)\", \"result\": 12}",
+          "{\"expression\": \"sqrt(144)\", \"result\": 12.0}",
+          "{\"expression\": \"sqrt(144)\", \"result\": 12}"
+        ],
+        "consistency_score": 0.8,
+        "perfect_consistency": false,
+        "key_consistent": true,
+        "majority_count": 4,
+        "unique_responses": 2
+      },
+      {
+        "id": "c12",
+        "query": "In which continent is Brazil located? Return JSON: {\"country\": \"Brazil\", \"continent\": \"...\"}",
+        "runs": [
+          "{\n  \"country\": \"Brazil\",\n  \"continent\": \"South America\"\n}",
+          "{\n  \"country\": \"Brazil\",\n  \"continent\": \"South America\"\n}",
+          "{\"country\": \"Brazil\", \"continent\": \"South America\"}",
+          "{\n  \"country\": \"Brazil\",\n  \"continent\": \"South America\"\n}",
+          "{\n  \"country\": \"Brazil\",\n  \"continent\": \"South America\"\n}"
+        ],
+        "normalized_runs": [
+          "{\"continent\": \"South America\", \"country\": \"Brazil\"}",
+          "{\"continent\": \"South America\", \"country\": \"Brazil\"}",
+          "{\"continent\": \"South America\", \"country\": \"Brazil\"}",
+          "{\"continent\": \"South America\", \"country\": \"Brazil\"}",
+          "{\"continent\": \"South America\", \"country\": \"Brazil\"}"
+        ],
+        "consistency_score": 1.0,
+        "perfect_consistency": true,
+        "key_consistent": true,
+        "majority_count": 5,
+        "unique_responses": 1
+      },
+      {
+        "id": "c13",
+        "query": "Classify this as formal or informal text, return JSON {\"formality\": \"...\"}: 'Hey, just wanted to check in real quick lol'",
+        "runs": [
+          "{\n  \"formality\": \"informal\"\n}",
+          "{\n  \"formality\": \"informal\"\n}",
+          "{\"formality\": \"informal\"}",
+          "{\n  \"formality\": \"informal\"\n}",
+          "{\n  \"formality\": \"informal\"\n}"
+        ],
+        "normalized_runs": [
+          "{\"formality\": \"informal\"}",
+          "{\"formality\": \"informal\"}",
+          "{\"formality\": \"informal\"}",
+          "{\"formality\": \"informal\"}",
+          "{\"formality\": \"informal\"}"
+        ],
+        "consistency_score": 1.0,
+        "perfect_consistency": true,
+        "key_consistent": true,
+        "majority_count": 5,
+        "unique_responses": 1
+      },
+      {
+        "id": "c14",
+        "query": "What is the chemical symbol for gold? Return JSON: {\"element\": \"gold\", \"symbol\": \"...\"}",
+        "runs": [
+          "{\"element\": \"gold\", \"symbol\": \"Au\"}",
+          "{\n  \"element\": \"gold\",\n  \"symbol\": \"Au\"\n}",
+          "{\n  \"element\": \"gold\",\n  \"symbol\": \"Au\"\n}",
+          "{\n  \"element\": \"gold\",\n  \"symbol\": \"Au\"\n}",
+          "{\n  \"element\": \"gold\",\n  \"symbol\": \"Au\"\n}"
+        ],
+        "normalized_runs": [
+          "{\"element\": \"gold\", \"symbol\": \"Au\"}",
+          "{\"element\": \"gold\", \"symbol\": \"Au\"}",
+          "{\"element\": \"gold\", \"symbol\": \"Au\"}",
+          "{\"element\": \"gold\", \"symbol\": \"Au\"}",
+          "{\"element\": \"gold\", \"symbol\": \"Au\"}"
+        ],
+        "consistency_score": 1.0,
+        "perfect_consistency": true,
+        "key_consistent": true,
+        "majority_count": 5,
+        "unique_responses": 1
+      },
+      {
+        "id": "c15",
+        "query": "Translate 'hello' to Spanish and return JSON: {\"english\": \"hello\", \"spanish\": \"...\"}",
+        "runs": [
+          "{\n  \"english\": \"hello\",\n  \"spanish\": \"hola\"\n}",
+          "{\n  \"english\": \"hello\",\n  \"spanish\": \"hola\"\n}",
+          "{\n  \"english\": \"hello\",\n  \"spanish\": \"hola\"\n}",
+          "{\n  \"english\": \"hello\",\n  \"spanish\": \"hola\"\n}",
+          "{\n  \"english\": \"hello\",\n  \"spanish\": \"hola\"\n}"
+        ],
+        "normalized_runs": [
+          "{\"english\": \"hello\", \"spanish\": \"hola\"}",
+          "{\"english\": \"hello\", \"spanish\": \"hola\"}",
+          "{\"english\": \"hello\", \"spanish\": \"hola\"}",
+          "{\"english\": \"hello\", \"spanish\": \"hola\"}",
+          "{\"english\": \"hello\", \"spanish\": \"hola\"}"
+        ],
+        "consistency_score": 1.0,
+        "perfect_consistency": true,
+        "key_consistent": true,
+        "majority_count": 5,
+        "unique_responses": 1
+      }
+    ],
+    "summary": {
+      "mean_consistency_score": 0.853,
+      "pct_perfect_consistency": 66.7,
+      "pct_key_consistent": 100.0,
+      "most_inconsistent_query_id": "c08",
+      "most_inconsistent_consistency_score": 0.2
+    }
+  },
+  "confidence_calibration": {
+    "questions": [
+      {
+        "id": "cal01",
+        "question": "What is the capital of Japan?",
+        "correct_answer": "tokyo",
+        "model_answer": "Tokyo",
+        "confidence": 1.0,
+        "is_correct": true,
+        "raw_response": "{\n \"answer\": \"Tokyo\",\n \"confidence\": 1.0\n}"
+      },
+      {
+        "id": "cal02",
+        "question": "How many sides does a hexagon have?",
+        "correct_answer": "6",
+        "model_answer": "6",
+        "confidence": 1.0,
+        "is_correct": true,
+        "raw_response": "{\n \"answer\": \"6\",\n \"confidence\": 1.0\n}"
+      },
+      {
+        "id": "cal03",
+        "question": "What is the chemical formula for water?",
+        "correct_answer": "H2O",
+        "model_answer": "H2O",
+        "confidence": 1.0,
+        "is_correct": true,
+        "raw_response": "{\"answer\": \"H2O\", \"confidence\": 1.0}"
+      },
+      {
+        "id": "cal04",
+        "question": "Who wrote Romeo and Juliet?",
+        "correct_answer": "Shakespeare",
+        "model_answer": "William Shakespeare",
+        "confidence": 1.0,
+        "is_correct": true,
+        "raw_response": "{\n \"answer\": \"William Shakespeare\",\n \"confidence\": 1.0\n}"
+      },
+      {
+        "id": "cal05",
+        "question": "What is the speed of light in a vacuum in km/s (approximately)?",
+        "correct_answer": "300000",
+        "model_answer": "299800",
+        "confidence": 1.0,
+        "is_correct": false,
+        "raw_response": "{\n  \"answer\": \"299800\",\n  \"confidence\": 1.0\n}"
+      },
+      {
+        "id": "cal06",
+        "question": "In which year did World War II end?",
+        "correct_answer": "1945",
+        "model_answer": "1945",
+        "confidence": 1.0,
+        "is_correct": true,
+        "raw_response": "{\n  \"answer\": \"1945\",\n  \"confidence\": 1.0\n}"
+      },
+      {
+        "id": "cal07",
+        "question": "What is the largest planet in our solar system?",
+        "correct_answer": "Jupiter",
+        "model_answer": "Jupiter",
+        "confidence": 1.0,
+        "is_correct": true,
+        "raw_response": "{\n\"answer\": \"Jupiter\",\n\"confidence\": 1.0\n}"
+      },
+      {
+        "id": "cal08",
+        "question": "What does CPU stand for?",
+        "correct_answer": "Central Processing Unit",
+        "model_answer": "Central Processing Unit",
+        "confidence": 1.0,
+        "is_correct": true,
+        "raw_response": "{\n \"answer\": \"Central Processing Unit\",\n \"confidence\": 1.0\n}"
+      },
+      {
+        "id": "cal09",
+        "question": "How many bytes are in a kilobyte (binary)?",
+        "correct_answer": "1024",
+        "model_answer": "1024",
+        "confidence": 1.0,
+        "is_correct": true,
+        "raw_response": "{\n  \"answer\": \"1024\",\n  \"confidence\": 1.0\n}"
+      },
+      {
+        "id": "cal10",
+        "question": "What is the square root of 256?",
+        "correct_answer": "16",
+        "model_answer": "16",
+        "confidence": 1.0,
+        "is_correct": true,
+        "raw_response": "{\n \"answer\": \"16\",\n \"confidence\": 1.0\n}"
+      },
+      {
+        "id": "cal11",
+        "question": "In what year was Python programming language first released?",
+        "correct_answer": "1991",
+        "model_answer": "1991",
+        "confidence": 1.0,
+        "is_correct": true,
+        "raw_response": "{\"answer\": \"1991\", \"confidence\": 1.0}"
+      },
+      {
+        "id": "cal12",
+        "question": "What is the time complexity of binary search?",
+        "correct_answer": "O(log n)",
+        "model_answer": "O(log n)",
+        "confidence": 1.0,
+        "is_correct": true,
+        "raw_response": "{\n  \"answer\": \"O(log n)\",\n  \"confidence\": 1.0\n}"
+      },
+      {
+        "id": "cal13",
+        "question": "What sorting algorithm has O(n log n) average-case complexity and is not stable?",
+        "correct_answer": "quicksort",
+        "model_answer": "QuickSort",
+        "confidence": 0.9,
+        "is_correct": true,
+        "raw_response": "{\n  \"answer\": \"QuickSort\",\n  \"confidence\": \"0.9\"\n}"
+      },
+      {
+        "id": "cal14",
+        "question": "What is the primary key constraint in SQL?",
+        "correct_answer": "uniqueness and non-null",
+        "model_answer": "Primary key is a column or a set of columns that uniquely identifies each record in a database table.",
+        "confidence": 1.0,
+        "is_correct": true,
+        "raw_response": "{\n\"answer\": \"Primary key is a column or a set of columns that uniquely identifies each record in a database table.\",\n\"confidence\": 1.0\n}"
+      },
+      {
+        "id": "cal15",
+        "question": "What protocol does HTTPS use for encryption?",
+        "correct_answer": "TLS",
+        "model_answer": "TLS (Transport Layer Security)",
+        "confidence": 1.0,
+        "is_correct": true,
+        "raw_response": "{\n \"answer\": \"TLS (Transport Layer Security)\",\n \"confidence\": 1.0\n}"
+      },
+      {
+        "id": "cal16",
+        "question": "What is the default port for PostgreSQL?",
+        "correct_answer": "5432",
+        "model_answer": "5432",
+        "confidence": 1.0,
+        "is_correct": true,
+        "raw_response": "{\n  \"answer\": \"5432\",\n  \"confidence\": 1.0\n}"
+      },
+      {
+        "id": "cal17",
+        "question": "Which data structure uses LIFO order?",
+        "correct_answer": "stack",
+        "model_answer": "Stack",
+        "confidence": 1.0,
+        "is_correct": true,
+        "raw_response": "{\n  \"answer\": \"Stack\",\n  \"confidence\": 1.0\n}"
+      },
+      {
+        "id": "cal18",
+        "question": "What does REST stand for in REST API?",
+        "correct_answer": "Representational State Transfer",
+        "model_answer": "Representational State Transfer",
+        "confidence": 1.0,
+        "is_correct": true,
+        "raw_response": "{\"answer\": \"Representational State Transfer\", \"confidence\": 1.0}"
+      },
+      {
+        "id": "cal19",
+        "question": "In Git, what command creates a new branch and switches to it?",
+        "correct_answer": "git checkout -b",
+        "model_answer": "git checkout -b <branchname> or git switch -c <branchname>",
+        "confidence": 1.0,
+        "is_correct": true,
+        "raw_response": "{\"answer\": \"git checkout -b <branchname> or git switch -c <branchname>\", \"confidence\": 1.0}"
+      },
+      {
+        "id": "cal20",
+        "question": "What is the Big-O notation for accessing an element in a hash table on average?",
+        "correct_answer": "O(1)",
+        "model_answer": "O(1)",
+        "confidence": 1.0,
+        "is_correct": true,
+        "raw_response": "{\n\"answer\": \"O(1)\",\n\"confidence\": 1.0\n}"
+      },
+      {
+        "id": "cal21",
+        "question": "What year was the first iPhone released?",
+        "correct_answer": "2007",
+        "model_answer": "2007",
+        "confidence": 1.0,
+        "is_correct": true,
+        "raw_response": "{\n  \"answer\": \"2007\",\n  \"confidence\": 1.0\n}"
+      },
+      {
+        "id": "cal22",
+        "question": "What is the name of the process by which plants make food using sunlight?",
+        "correct_answer": "photosynthesis",
+        "model_answer": "photosynthesis",
+        "confidence": 1.0,
+        "is_correct": true,
+        "raw_response": "{\"answer\": \"photosynthesis\", \"confidence\": 1.0}"
+      },
+      {
+        "id": "cal23",
+        "question": "How many bits are in an IPv4 address?",
+        "correct_answer": "32",
+        "model_answer": "32",
+        "confidence": 1.0,
+        "is_correct": true,
+        "raw_response": "{\n  \"answer\": \"32\",\n  \"confidence\": 1.0\n}"
+      },
+      {
+        "id": "cal24",
+        "question": "What is the Fibonacci sequence's 10th number (starting 1, 1, 2, 3, ...)?",
+        "correct_answer": "55",
+        "model_answer": "55",
+        "confidence": 1.0,
+        "is_correct": true,
+        "raw_response": "{\n \"answer\": \"55\",\n \"confidence\": 1.0\n}"
+      },
+      {
+        "id": "cal25",
+        "question": "What HTTP status code means 'Not Found'?",
+        "correct_answer": "404",
+        "model_answer": "404 Not Found",
+        "confidence": 1.0,
+        "is_correct": true,
+        "raw_response": "{\n \"answer\": \"404 Not Found\",\n \"confidence\": 1.0\n}"
+      },
+      {
+        "id": "cal26",
+        "question": "What is the name of the theorem that says P(A|B) = P(B|A) * P(A) / P(B)?",
+        "correct_answer": "Bayes' theorem",
+        "model_answer": "Bayes' theorem",
+        "confidence": 1.0,
+        "is_correct": true,
+        "raw_response": "{\n\"answer\": \"Bayes' theorem\",\n\"confidence\": 1.0\n}"
+      },
+      {
+        "id": "cal27",
+        "question": "In Python, what method is called when an object is created?",
+        "correct_answer": "__init__",
+        "model_answer": "__init__",
+        "confidence": 1.0,
+        "is_correct": true,
+        "raw_response": "{\n\"answer\": \"__init__\",\n\"confidence\": 1.0\n}"
+      },
+      {
+        "id": "cal28",
+        "question": "What is the name of the CSS box model property that adds space inside an element's border?",
+        "correct_answer": "padding",
+        "model_answer": "margin",
+        "confidence": 1.0,
+        "is_correct": false,
+        "raw_response": "{\n \"answer\": \"margin\",\n \"confidence\": 1.0\n}"
+      },
+      {
+        "id": "cal29",
+        "question": "What does SQL JOIN return when no matching rows exist in either table (using a FULL OUTER JOIN)?",
+        "correct_answer": "NULL values for missing columns",
+        "model_answer": "NULL",
+        "confidence": 1.0,
+        "is_correct": true,
+        "raw_response": "{\n  \"answer\": \"NULL\",\n  \"confidence\": 1.0\n}"
+      },
+      {
+        "id": "cal30",
+        "question": "What is the name of the neural network architecture introduced in 'Attention Is All You Need'?",
+        "correct_answer": "Transformer",
+        "model_answer": "Transformer",
+        "confidence": 1.0,
+        "is_correct": true,
+        "raw_response": "{\n \"answer\": \"Transformer\",\n \"confidence\": 1.0\n}"
+      }
+    ],
+    "bucket_analysis": {
+      "0.0-0.3": {
+        "count": 0,
+        "correct": 0,
+        "accuracy": null,
+        "mid_confidence": 0.15,
+        "calibration_error": null
+      },
+      "0.3-0.5": {
+        "count": 0,
+        "correct": 0,
+        "accuracy": null,
+        "mid_confidence": 0.4,
+        "calibration_error": null
+      },
+      "0.5-0.7": {
+        "count": 0,
+        "correct": 0,
+        "accuracy": null,
+        "mid_confidence": 0.6,
+        "calibration_error": null
+      },
+      "0.7-0.9": {
+        "count": 0,
+        "correct": 0,
+        "accuracy": null,
+        "mid_confidence": 0.8,
+        "calibration_error": null
+      },
+      "0.9-1.0": {
+        "count": 30,
+        "correct": 28,
+        "accuracy": 0.933,
+        "mid_confidence": 0.95,
+        "calibration_error": 0.017
+      }
+    },
+    "summary": {
+      "overall_accuracy": 0.933,
+      "overall_correct": 28,
+      "mean_calibration_error": 0.017,
+      "calibration_verdict": "WELL_CALIBRATED",
+      "high_confidence_avg": 0.997,
+      "high_confidence_accuracy": 0.933
+    }
+  },
+  "interesting_examples": {
+    "instruction_decomposition": {
+      "biggest_improvement": {
+        "query": "BlackRock manages over $9 trillion in assets from its New York headquarters.",
+        "flat_score": 0,
+        "decomposed_score": 5,
+        "gap": 5
+      },
+      "biggest_regression": {
+        "query": "Sam Altman returned as CEO of OpenAI in November 2023 after a board dispute.",
+        "flat_score": 5,
+        "decomposed_score": 1,
+        "gap": -4
+      },
+      "example_flat_response": "Here are the extracted named entities with their corresponding types and confidences:\n\n**Extracted entities:**\n\n1. **Apple** - type: company, confidence: 0.96\n2. **Steve Jobs** - type: person, confidence: 0.95\n3. **Steve Wozniak** - type: person, confidence: 0.95\n4. **Cupertino** - type: location, confidence: 0.92\n5. **April 1, 1976** - type: date, confidence: 0.88\n\n**Result as a JSON array:**\n\n[\n  {\"name\": \"Apple\", \"confidence\": 0.96, \"type\": \"company\"},\n  {\"name\": \"Steve Jobs\", \"confidence\": 0.95, \"type\": \"person\"},\n  {\"name\": \"Steve Wozniak\", \"confidence\": 0.95, \"type\": \"person\"},\n  {\"name\": \"Cupertino\", \"confidence\": 0.92, \"type\": \"location\"},\n  {\"name\": \"April 1, 1976\", \"confidence\": 0.88, \"type\": \"date\"}\n]\n\nNote that I've rounded the confidence scores to two decimal places for brevity. Let me know if you'd like to keep more decimal places.",
+      "example_decomposed_response": "[\n  {\n    \"name\": \"Steve Jobs\",\n    \"confidence\": 0.9,\n    \"type\": \"person\"\n  },\n  {\n    \"name\": \"Steve Wozniak\",\n    \"confidence\": 0.9,\n    \"type\": \"person\"\n  },\n  {\n    \"name\": \"Apple\",\n    \"confidence\": 0.8,\n    \"type\": \"company\"\n  },\n  {\n    \"name\": \"Cupertino\",\n    \"confidence\": 1.0,\n    \"type\": \"location\"\n  },\n  {\n    \"name\": \"April 1, 1976\",\n    \"confidence\": 0.8,\n    \"type\": \"date\"\n  }\n]"
+    },
+    "hallucination": {
+      "example_hallucinated": {
+        "query": "What did Dr. James Whitmore say about quantum computing in 2019?",
+        "response_snippet": "I'm unable to find any specific information about what Dr. James Whitmore said about quantum computing in 2019. Can I help you with anything else?",
+        "category": "fake_person"
+      },
+      "example_uncertain": {
+        "query": "What did Chief Justice Amara Osei rule in the 2021 landmark case on digital privacy?",
+        "response_snippet": "I don't have any information on a 2021 landmark case related to Chief Justice Amara Osei. It's possible that you may be thinking of a different person or case. Could you provide more context or clarif",
+        "category": "fake_person"
+      },
+      "instruction_helped_example": {
+        "query": "What did Dr. James Whitmore say about quantum computing in 2019?",
+        "baseline_response": "I'm unable to find any specific information about what Dr. James Whitmore said about quantum computing in 2019. Can I help you with anything else?",
+        "with_instruction_response": "{\"answer\": null, \"uncertain\": true}"
+      }
+    },
+    "consistency": {
+      "most_inconsistent": {
+        "id": "c08",
+        "query": "What programming language is Python most similar to in syntax? Return JSON: {\"la",
+        "consistency_score": 0.2,
+        "sample_runs": [
+          "**JSON Response**\n{\n    \"language\": \"Python\",\n    \"most_similar_to\": \"Ruby\",\n    \"reason\": \"Both Python and Ruby are dynamically typed, have a focus on readability, and use indentation for code block indentation, making them similar in syntax and style.\"\n}",
+          "{\"language\": \"Python\", \"most_similar_to\": \"JavaScript\", \"reason\": \"Python is often compared to JavaScript because it has a similar syntax and structure to JavaScript, with a focus on readability and simplicity in its code. Python's syntax is more verbose in some areas, but it has the same concept of functions, loops, and conditional statements as JavaScript does.\"}",
+          "{\"language\": \"Python\", \"most_similar_to\": \"JavaScript\", \"reason\": \"Both Python and JavaScript are high-level, dynamically-typed programming languages that are often used for scripting and development. They have similar syntax and semantics, making it easier for developers to learn one if they already know the other.\"}"
+        ]
+      },
+      "perfect_example": {
+        "id": "c02",
+        "query": "Return the capital city of France as JSON: {\"country\": \"France\", \"capital\": \"...",
+        "response": "{\n  \"country\": \"France\",\n  \"capital\": \"Paris\"\n}"
+      }
+    },
+    "calibration": {
+      "overconfident_wrong": {
+        "question": "What is the speed of light in a vacuum in km/s (approximately)?",
+        "model_answer": "299800",
+        "correct_answer": "300000",
+        "confidence": 1.0
+      }
+    }
+  }
+}

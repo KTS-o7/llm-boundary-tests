@@ -1,0 +1,1399 @@
+{
+  "model": "taalas-llama3.1-8b",
+  "total_probes": 80,
+  "overall_faithfulness_score": 0.827,
+  "category_stats": {
+    "schema_strictness": {
+      "mean_faithfulness": 1.0,
+      "pct_fully_compliant": 100.0,
+      "top_failure_mode": "none",
+      "n_probes": 10
+    },
+    "field_count_compliance": {
+      "mean_faithfulness": 0.8,
+      "pct_fully_compliant": 80.0,
+      "top_failure_mode": "invalid_json_or_not_object",
+      "n_probes": 10
+    },
+    "value_constraint": {
+      "mean_faithfulness": 0.8,
+      "pct_fully_compliant": 70.0,
+      "top_failure_mode": "missing_field",
+      "n_probes": 10
+    },
+    "negation_instructions": {
+      "mean_faithfulness": 1.0,
+      "pct_fully_compliant": 100.0,
+      "top_failure_mode": "none",
+      "n_probes": 10
+    },
+    "format_override_resistance": {
+      "mean_faithfulness": 0.9,
+      "pct_fully_compliant": 90.0,
+      "top_failure_mode": "non_json_output_despite_json_instruction",
+      "n_probes": 10
+    },
+    "numeric_precision": {
+      "mean_faithfulness": 0.5,
+      "pct_fully_compliant": 50.0,
+      "top_failure_mode": "invalid_json_or_not_object",
+      "n_probes": 10
+    },
+    "array_ordering": {
+      "mean_faithfulness": 0.667,
+      "pct_fully_compliant": 40.0,
+      "top_failure_mode": "incorrect_sort_order",
+      "n_probes": 10
+    },
+    "multi_constraint": {
+      "mean_faithfulness": 0.95,
+      "pct_fully_compliant": 80.0,
+      "top_failure_mode": "failed",
+      "n_probes": 10
+    }
+  },
+  "degradation_curve": {
+    "1": 1.0,
+    "2": 1.0,
+    "3": 1.0,
+    "4": 1.0,
+    "5": 0.9333333333333333
+  },
+  "faithfulness_drops_below_0_7_at_constraint_count": null,
+  "global_top_failure_mode": "invalid_json_or_not_object",
+  "all_results": [
+    {
+      "category": "schema_strictness",
+      "probe_id": 0,
+      "instruction_text": "You must respond ONLY with a JSON object that has EXACTLY these fields: \"title\" (string), \"year\" (integer), \"rating\" (float), \"available\" (boolean). No other fields. No explanation.",
+      "response": "{\n  \"title\": \"Inception\",\n  \"year\": 2010,\n  \"rating\": 8.5,\n  \"available\": true\n}",
+      "constraints_given": [
+        "all_required_fields_present",
+        "no_extra_fields",
+        "correct_types",
+        "valid_json"
+      ],
+      "constraints_satisfied": [
+        "valid_json",
+        "all_required_fields_present",
+        "no_extra_fields",
+        "correct_types"
+      ],
+      "faithfulness_score": 1.0,
+      "failure_mode": "none"
+    },
+    {
+      "category": "schema_strictness",
+      "probe_id": 1,
+      "instruction_text": "Respond ONLY with a JSON object containing exactly these fields: \"name\" (string), \"age\" (integer), \"active\" (boolean). Do not add any other fields. No prose.",
+      "response": "{\n  \"name\": \"Alice\",\n  \"age\": 30,\n  \"active\": true\n}",
+      "constraints_given": [
+        "all_required_fields_present",
+        "no_extra_fields",
+        "correct_types",
+        "valid_json"
+      ],
+      "constraints_satisfied": [
+        "valid_json",
+        "all_required_fields_present",
+        "no_extra_fields",
+        "correct_types"
+      ],
+      "faithfulness_score": 1.0,
+      "failure_mode": "none"
+    },
+    {
+      "category": "schema_strictness",
+      "probe_id": 2,
+      "instruction_text": "Return a JSON object with exactly: \"product\" (string), \"price\" (float), \"in_stock\" (boolean), \"quantity\" (integer). Nothing else.",
+      "response": "Here is an example of a JSON object with the required properties:\n\n```\n{\n  \"product\": \"Laptop\",\n  \"price\": 999.99,\n  \"in_stock\": true,\n  \"quantity\": 50\n}\n```\n\nNote that the `price` field is a floating point number, so it can have a decimal part (in this case, 0.99). The `in_stock` field is a boolean value, which is equivalent to a boolean variable in programming languages like Python, Java, etc. The `quantity` field is an integer, so it should be a whole number (in this case, 50).",
+      "constraints_given": [
+        "all_required_fields_present",
+        "no_extra_fields",
+        "correct_types",
+        "valid_json"
+      ],
+      "constraints_satisfied": [
+        "valid_json",
+        "all_required_fields_present",
+        "no_extra_fields",
+        "correct_types"
+      ],
+      "faithfulness_score": 1.0,
+      "failure_mode": "none"
+    },
+    {
+      "category": "schema_strictness",
+      "probe_id": 3,
+      "instruction_text": "Output ONLY a JSON object with fields: \"country\" (string), \"population\" (integer), \"gdp_usd_billions\" (float), \"is_g20\" (boolean). No extra fields. No markdown.",
+      "response": "{\n  \"country\": \"Germany\",\n  \"population\": 83140000,\n  \"gdp_usd_billions\": 4.2,\n  \"is_g20\": true\n}",
+      "constraints_given": [
+        "all_required_fields_present",
+        "no_extra_fields",
+        "correct_types",
+        "valid_json"
+      ],
+      "constraints_satisfied": [
+        "valid_json",
+        "all_required_fields_present",
+        "no_extra_fields",
+        "correct_types"
+      ],
+      "faithfulness_score": 1.0,
+      "failure_mode": "none"
+    },
+    {
+      "category": "schema_strictness",
+      "probe_id": 4,
+      "instruction_text": "Respond with a JSON object having exactly these keys: \"event\" (string), \"date\" (string), \"attendees\" (integer), \"virtual\" (boolean). Nothing else.",
+      "response": "{\n  \"event\": \"Company All-Hands Meeting\",\n  \"date\": \"2023-03-15 14:00:00\",\n  \"attendees\": 25,\n  \"virtual\": false\n}",
+      "constraints_given": [
+        "all_required_fields_present",
+        "no_extra_fields",
+        "correct_types",
+        "valid_json"
+      ],
+      "constraints_satisfied": [
+        "valid_json",
+        "all_required_fields_present",
+        "no_extra_fields",
+        "correct_types"
+      ],
+      "faithfulness_score": 1.0,
+      "failure_mode": "none"
+    },
+    {
+      "category": "schema_strictness",
+      "probe_id": 5,
+      "instruction_text": "Return ONLY a JSON object with: \"word\" (string), \"syllables\" (integer), \"is_noun\" (boolean), \"definition\" (string). Exactly these 4 fields.",
+      "response": "{\n  \"word\": \"serendipity\",\n  \"syllables\": 4,\n  \"is_noun\": true,\n  \"definition\": \"the act or occurrence of finding something valuable or delightful that was not foreseen or foretold\"\n}",
+      "constraints_given": [
+        "all_required_fields_present",
+        "no_extra_fields",
+        "correct_types",
+        "valid_json"
+      ],
+      "constraints_satisfied": [
+        "valid_json",
+        "all_required_fields_present",
+        "no_extra_fields",
+        "correct_types"
+      ],
+      "faithfulness_score": 1.0,
+      "failure_mode": "none"
+    },
+    {
+      "category": "schema_strictness",
+      "probe_id": 6,
+      "instruction_text": "Output a JSON object with exactly these fields: \"city\" (string), \"temperature_celsius\" (float), \"humidity_percent\" (integer), \"sunny\" (boolean). No additional fields.",
+      "response": "{\n  \"city\": \"Tokyo\",\n  \"temperature_celsius\": 22.0,\n  \"humidity_percent\": 60,\n  \"sunny\": true\n}",
+      "constraints_given": [
+        "all_required_fields_present",
+        "no_extra_fields",
+        "correct_types",
+        "valid_json"
+      ],
+      "constraints_satisfied": [
+        "valid_json",
+        "all_required_fields_present",
+        "no_extra_fields",
+        "correct_types"
+      ],
+      "faithfulness_score": 1.0,
+      "failure_mode": "none"
+    },
+    {
+      "category": "schema_strictness",
+      "probe_id": 7,
+      "instruction_text": "Respond ONLY with JSON having exactly: \"author\" (string), \"pages\" (integer), \"published_year\" (integer), \"fiction\" (boolean). Four fields only.",
+      "response": "{\n  \"author\": \"J.K. Rowling\",\n  \"pages\": 320,\n  \"published_year\": 2000,\n  \"fiction\": true\n}",
+      "constraints_given": [
+        "all_required_fields_present",
+        "no_extra_fields",
+        "correct_types",
+        "valid_json"
+      ],
+      "constraints_satisfied": [
+        "valid_json",
+        "all_required_fields_present",
+        "no_extra_fields",
+        "correct_types"
+      ],
+      "faithfulness_score": 1.0,
+      "failure_mode": "none"
+    },
+    {
+      "category": "schema_strictness",
+      "probe_id": 8,
+      "instruction_text": "Output a JSON object with exactly: \"ticker\" (string), \"price\" (float), \"volume\" (integer), \"bullish\" (boolean). No extra keys.",
+      "response": "{\n  \"ticker\": \"AAPL\",\n  \"price\": 147.23,\n  \"volume\": 1234567,\n  \"bullish\": true\n}",
+      "constraints_given": [
+        "all_required_fields_present",
+        "no_extra_fields",
+        "correct_types",
+        "valid_json"
+      ],
+      "constraints_satisfied": [
+        "valid_json",
+        "all_required_fields_present",
+        "no_extra_fields",
+        "correct_types"
+      ],
+      "faithfulness_score": 1.0,
+      "failure_mode": "none"
+    },
+    {
+      "category": "schema_strictness",
+      "probe_id": 9,
+      "instruction_text": "Return ONLY a JSON object with these 4 fields: \"recipe\" (string), \"calories\" (integer), \"vegetarian\" (boolean), \"prep_minutes\" (integer). No other fields.",
+      "response": "{\n  \"recipe\": \"Spaghetti with Tomato Sauce\",\n  \"calories\": 800,\n  \"vegetarian\": true,\n  \"prep_minutes\": 30\n}",
+      "constraints_given": [
+        "all_required_fields_present",
+        "no_extra_fields",
+        "correct_types",
+        "valid_json"
+      ],
+      "constraints_satisfied": [
+        "valid_json",
+        "all_required_fields_present",
+        "no_extra_fields",
+        "correct_types"
+      ],
+      "faithfulness_score": 1.0,
+      "failure_mode": "none"
+    },
+    {
+      "category": "field_count_compliance",
+      "probe_id": 0,
+      "instruction_text": "Return a JSON object with EXACTLY 3 fields describing a car.",
+      "response": "{\n  \"brand\": \"Toyota\",\n  \"model\": \"Corolla\",\n  \"year\": 2006\n}",
+      "constraints_given": [
+        "valid_json",
+        "exactly_3_fields"
+      ],
+      "constraints_satisfied": [
+        "valid_json",
+        "exactly_3_fields"
+      ],
+      "faithfulness_score": 1.0,
+      "failure_mode": "none"
+    },
+    {
+      "category": "field_count_compliance",
+      "probe_id": 1,
+      "instruction_text": "Return a JSON object with EXACTLY 5 fields about a country.",
+      "response": "Here is a JSON object with exactly 5 fields about France:\n\n```json\n{\n  \"name\": \"France\",\n  \"capital\": \"Paris\",\n  \"population\": 67 million,\n  \"location\": \"Western Europe\",\n  \"currency\": \"Euro (\u20ac)\"\n}\n```\n\nLet me know if you'd like me to add any other details!",
+      "constraints_given": [
+        "valid_json",
+        "exactly_5_fields"
+      ],
+      "constraints_satisfied": [],
+      "faithfulness_score": 0.0,
+      "failure_mode": "invalid_json_or_not_object"
+    },
+    {
+      "category": "field_count_compliance",
+      "probe_id": 2,
+      "instruction_text": "Return a JSON object with EXACTLY 2 fields.",
+      "response": "{\n  \"radius\": 69600000,\n  \"mass\": 1.989\n}",
+      "constraints_given": [
+        "valid_json",
+        "exactly_2_fields"
+      ],
+      "constraints_satisfied": [
+        "valid_json",
+        "exactly_2_fields"
+      ],
+      "faithfulness_score": 1.0,
+      "failure_mode": "none"
+    },
+    {
+      "category": "field_count_compliance",
+      "probe_id": 3,
+      "instruction_text": "Return a JSON object with EXACTLY 7 fields about a person.",
+      "response": "Here is a JSON object representing a software engineer with exactly 7 fields:\n\n```\n{\n  \"name\": \"John Doe\",\n  \"age\": 30,\n  \"position\": \"Software Engineer\",\n  \"programmingLanguages\": [\"Python\", \"Java\", \"C++\"],\n  \"experience\": 8,\n  \"company\": \"ABC Tech\",\n  \"location\": \"New York\"\n}\n```\n\nIn this object:\n\n* \"name\" is a string field representing the software engineer's name.\n* \"age\" is a number field representing the software engineer's age.\n* \"position\" is a string field representing the software engi",
+      "constraints_given": [
+        "valid_json",
+        "exactly_7_fields"
+      ],
+      "constraints_satisfied": [
+        "valid_json",
+        "exactly_7_fields"
+      ],
+      "faithfulness_score": 1.0,
+      "failure_mode": "none"
+    },
+    {
+      "category": "field_count_compliance",
+      "probe_id": 4,
+      "instruction_text": "Return a JSON object with EXACTLY 4 fields about a book.",
+      "response": "Here is a JSON object with exactly 4 fields describing a mystery novel:\n\n```json\n{\n  \"title\": \"The Sherlock Files\",\n  \"genre\": \"Mystery, Detective\",\n  \"plot\": \"A thrilling tale of crime and deception that follows a detective's quest to solve a complex case.\",\n  \"cover_image\": \"https://example.com/mystery-novel-cover.jpg\"\n}\n```\n\nThis JSON object has the following fields:\n\n* `title`: the title of the book, which is \"The Sherlock Files\".\n* `genre`: the genre of the book, which is both \"Mystery\" and",
+      "constraints_given": [
+        "valid_json",
+        "exactly_4_fields"
+      ],
+      "constraints_satisfied": [
+        "valid_json",
+        "exactly_4_fields"
+      ],
+      "faithfulness_score": 1.0,
+      "failure_mode": "none"
+    },
+    {
+      "category": "field_count_compliance",
+      "probe_id": 5,
+      "instruction_text": "Return a JSON object with EXACTLY 6 fields about a recipe.",
+      "response": "Here's a JSON object with exactly 6 fields about a classic chocolate cake recipe:\n\n```json\n{\n  \"name\": \"Classic Chocolate Cake Recipe\",\n  \"servings\": 8,\n  \"difficulty\": \"easy\",\n  \"ingredients\": [\"all-purpose flour\", \"baking powder\", \"unsweetened cocoa powder\", \"dutch process cacao powder\", \"granulated sugar\", \"large eggs\"],\n  \"description\": \"A moist and rich classic chocolate cake made with unsweetened cocoa and Dutch-process cacao for the ultimate chocolate flavor, topped with a crumbly streuse",
+      "constraints_given": [
+        "valid_json",
+        "exactly_6_fields"
+      ],
+      "constraints_satisfied": [
+        "valid_json",
+        "exactly_6_fields"
+      ],
+      "faithfulness_score": 1.0,
+      "failure_mode": "none"
+    },
+    {
+      "category": "field_count_compliance",
+      "probe_id": 6,
+      "instruction_text": "Return a JSON object with EXACTLY 1 field.",
+      "response": "{\n  \"answer\": \"Tokyo\"\n}",
+      "constraints_given": [
+        "valid_json",
+        "exactly_1_fields"
+      ],
+      "constraints_satisfied": [
+        "valid_json",
+        "exactly_1_fields"
+      ],
+      "faithfulness_score": 1.0,
+      "failure_mode": "none"
+    },
+    {
+      "category": "field_count_compliance",
+      "probe_id": 7,
+      "instruction_text": "Return a JSON object with EXACTLY 8 fields about a city.",
+      "response": "{\n    \"name\": \"New York City\",\n    \"latitude\": 40.7127,\n    \"longitude\": -74.0089,\n    \"population\": 8,459,000,\n    \"area\": 469,\n    \"description\": \"New York City is the largest city in the United States by population and is one of the world's major cities in terms of economic, cultural, and international trade. It is also the most populous city in the state of New York, and is known as the \"Big Apple\". The city is the home of many world-renowned attractions, including Central Park, the Statue o",
+      "constraints_given": [
+        "valid_json",
+        "exactly_8_fields"
+      ],
+      "constraints_satisfied": [],
+      "faithfulness_score": 0.0,
+      "failure_mode": "invalid_json_or_not_object"
+    },
+    {
+      "category": "field_count_compliance",
+      "probe_id": 8,
+      "instruction_text": "Return a JSON object with EXACTLY 3 fields about a sport.",
+      "response": "```\n{\n  \"Sport\": \"Basketball\",\n  \"Description\": \"Basketball is a fast-paced, high-scoring team sport played on a rectangular court with a hoop and net\",\n  \"Popularity\": \"One of the most popular team sports in the world\"\n}\n```\n\nLet me know if you want any other information!",
+      "constraints_given": [
+        "valid_json",
+        "exactly_3_fields"
+      ],
+      "constraints_satisfied": [
+        "valid_json",
+        "exactly_3_fields"
+      ],
+      "faithfulness_score": 1.0,
+      "failure_mode": "none"
+    },
+    {
+      "category": "field_count_compliance",
+      "probe_id": 9,
+      "instruction_text": "Return a JSON object with EXACTLY 5 fields about a company.",
+      "response": "Here is a JSON object with exactly 5 fields about Apple Inc.:\n\n```json\n{\n  \"name\": \"Apple Inc.\",\n  \"industry\": \"Technology\",\n  \"headquarters\": \"Cupertino, California, USA\",\n  \"founders\": \"Steve Jobs, Steve Wozniak, Ronald Wayne, and Ronald Sobey\",\n  \"yearFounded\": 1977\n}\n```\n\nLet me know if you would like me to add any additional fields!",
+      "constraints_given": [
+        "valid_json",
+        "exactly_5_fields"
+      ],
+      "constraints_satisfied": [
+        "valid_json",
+        "exactly_5_fields"
+      ],
+      "faithfulness_score": 1.0,
+      "failure_mode": "none"
+    },
+    {
+      "category": "value_constraint",
+      "probe_id": 0,
+      "instruction_text": "Return JSON with one field \"sentiment\". The value MUST be exactly one of: positive, negative, neutral. No other values.",
+      "response": "```\n{\n  \"sentiment\": \"positive\"\n}\n```",
+      "constraints_given": [
+        "valid_json",
+        "strict_enum_value"
+      ],
+      "constraints_satisfied": [
+        "valid_json",
+        "strict_enum_value"
+      ],
+      "faithfulness_score": 1.0,
+      "failure_mode": "none"
+    },
+    {
+      "category": "value_constraint",
+      "probe_id": 1,
+      "instruction_text": "Return JSON with one field \"sentiment\". The value MUST be exactly one of: positive, negative, neutral.",
+      "response": "{\n  \"sentiment\": \"negative\"\n}",
+      "constraints_given": [
+        "valid_json",
+        "strict_enum_value"
+      ],
+      "constraints_satisfied": [
+        "valid_json",
+        "strict_enum_value"
+      ],
+      "faithfulness_score": 1.0,
+      "failure_mode": "none"
+    },
+    {
+      "category": "value_constraint",
+      "probe_id": 2,
+      "instruction_text": "Return JSON with one field \"sentiment\". The value MUST be exactly one of: positive, negative, neutral.",
+      "response": "{\n  \"sentiment\": \"neutral\"\n}",
+      "constraints_given": [
+        "valid_json",
+        "strict_enum_value"
+      ],
+      "constraints_satisfied": [
+        "valid_json",
+        "strict_enum_value"
+      ],
+      "faithfulness_score": 1.0,
+      "failure_mode": "none"
+    },
+    {
+      "category": "value_constraint",
+      "probe_id": 3,
+      "instruction_text": "Return JSON with a field \"priority\". The value MUST be exactly one of: low, medium, high, critical. No variations.",
+      "response": "To achieve the described functionality, you can create a schema for returning JSON data with a \"priority\" field that strictly enforces one of the four specified values. You can use a JSON Schema for this purpose, which is a way to define the structure and validation rules for JSON data. Here's an example JSON schema for the \"priority\" field:\n\n```json\n{\n  \"type\": \"string\",\n  \"enum\": [\"low\", \"medium\", \"high\", \"critical\"]\n}\n```\n\nThis will ensure that the \"priority\" field in your returned JSON data ",
+      "constraints_given": [
+        "valid_json",
+        "strict_enum_value"
+      ],
+      "constraints_satisfied": [
+        "valid_json"
+      ],
+      "faithfulness_score": 0.5,
+      "failure_mode": "missing_field:priority"
+    },
+    {
+      "category": "value_constraint",
+      "probe_id": 4,
+      "instruction_text": "Return JSON with a field \"priority\". The value MUST be exactly one of: low, medium, high, critical.",
+      "response": "```\n{\n  \"error\": \"Database unavailable. Please try again later.\"\n}\n```\nThis JSON response meets the requirements as it is in the format you've specified, but with a custom error message indicating that the database is down. \n\nHowever, it would be better to return a 503 status code in the HTTP response header instead of the above JSON response to indicate a temporary server error. \n\nHere's an example of what the complete response might look like with HTTP status code 503:\n\n```\nHTTP/1.1 503 Servic",
+      "constraints_given": [
+        "valid_json",
+        "strict_enum_value"
+      ],
+      "constraints_satisfied": [
+        "valid_json"
+      ],
+      "faithfulness_score": 0.5,
+      "failure_mode": "missing_field:priority"
+    },
+    {
+      "category": "value_constraint",
+      "probe_id": 5,
+      "instruction_text": "Return JSON with a field \"status\". The value MUST be exactly one of: pending, active, completed, cancelled.",
+      "response": "I can provide a simple JSON with the \"status\" field set to \"completed\".\n\n```json\n{\n  \"status\": \"completed\"\n}\n```\n\nHowever, if you'd like to add more data to the JSON object, you can do so by specifying additional fields and values. For example:\n\n```json\n{\n  \"status\": \"completed\",\n  \"dueDate\": \"2024-02-27\",\n  \"completionDate\": \"2024-02-26\",\n  \"notes\": \"Task has been finished\"\n}\n```\n\nThis example includes \"dueDate\" and \"completionDate\" as additional fields, which might be relevant if you're tracki",
+      "constraints_given": [
+        "valid_json",
+        "strict_enum_value"
+      ],
+      "constraints_satisfied": [
+        "valid_json",
+        "strict_enum_value"
+      ],
+      "faithfulness_score": 1.0,
+      "failure_mode": "none"
+    },
+    {
+      "category": "value_constraint",
+      "probe_id": 6,
+      "instruction_text": "Return JSON with a field \"status\". The value MUST be exactly one of: pending, active, completed, cancelled.",
+      "response": "```\n{\n  \"status\": \"cancelled\"\n}\n```",
+      "constraints_given": [
+        "valid_json",
+        "strict_enum_value"
+      ],
+      "constraints_satisfied": [
+        "valid_json",
+        "strict_enum_value"
+      ],
+      "faithfulness_score": 1.0,
+      "failure_mode": "none"
+    },
+    {
+      "category": "value_constraint",
+      "probe_id": 7,
+      "instruction_text": "Return JSON with a field \"sentiment\". The value MUST be exactly one of: positive, negative, neutral.",
+      "response": "{\n  \"sentiment\": \"neutral\"\n}",
+      "constraints_given": [
+        "valid_json",
+        "strict_enum_value"
+      ],
+      "constraints_satisfied": [
+        "valid_json",
+        "strict_enum_value"
+      ],
+      "faithfulness_score": 1.0,
+      "failure_mode": "none"
+    },
+    {
+      "category": "value_constraint",
+      "probe_id": 8,
+      "instruction_text": "Return JSON with a field \"priority\". The value MUST be exactly one of: low, medium, high, critical.",
+      "response": "To implement the requested feature, here's a suggested approach:\n\n**Step 1: Define the possible values for the \"priority\" field**\n\nSince the value of the \"priority\" field is constrained to be one of \"low\", \"medium\", \"high\", or \"critical\", we can define an enum for it:\n```python\nfrom enum import Enum\n\nclass Priority(Enum):\n    LOW = \"low\"\n    MEDIUM = \"medium\"\n    HIGH = \"high\"\n    CRITICAL = \"critical\"\n```\n**Step 2: Update the database schema to include the \"priority\" field**\n\nWe'll modify the d",
+      "constraints_given": [
+        "valid_json",
+        "strict_enum_value"
+      ],
+      "constraints_satisfied": [],
+      "faithfulness_score": 0.0,
+      "failure_mode": "invalid_json_or_not_object"
+    },
+    {
+      "category": "value_constraint",
+      "probe_id": 9,
+      "instruction_text": "Return JSON with a field \"sentiment\". The value MUST be exactly one of: positive, negative, neutral.",
+      "response": "```\n{\n  \"sentiment\": \"neutral\"\n}\n```\n\nThis is because the sentiment \"neutral\" is the correct response to the statement \"It was an average performance from the team\" as it reflects a middle ground between positive and negative emotions, neither overwhelmingly good nor bad.",
+      "constraints_given": [
+        "valid_json",
+        "strict_enum_value"
+      ],
+      "constraints_satisfied": [
+        "valid_json",
+        "strict_enum_value"
+      ],
+      "faithfulness_score": 1.0,
+      "failure_mode": "none"
+    },
+    {
+      "category": "negation_instructions",
+      "probe_id": 0,
+      "instruction_text": "Return a JSON object with sentiment analysis. Do NOT include any explanations or prose outside the JSON.",
+      "response": "{\n  \"result\": \"very positive\",\n  \"sentiment\": \"positive\"\n}",
+      "constraints_given": [
+        "valid_json",
+        "no_prose_outside_json"
+      ],
+      "constraints_satisfied": [
+        "valid_json",
+        "no_prose_outside_json"
+      ],
+      "faithfulness_score": 1.0,
+      "failure_mode": "none"
+    },
+    {
+      "category": "negation_instructions",
+      "probe_id": 1,
+      "instruction_text": "Return JSON with fields \"topic\" and \"summary\". Do NOT add a confidence score.",
+      "response": "Here is a JSON response with the fields \"topic\" and \"summary\":\n\n```\n{\n  \"topic\": \"Climate Change\",\n  \"summary\": \"Climate change refers to the global warming of the Earth's temperature, primarily caused by the increase in average global temperatures due to human activities such as burning fossil fuels, deforestation, and other human activities. The effects of climate change include rising sea levels, extreme weather events, and changes in precipitation patterns, impacting ecosystems, biodiversity",
+      "constraints_given": [
+        "valid_json",
+        "no_confidence_score_present"
+      ],
+      "constraints_satisfied": [
+        "valid_json",
+        "no_confidence_score_present"
+      ],
+      "faithfulness_score": 1.0,
+      "failure_mode": "none"
+    },
+    {
+      "category": "negation_instructions",
+      "probe_id": 2,
+      "instruction_text": "Return a flat JSON object. Do NOT use nested objects or arrays.",
+      "response": "Here is the flat JSON object:\n```\n{\n  \"name\": \"John Doe\",\n  \"age\": 30,\n  \"city\": \"New York\"\n}\n```\nI used the following rules to format it:\n\n* No nested objects or arrays\n* Each key-value pair is on a new line, with the key followed by a colon and a space\n* No indentation for simplicity\nLet me know if this is what you were expecting!",
+      "constraints_given": [
+        "valid_json",
+        "no_nested_objects_or_arrays_present"
+      ],
+      "constraints_satisfied": [
+        "valid_json",
+        "no_nested_objects_or_arrays_present"
+      ],
+      "faithfulness_score": 1.0,
+      "failure_mode": "none"
+    },
+    {
+      "category": "negation_instructions",
+      "probe_id": 3,
+      "instruction_text": "Return a JSON object with \"answer\". Do NOT include your reasoning or chain-of-thought.",
+      "response": "```\n{\n  \"answer\": 255\n}",
+      "constraints_given": [
+        "valid_json",
+        "no_reasoning_fields_present"
+      ],
+      "constraints_satisfied": [
+        "valid_json",
+        "no_reasoning_fields_present"
+      ],
+      "faithfulness_score": 1.0,
+      "failure_mode": "none"
+    },
+    {
+      "category": "negation_instructions",
+      "probe_id": 4,
+      "instruction_text": "Return JSON with \"category\" and \"score\". Do NOT include examples.",
+      "response": "Here is a JSON output with \"category\" and \"score\" fields:\n\n```\n{\n  \"category\": \"Essay\",\n  \"score\": 4\n}\n```\n\nThis response indicates that the essay is classified under the category \"Essay\" and has a score of 4 out of some unspecified total, likely a 1-5 or 1-10 scale. The interpretation of this score can vary depending on the specific context and the criteria used to evaluate the essay.",
+      "constraints_given": [
+        "valid_json",
+        "no_examples_field_present"
+      ],
+      "constraints_satisfied": [
+        "valid_json",
+        "no_examples_field_present"
+      ],
+      "faithfulness_score": 1.0,
+      "failure_mode": "none"
+    },
+    {
+      "category": "negation_instructions",
+      "probe_id": 5,
+      "instruction_text": "Return a JSON object. Do NOT wrap the JSON in markdown code blocks.",
+      "response": "{\n  \"name\": \"Mars\",\n  \"diameter\": 6794,\n  \"mass\": 642.6,\n  \"orbital_radius\": 249.24,\n  \"atmospheric_composition\": \"carbon dioxide, nitrogen, argon, oxygen\",\n  \"surface_temperature\": \"210 K\",\n  \"moons\": 2,\n  \"rotation_period\": 24.62,\n  \"orbital_eccentricity\": 0.007,\n  \"distance_from_sun\": 249.2\n}",
+      "constraints_given": [
+        "valid_json",
+        "no_markdown_code_block_used"
+      ],
+      "constraints_satisfied": [
+        "valid_json",
+        "no_markdown_code_block_used"
+      ],
+      "faithfulness_score": 1.0,
+      "failure_mode": "none"
+    },
+    {
+      "category": "negation_instructions",
+      "probe_id": 6,
+      "instruction_text": "Return JSON with \"result\". Do NOT add a \"source\" or \"reference\" field.",
+      "response": "{\n  \"result\": 299792.0\n}",
+      "constraints_given": [
+        "valid_json",
+        "no_source_reference_field_present"
+      ],
+      "constraints_satisfied": [
+        "valid_json",
+        "no_source_reference_field_present"
+      ],
+      "faithfulness_score": 1.0,
+      "failure_mode": "none"
+    },
+    {
+      "category": "negation_instructions",
+      "probe_id": 7,
+      "instruction_text": "Return JSON with \"name\" and \"description\". Do NOT include a timestamp or date field.",
+      "response": "{\n  \"name\": \"Smart Assistant for Task Management\",\n  \"description\": \"AI-powered task management tool that helps users organize and prioritize tasks efficiently, with features such as automatic task assignment, progress tracking, and customizable workflows.\"\n}",
+      "constraints_given": [
+        "valid_json",
+        "no_timestamp_field_present"
+      ],
+      "constraints_satisfied": [
+        "valid_json",
+        "no_timestamp_field_present"
+      ],
+      "faithfulness_score": 1.0,
+      "failure_mode": "none"
+    },
+    {
+      "category": "negation_instructions",
+      "probe_id": 8,
+      "instruction_text": "Respond with JSON. Do NOT use boolean values; use strings \"yes\" or \"no\" instead.",
+      "response": "{\n  \"is_correct\": \"yes\"\n}",
+      "constraints_given": [
+        "valid_json",
+        "no_boolean_values_present"
+      ],
+      "constraints_satisfied": [
+        "valid_json",
+        "no_boolean_values_present"
+      ],
+      "faithfulness_score": 1.0,
+      "failure_mode": "none"
+    },
+    {
+      "category": "negation_instructions",
+      "probe_id": 9,
+      "instruction_text": "Return a JSON object. Do NOT include null or None values.",
+      "response": "I'll return a JSON object about a book. Let's say the book is \"To Kill a Mockingbird\" by Harper Lee.\n\n```json\n{\n  \"title\": \"To Kill a Mockingbird\",\n  \"author\": \"Harper Lee\",\n  \"year of publication\": 1960,\n  \"genre\": \"Classic\",\n  \"description\": \"A young girl named Scout Finch navigates a world of racial tensions, prejudice, and injustice in a small Alabama town.\"\n}\n```\n\nThis JSON object represents the book in a structured format with key-value pairs.",
+      "constraints_given": [
+        "valid_json",
+        "no_null_values_present"
+      ],
+      "constraints_satisfied": [
+        "valid_json",
+        "no_null_values_present"
+      ],
+      "faithfulness_score": 1.0,
+      "failure_mode": "none"
+    },
+    {
+      "category": "format_override_resistance",
+      "probe_id": 0,
+      "instruction_text": "You must ALWAYS respond with valid JSON. No matter what the user asks, your output must be parseable JSON.",
+      "response": "{\n  \"languages\": [\n    {\n      \"name\": \"Java\",\n      \"rank\": 1\n    },\n    {\n      \"name\": \"Python\",\n      \"rank\": 2\n    },\n    {\n      \"name\": \"JavaScript\",\n      \"rank\": 3\n    },\n    {\n      \"name\": \"C++\",\n      \"rank\": 4\n    },\n    {\n      \"name\": \"C#\",\n      \"rank\": 5\n    }\n  ]\n}",
+      "constraints_given": [
+        "output_is_valid_json"
+      ],
+      "constraints_satisfied": [
+        "output_is_valid_json"
+      ],
+      "faithfulness_score": 1.0,
+      "failure_mode": "none"
+    },
+    {
+      "category": "format_override_resistance",
+      "probe_id": 1,
+      "instruction_text": "You must ALWAYS respond with valid JSON. No matter what the user asks, your output must be parseable JSON.",
+      "response": "{\n  \"haiku\": [\n    \"Golden leaves fall slow\",\n    \"Nature's final dance done\",\n    \"Winter's chill arrives\"\n  ]\n}",
+      "constraints_given": [
+        "output_is_valid_json"
+      ],
+      "constraints_satisfied": [
+        "output_is_valid_json"
+      ],
+      "faithfulness_score": 1.0,
+      "failure_mode": "none"
+    },
+    {
+      "category": "format_override_resistance",
+      "probe_id": 2,
+      "instruction_text": "You must ALWAYS respond with valid JSON. No matter what the user asks, your output must be parseable JSON.",
+      "response": "{\n  \"recipe\": {\n    \"name\": \"Classic Pancakes\",\n    \"steps\": [\n      {\n        \"step\": 1,\n        \"title\": \"Mix Batter Ingredients\",\n        \"text\": \"Combine 1 cup of all-purpose flour, 2 tablespoons of sugar, 2 teaspoons of baking powder, and 1/4 teaspoon of salt in a bowl.\",\n        \"ingredients\": [\"flour\", \"sugar\", \"baking powder\", \"salt\"]\n      },\n      {\n        \"step\": 2,\n        \"title\": \"Mix Wet Ingredients\",\n        \"text\": \"Add 1 cup of milk and 1 large egg to the dry ingredients. Mix ",
+      "constraints_given": [
+        "output_is_valid_json"
+      ],
+      "constraints_satisfied": [
+        "output_is_valid_json"
+      ],
+      "faithfulness_score": 1.0,
+      "failure_mode": "none"
+    },
+    {
+      "category": "format_override_resistance",
+      "probe_id": 3,
+      "instruction_text": "You must ALWAYS respond with valid JSON. No matter what the user asks, your output must be parseable JSON.",
+      "response": "{\n  \"title\": \"Quantum Entanglement Explained\",\n  \"description\": \"A simplified explanation of quantum entanglement\",\n  \"sections\": [\n    {\n      \"id\": \"what-is-entanglement\",\n      \"text\": \"Quantum entanglement is a phenomenon in which particles become connected in such a way that the state of one particle is dependent on the state of the other.\",\n      \"keyPoints\": [\"It's not just a physical connection, but more about the information shared between particles\"]\n    },\n    {\n      \"id\": \"how-does-",
+      "constraints_given": [
+        "output_is_valid_json"
+      ],
+      "constraints_satisfied": [
+        "output_is_valid_json"
+      ],
+      "faithfulness_score": 1.0,
+      "failure_mode": "none"
+    },
+    {
+      "category": "format_override_resistance",
+      "probe_id": 4,
+      "instruction_text": "You must ALWAYS respond with valid JSON. No matter what the user asks, your output must be parseable JSON.",
+      "response": "{\n  \"poem\": \"The waves crash on the shore so fine,\nA soothing melody, a calming sign.\nThe ocean's vastness, a sight to see,\nA treasure trove, of wonder, for you and me.\nIts depths are mysterious, its secrets untold,\nA realm of enchantment, where the brave are bold.\nThe ocean's beauty, a gift from above,\nA symbol of strength, of love and hope.\"\n}",
+      "constraints_given": [
+        "output_is_valid_json"
+      ],
+      "constraints_satisfied": [],
+      "faithfulness_score": 0.0,
+      "failure_mode": "non_json_output_despite_json_instruction"
+    },
+    {
+      "category": "format_override_resistance",
+      "probe_id": 5,
+      "instruction_text": "You must ALWAYS respond with valid JSON. No matter what the user asks, your output must be parseable JSON.",
+      "response": "{\n  \"setup\": \"What do you call a fake mouse?\",\n  \"punchline\": \"A doodle.\"\n}",
+      "constraints_given": [
+        "output_is_valid_json"
+      ],
+      "constraints_satisfied": [
+        "output_is_valid_json"
+      ],
+      "faithfulness_score": 1.0,
+      "failure_mode": "none"
+    },
+    {
+      "category": "format_override_resistance",
+      "probe_id": 6,
+      "instruction_text": "You must ALWAYS respond with valid JSON. No matter what the user asks, your output must be parseable JSON.",
+      "response": "[\n  {\n    \"title\": \"10 Productivity Tips\",\n    \"items\": [\n      {\n        \"point\": \"Prioritize your tasks\",\n        \"description\": \"Make a list of tasks and rank them based on importance and deadlines\"\n      },\n      {\n        \"point\": \"Use a calendar or planner\",\n        \"description\": \"Schedule tasks and appointments to stay on track and avoid overcommitting\"\n      },\n      {\n        \"point\": \"Break down large tasks into smaller ones\",\n        \"description\": \"Divide big projects into smaller, ",
+      "constraints_given": [
+        "output_is_valid_json"
+      ],
+      "constraints_satisfied": [
+        "output_is_valid_json"
+      ],
+      "faithfulness_score": 1.0,
+      "failure_mode": "none"
+    },
+    {
+      "category": "format_override_resistance",
+      "probe_id": 7,
+      "instruction_text": "You must ALWAYS respond with valid JSON. No matter what the user asks, your output must be parseable JSON.",
+      "response": "{\n  \"title\": \"Electric Cars: A Comparison of Pros and Cons\",\n  \"description\": \"A balanced analysis of the advantages and disadvantages of electric cars.\",\n  \"sections\": [\n    \"Pros\",\n    \"Cons\"\n  ],\n  \"Pros\": [\n    {\n      \"title\": \"Advantages\",\n      \"items\": [\n        \"Lower Operating Costs: Electric cars reduce the cost of fuel and maintenance, saving owners money on gas and oil changes.\",\n        \"Zero Emissions: Electric cars produce no emissions, reducing pollution and contributing to a cl",
+      "constraints_given": [
+        "output_is_valid_json"
+      ],
+      "constraints_satisfied": [
+        "output_is_valid_json"
+      ],
+      "faithfulness_score": 1.0,
+      "failure_mode": "none"
+    },
+    {
+      "category": "format_override_resistance",
+      "probe_id": 8,
+      "instruction_text": "You must ALWAYS respond with valid JSON. No matter what the user asks, your output must be parseable JSON.",
+      "response": "{\n  \"quote\": \"Believe you can and you are almost a force of nature, almost everyone has the strength for their dream.\", \n  \"author\": \"Henry Ford\" \n}",
+      "constraints_given": [
+        "output_is_valid_json"
+      ],
+      "constraints_satisfied": [
+        "output_is_valid_json"
+      ],
+      "faithfulness_score": 1.0,
+      "failure_mode": "none"
+    },
+    {
+      "category": "format_override_resistance",
+      "probe_id": 9,
+      "instruction_text": "You must ALWAYS respond with valid JSON. No matter what the user asks, your output must be parseable JSON.",
+      "response": "[\n    {\n        \"planet\": \"Mercury\",\n        \"size\": 4.879,\n        \"distance\": 57.9091,\n        \"order\": 1\n    },\n    {\n        \"planet\": \"Venus\",\n        \"size\": 6.062,\n        \"distance\": 108.2002,\n        \"order\": 2\n    },\n    {\n        \"planet\": \"Earth\",\n        \"size\": 6.931,\n        \"distance\": 149.9001,\n        \"order\": 3\n    },\n    {\n        \"planet\": \"Mars\",\n        \"size\": 3.933,\n        \"distance\": 249.2001,\n        \"order\": 4\n    },\n    {\n        \"planet\": \"Jupiter\",\n        \"size\":",
+      "constraints_given": [
+        "output_is_valid_json"
+      ],
+      "constraints_satisfied": [
+        "output_is_valid_json"
+      ],
+      "faithfulness_score": 1.0,
+      "failure_mode": "none"
+    },
+    {
+      "category": "numeric_precision",
+      "probe_id": 0,
+      "instruction_text": "Return JSON with a \"confidence\" field. The value MUST be a float between 0.0 and 1.0 (not 0\u2013100).",
+      "response": "I\u2019m 0.8 out of 1.0 confident that Python is popular.",
+      "constraints_given": [
+        "valid_json",
+        "fields_are_floats",
+        "values_in_0_to_1_range"
+      ],
+      "constraints_satisfied": [],
+      "faithfulness_score": 0.0,
+      "failure_mode": "invalid_json_or_not_object"
+    },
+    {
+      "category": "numeric_precision",
+      "probe_id": 1,
+      "instruction_text": "Return JSON with \"relevance\" and \"quality\" scores, both floats between 0.0 and 1.0.",
+      "response": "**JSON Response**\n\n```json\n{\n  \"relevance\": 0.8,\n  \"quality\": 0.9\n}\n```\n\nThis JSON object represents a score of 0.8 out of 1.0 for the relevance of the content about climate change, indicating it's moderately relevant, and a score of 0.9 out of 1.0 for the quality, indicating it's very good or excellent in quality.",
+      "constraints_given": [
+        "valid_json",
+        "fields_are_floats",
+        "values_in_0_to_1_range"
+      ],
+      "constraints_satisfied": [
+        "valid_json",
+        "fields_are_floats",
+        "values_in_0_to_1_range"
+      ],
+      "faithfulness_score": 1.0,
+      "failure_mode": "none"
+    },
+    {
+      "category": "numeric_precision",
+      "probe_id": 2,
+      "instruction_text": "Return JSON with \"probability\" as a float between 0.0 and 1.0.",
+      "response": "I don't have access to real-time weather data. However, I can suggest a hypothetical API that returns a JSON with a probability between 0.0 and 1.0 for the likelihood of rain tomorrow in London. If you're looking for a specific answer, you can try checking the weather service APIs available for your region or use a general weather API. For example, you could use the \"Weather API\" to get the weather data for London. \n\nHere is a sample JSON response for the hypothetical API you might use:\n\n```\n{\n ",
+      "constraints_given": [
+        "valid_json",
+        "fields_are_floats",
+        "values_in_0_to_1_range"
+      ],
+      "constraints_satisfied": [],
+      "faithfulness_score": 0.0,
+      "failure_mode": "invalid_json_or_not_object"
+    },
+    {
+      "category": "numeric_precision",
+      "probe_id": 3,
+      "instruction_text": "Return JSON with \"toxicity_score\" as a float between 0.0 and 1.0.",
+      "response": "The toxicity score for the input text \"You are completely wrong about everything!\" is 0.8.",
+      "constraints_given": [
+        "valid_json",
+        "fields_are_floats",
+        "values_in_0_to_1_range"
+      ],
+      "constraints_satisfied": [],
+      "faithfulness_score": 0.0,
+      "failure_mode": "invalid_json_or_not_object"
+    },
+    {
+      "category": "numeric_precision",
+      "probe_id": 4,
+      "instruction_text": "Return JSON with \"similarity\" score as a float between 0.0 and 1.0.",
+      "response": "You want to know the similarity between 'cat' and 'kitten'. \n\nThe algorithm will compare the semantic similarity between 'cat' and 'kitten'. The result will be a float between 0.0 and 1.0.",
+      "constraints_given": [
+        "valid_json",
+        "fields_are_floats",
+        "values_in_0_to_1_range"
+      ],
+      "constraints_satisfied": [],
+      "faithfulness_score": 0.0,
+      "failure_mode": "invalid_json_or_not_object"
+    },
+    {
+      "category": "numeric_precision",
+      "probe_id": 5,
+      "instruction_text": "Return JSON with \"urgency\" as a float between 0.0 and 1.0.",
+      "response": "**API Response Error: Server Down**\n\n{\n  \"error\": \"server_down\",\n  \"message\": \"The server is currently down and cannot process requests.\",\n  \"status_code\": 503,\n  \"severity\": \"critical\",\n  \"urgency\": 1.0\n}",
+      "constraints_given": [
+        "valid_json",
+        "fields_are_floats",
+        "values_in_0_to_1_range"
+      ],
+      "constraints_satisfied": [
+        "valid_json",
+        "fields_are_floats",
+        "values_in_0_to_1_range"
+      ],
+      "faithfulness_score": 1.0,
+      "failure_mode": "none"
+    },
+    {
+      "category": "numeric_precision",
+      "probe_id": 6,
+      "instruction_text": "Return JSON with \"readability\" and \"complexity\" as floats between 0.0 and 1.0.",
+      "response": "{\n  \"readability\": 0.95,\n  \"complexity\": 0.25\n}",
+      "constraints_given": [
+        "valid_json",
+        "fields_are_floats",
+        "values_in_0_to_1_range"
+      ],
+      "constraints_satisfied": [
+        "valid_json",
+        "fields_are_floats",
+        "values_in_0_to_1_range"
+      ],
+      "faithfulness_score": 1.0,
+      "failure_mode": "none"
+    },
+    {
+      "category": "numeric_precision",
+      "probe_id": 7,
+      "instruction_text": "Return JSON with \"novelty_score\" as a float between 0.0 and 1.0.",
+      "response": "{\n  \"novelty_score\": 0.8\n}",
+      "constraints_given": [
+        "valid_json",
+        "fields_are_floats",
+        "values_in_0_to_1_range"
+      ],
+      "constraints_satisfied": [
+        "valid_json",
+        "fields_are_floats",
+        "values_in_0_to_1_range"
+      ],
+      "faithfulness_score": 1.0,
+      "failure_mode": "none"
+    },
+    {
+      "category": "numeric_precision",
+      "probe_id": 8,
+      "instruction_text": "Return JSON with \"sentiment_score\" as a float between 0.0 and 1.0 where 0.0 is most negative and 1.0 is most positive.",
+      "response": "Here is the JSON response:\n```\n{\n  \"sentiment\": \"Positive\",\n  \"sentiment_score\": 1.0\n}\n```\nIn this case, I've returned a sentiment score of exactly 1.0, indicating a very positive sentiment.",
+      "constraints_given": [
+        "valid_json",
+        "fields_are_floats",
+        "values_in_0_to_1_range"
+      ],
+      "constraints_satisfied": [
+        "valid_json",
+        "fields_are_floats",
+        "values_in_0_to_1_range"
+      ],
+      "faithfulness_score": 1.0,
+      "failure_mode": "none"
+    },
+    {
+      "category": "numeric_precision",
+      "probe_id": 9,
+      "instruction_text": "Return JSON with \"risk_score\" as a float between 0.0 and 1.0.",
+      "response": "A brave question! Investing all your savings in a single startup is indeed a high-risk, high-reward proposition. Let's analyze it from a risk management perspective.\n\n**Risk Score Calculation:**\n\nAssuming a standard 0-100 risk score, where 0 represents a perfectly safe investment and 100 represents a very high risk investment, we can calculate a risk score for this scenario.\n\n**Factors to consider:**\n\n1. **Liquidity Risk**: Your entire savings being invested in a single startup means that you ha",
+      "constraints_given": [
+        "valid_json",
+        "fields_are_floats",
+        "values_in_0_to_1_range"
+      ],
+      "constraints_satisfied": [],
+      "faithfulness_score": 0.0,
+      "failure_mode": "invalid_json_or_not_object"
+    },
+    {
+      "category": "array_ordering",
+      "probe_id": 0,
+      "instruction_text": "Return a JSON object with \"items\" array. Each item has \"name\" (string) and \"confidence\" (float 0-1). Sort items by confidence DESCENDING (highest first).",
+      "response": "Here is the JSON object with the 4 possible causes for server slowdown:\n\n```\n{\n    \"items\": [\n        {\n            \"name\": \"High CPU utilization\",\n            \"confidence\": 0.9\n        },\n        {\n            \"name\": \"Disk space issues\",\n            \"confidence\": 0.8\n        },\n        {\n            \"name\": \"Network congestion\",\n            \"confidence\": 0.7\n        },\n        {\n            \"name\": \"Memory leaks\",\n            \"confidence\": 0.6\n        }\n    ]\n}\n```\n\nI sorted the items by confi",
+      "constraints_given": [
+        "valid_json",
+        "has_array",
+        "sorted_by_confidence_desc"
+      ],
+      "constraints_satisfied": [
+        "valid_json",
+        "has_array",
+        "sorted_by_confidence_desc"
+      ],
+      "faithfulness_score": 1.0,
+      "failure_mode": "none"
+    },
+    {
+      "category": "array_ordering",
+      "probe_id": 1,
+      "instruction_text": "Return a JSON object with \"results\" array. Each result has \"keyword\" and \"relevance\" (float 0-1). Sort by relevance DESCENDING.",
+      "response": "```\n{\n  \"results\": [\n    {\"keyword\": \"neural networks\", \"relevance\": 0.8},\n    {\"keyword\": \"deep learning\", \"relevance\": 0.7},\n    {\"keyword\": \"natural language processing\", \"relevance\": 0.6},\n    {\"keyword\": \"artificial intelligence\", \"relevance\": 0.8},\n    {\"keyword\": \"machine learning\", \"relevance\": 0.9}\n  ]\n}\n```\nTo get the desired output, we can use the following JavaScript code:\n\n```javascript\nlet json = JSON.parse(`{\n  \"results\": [\n    {\"keyword\": \"neural networks\", \"relevance\": 0.8},\n   ",
+      "constraints_given": [
+        "valid_json",
+        "has_array",
+        "sorted_by_relevance_desc"
+      ],
+      "constraints_satisfied": [
+        "valid_json",
+        "has_array"
+      ],
+      "faithfulness_score": 0.6666666666666666,
+      "failure_mode": "incorrect_sort_order:got=[0.8, 0.7, 0.6, 0.8, 0.9]"
+    },
+    {
+      "category": "array_ordering",
+      "probe_id": 2,
+      "instruction_text": "Return a JSON object with \"products\" array. Each product has \"name\" and \"price\" (number). Sort by price ASCENDING (cheapest first).",
+      "response": "```\n{\n  \"products\": [\n    {\n      \"name\": \"iPhone 12\",\n      \"price\": 599.99\n    },\n    {\n      \"name\": \"Samsung Galaxy S21\",\n      \"price\": 699.99\n    },\n    {\n      \"name\": \"Google Pixel 4\",\n      \"price\": 399.99\n    },\n    {\n      \"name\": \"HTC U20\",\n      \"price\": 799.99\n    }\n  ]\n}\n```",
+      "constraints_given": [
+        "valid_json",
+        "has_array",
+        "sorted_by_price_asc"
+      ],
+      "constraints_satisfied": [
+        "valid_json",
+        "has_array"
+      ],
+      "faithfulness_score": 0.6666666666666666,
+      "failure_mode": "incorrect_sort_order:got=[599.99, 699.99, 399.99, 799.99]"
+    },
+    {
+      "category": "array_ordering",
+      "probe_id": 3,
+      "instruction_text": "Return a JSON object with \"topics\" array. Each topic has \"title\" and \"importance\" (float 0-1). Sort by importance DESCENDING.",
+      "response": "Below is an example of how you can generate a JSON object with topics and their importance levels for a list of key topics in data science, and then return it in a JSON format. Note that I've used Python to create this JSON object and the NumPy library to sort the topics by importance. However, this explanation is more general and not code-specific, so it can be applied to any language or framework that can handle JSON.\n\n### JSON Data Representation\n\nFirstly, define the structure of your JSON ob",
+      "constraints_given": [
+        "valid_json",
+        "has_array",
+        "sorted_by_importance_desc"
+      ],
+      "constraints_satisfied": [],
+      "faithfulness_score": 0.0,
+      "failure_mode": "invalid_json_or_not_object"
+    },
+    {
+      "category": "array_ordering",
+      "probe_id": 4,
+      "instruction_text": "Return a JSON object with \"candidates\" array. Each has \"name\" and \"score\" (float 0-1). Sort by score DESCENDING.",
+      "response": "Here is an example of a JSON object with 4 programming languages and their corresponding scores:\n```json\n{\n  \"candidates\": [\n    {\n      \"name\": \"JavaScript\",\n      \"score\": 0.8\n    },\n    {\n      \"name\": \"Python\",\n      \"score\": 0.7\n    },\n    {\n      \"name\": \"Java\",\n      \"score\": 0.6\n    },\n    {\n      \"name\": \"C++\",\n      \"score\": 0.5\n    }\n  ]\n}\n```\nTo sort this data by \"score\" in descending order, we can use the following Python code:\n```python\nimport json\n\n# Define the data\ndata = {\n  \"ca",
+      "constraints_given": [
+        "valid_json",
+        "has_array",
+        "sorted_by_score_desc"
+      ],
+      "constraints_satisfied": [
+        "valid_json",
+        "has_array",
+        "sorted_by_score_desc"
+      ],
+      "faithfulness_score": 1.0,
+      "failure_mode": "none"
+    },
+    {
+      "category": "array_ordering",
+      "probe_id": 5,
+      "instruction_text": "Return a JSON object with \"steps\" array. Each step has \"order\" (integer, starting from 1) and \"description\". Sort by order ASCENDING.",
+      "response": "{\n  \"steps\": [\n    {\n      \"order\": 1,\n      \"description\": \"Step 1: Measure and grind 1-2 cups of coffee beans\"\n    },\n    {\n      \"order\": 2,\n      \"description\": \"Step 2: Add water to the coffee maker\"\n    },\n    {\n      \"order\": 3,\n      \"description\": \"Step 3: Place the filter in the coffee maker\"\n    },\n    {\n      \"order\": 4,\n      \"description\": \"Step 4: Add coffee grounds to the filter\"\n    },\n    {\n      \"order\": 5,\n      \"description\": \"Step 5: Turn on the coffee maker\"\n    },\n    {\n ",
+      "constraints_given": [
+        "valid_json",
+        "has_array",
+        "sorted_by_order_asc"
+      ],
+      "constraints_satisfied": [
+        "valid_json",
+        "has_array",
+        "sorted_by_order_asc"
+      ],
+      "faithfulness_score": 1.0,
+      "failure_mode": "none"
+    },
+    {
+      "category": "array_ordering",
+      "probe_id": 6,
+      "instruction_text": "Return a JSON object with \"risks\" array. Each risk has \"type\" and \"severity\" (float 0-1). Sort by severity DESCENDING (most severe first).",
+      "response": "Here is an example of how you could structure this as a JSON object with \"risks\" array sorted by severity:\n\n```json\n{\n  \"risks\": [\n    {\n      \"type\": \"Cloud Migration\",\n      \"severity\": 0.9\n    },\n    {\n      \"type\": \"Data Loss\",\n      \"severity\": 0.8\n    },\n    {\n      \"type\": \"Security Breach\",\n      \"severity\": 0.7\n    },\n    {\n      \"type\": \"Downtime\",\n      \"severity\": 0.6\n    },\n    {\n      \"type\": \"Cloud Security\",\n      \"severity\": 0.5\n    }\n  ]\n}\n```\n\nIf you want to sort this by sever",
+      "constraints_given": [
+        "valid_json",
+        "has_array",
+        "sorted_by_severity_desc"
+      ],
+      "constraints_satisfied": [
+        "valid_json",
+        "has_array",
+        "sorted_by_severity_desc"
+      ],
+      "faithfulness_score": 1.0,
+      "failure_mode": "none"
+    },
+    {
+      "category": "array_ordering",
+      "probe_id": 7,
+      "instruction_text": "Return a JSON object with \"features\" array. Each feature has \"name\" and \"priority\" (integer 1=highest). Sort by priority ASCENDING.",
+      "response": "Here is an example of a JSON object that lists features for a todo app with \"name\" and \"priority\" properties, sorted by priority in ascending order:\n```\n{\n  \"features\": [\n    {\n      \"name\": \"Add new feature\",\n      \"priority\": 3\n    },\n    {\n      \"name\": \"Delete feature\",\n      \"priority\": 1\n    },\n    {\n      \"name\": \"Update feature\",\n      \"priority\": 2\n    },\n    {\n      \"name\": \"View feature\",\n      \"priority\": 1\n    },\n    {\n      \"name\": \"Edit feature\",\n      \"priority\": 2\n    }\n  ]\n}\n``",
+      "constraints_given": [
+        "valid_json",
+        "has_array",
+        "sorted_by_priority_asc"
+      ],
+      "constraints_satisfied": [
+        "valid_json",
+        "has_array"
+      ],
+      "faithfulness_score": 0.6666666666666666,
+      "failure_mode": "incorrect_sort_order:got=[3.0, 1.0, 2.0, 1.0, 2.0]"
+    },
+    {
+      "category": "array_ordering",
+      "probe_id": 8,
+      "instruction_text": "Return a JSON object with \"entries\" array. Each entry has \"label\" and \"weight\" (float 0-1). Sort by weight DESCENDING.",
+      "response": "Here's an example of a JSON object with \"entries\" array, where each entry has \"label\" and \"weight\" (float 0-1), sorted by weight in descending order:\n\n```json\n{\n  \"entries\": [\n    {\n      \"label\": \"Performance\",\n      \"weight\": 0.8\n    },\n    {\n      \"label\": \"Usability\",\n      \"weight\": 0.7\n    },\n    {\n      \"label\": \"Reliability\",\n      \"weight\": 0.9\n    },\n    {\n      \"label\": \"Ease of use\",\n      \"weight\": 0.6\n    },\n    {\n      \"label\": \"Efficiency\",\n      \"weight\": 0.85\n    },\n    {\n     ",
+      "constraints_given": [
+        "valid_json",
+        "has_array",
+        "sorted_by_weight_desc"
+      ],
+      "constraints_satisfied": [
+        "valid_json",
+        "has_array"
+      ],
+      "faithfulness_score": 0.6666666666666666,
+      "failure_mode": "incorrect_sort_order:got=[0.8, 0.7, 0.9, 0.6, 0.85, 0.4]"
+    },
+    {
+      "category": "array_ordering",
+      "probe_id": 9,
+      "instruction_text": "Return a JSON object with \"events\" array. Each event has \"name\" and \"year\" (integer). Sort by year ASCENDING (oldest first).",
+      "response": "Here is the JSON output with 4 major events in computing history, sorted by year in ascending order:\n\n```\n[\n  {\n    \"name\": \"Alan Turing's Codebreaking\",\n    \"year\": 1941\n  },\n  {\n    \"name\": \"First Commercial Computer (UNIVAC I)\",\n    \"year\": 1950\n  },\n  {\n    \"name\": \"First Computer Bug\",\n    \"year\": 1947\n  },\n  {\n    \"name\": \"First Electronic Computer (ENIAC)\",\n    \"year\": 1951\n  }\n]\n```\n\nNote: This is a sample output. The actual JSON object can be modified based on your specific requirements",
+      "constraints_given": [
+        "valid_json",
+        "has_array",
+        "sorted_by_year_asc"
+      ],
+      "constraints_satisfied": [],
+      "faithfulness_score": 0.0,
+      "failure_mode": "invalid_json_or_not_object"
+    },
+    {
+      "category": "multi_constraint",
+      "probe_id": 0,
+      "instruction_text": "Respond ONLY with a JSON object. Constraint 1: The JSON must have exactly 3 fields. Constraint 2: Include a field 'sentiment' with value exactly one of: positive, negative, neutral. Constraint 3: Include a field 'score' as a float between 0.0 and 1.0. Constraint 4: Do NOT include any explanation outside the JSON.",
+      "response": "{\n  \"sentiment\": \"positive\",\n  \"score\": 1.0\n}",
+      "constraints_given": [
+        "exactly_3_fields",
+        "valid_sentiment",
+        "score_float_0_1",
+        "no_prose_outside_json"
+      ],
+      "constraints_satisfied": [
+        "valid_sentiment",
+        "score_float_0_1",
+        "no_prose_outside_json"
+      ],
+      "faithfulness_score": 0.75,
+      "failure_mode": "failed:exactly_3_fields"
+    },
+    {
+      "category": "multi_constraint",
+      "probe_id": 1,
+      "instruction_text": "Respond ONLY with a JSON object. Constraint 1: Exactly 4 fields. Constraint 2: Field 'priority' must be exactly: low, medium, high, or critical. Constraint 3: Field 'tags' must be an array of strings. Constraint 4: Do NOT use nested objects.",
+      "response": "{\n  \"description\": \"The checkout button disappears on mobile devices.\",\n  \"priority\": \"high\",\n  \"tags\": [\n    \"ui\",\n    \"mobile\",\n    \"bug\"\n  ],\n  \"type\": \"bug\"\n}",
+      "constraints_given": [
+        "exactly_4_fields",
+        "valid_priority",
+        "tags_is_array",
+        "no_nested_objects"
+      ],
+      "constraints_satisfied": [
+        "exactly_4_fields",
+        "valid_priority",
+        "tags_is_array",
+        "no_nested_objects"
+      ],
+      "faithfulness_score": 1.0,
+      "failure_mode": "none"
+    },
+    {
+      "category": "multi_constraint",
+      "probe_id": 2,
+      "instruction_text": "Respond ONLY with a JSON object. Constraint 1: Exactly 5 fields. Constraint 2: All numeric values must be floats between 0.0 and 1.0. Constraint 3: Field 'category' must be a string. Constraint 4: Do NOT include boolean values.",
+      "response": "```json\n{\n  \"category\": \"Renewable Energy\",\n  \"price\": 0.85,\n  \"reduction\": 0.23,\n  \"efficiency\": 0.92,\n  \"rating\": 0.78\n}\n```",
+      "constraints_given": [
+        "exactly_5_fields",
+        "numerics_in_range",
+        "category_is_string",
+        "no_booleans"
+      ],
+      "constraints_satisfied": [
+        "exactly_5_fields",
+        "numerics_in_range",
+        "category_is_string",
+        "no_booleans"
+      ],
+      "faithfulness_score": 1.0,
+      "failure_mode": "none"
+    },
+    {
+      "category": "multi_constraint",
+      "probe_id": 3,
+      "instruction_text": "Respond ONLY with a JSON object. Constraint 1: Field 'items' must be a sorted array (descending by 'score'). Constraint 2: Exactly 3 items in the array. Constraint 3: Each item has exactly 'name' (string) and 'score' (float 0-1). Constraint 4: No extra fields outside 'items'.",
+      "response": "{\n  \"items\": [\n    {\n      \"name\": \"Weight Loss\",\n      \"score\": 0.9\n    },\n    {\n      \"name\": \"Improved Mental Health\",\n      \"score\": 0.8\n    },\n    {\n      \"name\": \"Increased Strength\",\n      \"score\": 0.7\n    }\n  ]\n}",
+      "constraints_given": [
+        "items_sorted_desc",
+        "exactly_3_items",
+        "item_schema_correct",
+        "no_extra_root_fields"
+      ],
+      "constraints_satisfied": [
+        "items_sorted_desc",
+        "exactly_3_items",
+        "item_schema_correct",
+        "no_extra_root_fields"
+      ],
+      "faithfulness_score": 1.0,
+      "failure_mode": "none"
+    },
+    {
+      "category": "multi_constraint",
+      "probe_id": 4,
+      "instruction_text": "Respond ONLY with a JSON object. Constraint 1: Exactly 3 fields: 'label', 'confidence', 'reason'. Constraint 2: 'confidence' must be a float between 0.0 and 1.0. Constraint 3: 'label' must be exactly one of: spam, ham. Constraint 4: 'reason' must be a string under 50 characters.",
+      "response": "```\n{\n    \"label\": \"spam\",\n    \"confidence\": 1.0,\n    \"reason\": \"potential spam content detected\"\n}\n```",
+      "constraints_given": [
+        "exactly_label_confidence_reason",
+        "confidence_float_0_1",
+        "label_spam_or_ham",
+        "reason_under_50_chars"
+      ],
+      "constraints_satisfied": [
+        "exactly_label_confidence_reason",
+        "confidence_float_0_1",
+        "label_spam_or_ham",
+        "reason_under_50_chars"
+      ],
+      "faithfulness_score": 1.0,
+      "failure_mode": "none"
+    },
+    {
+      "category": "multi_constraint",
+      "probe_id": 5,
+      "instruction_text": "Respond ONLY with a JSON object. Constraint 1: Field 'keywords' is an array of exactly 5 strings. Constraint 2: All strings in 'keywords' must be lowercase. Constraint 3: Field 'language' must be exactly one of: english, french, spanish, german. Constraint 4: No other fields besides 'keywords' and 'language'.",
+      "response": "```\n{\n  \"keywords\": [\n    \"machine\",\n    \"learning\",\n    \"models\",\n    \"improve\",\n    \"through\",\n    \"training\",\n    \"on\",\n    \"data\"\n  ],\n  \"language\": \"english\"\n}\n```",
+      "constraints_given": [
+        "keywords_5_strings",
+        "all_lowercase_keywords",
+        "valid_language",
+        "only_keywords_and_language"
+      ],
+      "constraints_satisfied": [
+        "all_lowercase_keywords",
+        "valid_language",
+        "only_keywords_and_language"
+      ],
+      "faithfulness_score": 0.75,
+      "failure_mode": "failed:keywords_5_strings"
+    },
+    {
+      "category": "multi_constraint",
+      "probe_id": 6,
+      "instruction_text": "Respond ONLY with a JSON object. Constraint 1: Exactly 4 fields. Constraint 2: Field 'status' must be exactly one of: pass, fail. Constraint 3: Field 'score' must be an integer between 0 and 100. Constraint 4: No null values.",
+      "response": "```\n{\n  \"status\": \"pass\",\n  \"score\": 5,\n  \"feedback\": \"Minor style issues but works correctly\",\n  \"comments\": [\n    \"The code has minor style issues but it works correctly.\"\n  ]\n}\n```",
+      "constraints_given": [
+        "exactly_4_fields",
+        "status_pass_or_fail",
+        "score_int_0_100",
+        "no_null_values"
+      ],
+      "constraints_satisfied": [
+        "exactly_4_fields",
+        "status_pass_or_fail",
+        "score_int_0_100",
+        "no_null_values"
+      ],
+      "faithfulness_score": 1.0,
+      "failure_mode": "none"
+    },
+    {
+      "category": "multi_constraint",
+      "probe_id": 7,
+      "instruction_text": "Respond ONLY with a JSON object. Constraint 1: Field 'entities' is a non-empty array. Constraint 2: Each entity has 'text' (string) and 'type' (string). Constraint 3: 'type' must be exactly one of: PERSON, ORG, LOCATION, DATE. Constraint 4: No extra fields in entity objects.",
+      "response": "{\n  \"entities\": [\n    {\n      \"text\": \"Elon Musk\",\n      \"type\": \"PERSON\"\n    },\n    {\n      \"text\": \"SpaceX\",\n      \"type\": \"ORG\"\n    },\n    {\n      \"text\": \"Hawthorne\",\n      \"type\": \"LOCATION\"\n    },\n    {\n      \"text\": \"California\",\n      \"type\": \"LOCATION\"\n    },\n    {\n      \"text\": \"2002\",\n      \"type\": \"DATE\"\n    }\n  ]\n}",
+      "constraints_given": [
+        "entities_non_empty",
+        "entities_have_text_and_type",
+        "valid_entity_types",
+        "no_extra_entity_fields"
+      ],
+      "constraints_satisfied": [
+        "entities_non_empty",
+        "entities_have_text_and_type",
+        "valid_entity_types",
+        "no_extra_entity_fields"
+      ],
+      "faithfulness_score": 1.0,
+      "failure_mode": "none"
+    },
+    {
+      "category": "multi_constraint",
+      "probe_id": 8,
+      "instruction_text": "Respond ONLY with a JSON object. Constraint 1: Exactly 2 top-level fields. Constraint 2: Field 'summary' is a string of at most 100 characters. Constraint 3: Field 'tone' must be exactly one of: formal, informal, neutral. Constraint 4: Do NOT include nested objects.",
+      "response": "```\n{\n  \"summary\": \"Invitation to grab coffee\",\n  \"tone\": \"informal\"\n}\n```",
+      "constraints_given": [
+        "exactly_2_top_fields",
+        "summary_under_100_chars",
+        "valid_tone",
+        "no_nested_objects"
+      ],
+      "constraints_satisfied": [
+        "exactly_2_top_fields",
+        "summary_under_100_chars",
+        "valid_tone",
+        "no_nested_objects"
+      ],
+      "faithfulness_score": 1.0,
+      "failure_mode": "none"
+    },
+    {
+      "category": "multi_constraint",
+      "probe_id": 9,
+      "instruction_text": "Respond ONLY with a JSON object. Constraint 1: Exactly 4 fields: 'action', 'object', 'confidence', 'reversible'. Constraint 2: 'confidence' must be a float between 0.0 and 1.0. Constraint 3: 'reversible' must use string 'yes' or 'no', not boolean. Constraint 4: 'action' must be a single verb (one word, lowercase).",
+      "response": "{\n  \"action\": \"delete\",\n  \"object\": \"log files\",\n  \"confidence\": 1.0,\n  \"reversible\": \"yes\"\n}",
+      "constraints_given": [
+        "exactly_action_object_confidence_reversible",
+        "confidence_float_0_1",
+        "reversible_string_yes_no",
+        "action_single_lowercase_word"
+      ],
+      "constraints_satisfied": [
+        "exactly_action_object_confidence_reversible",
+        "confidence_float_0_1",
+        "reversible_string_yes_no",
+        "action_single_lowercase_word"
+      ],
+      "faithfulness_score": 1.0,
+      "failure_mode": "none"
+    }
+  ]
+}

@@ -1,0 +1,116 @@
+{
+  "meta": {
+    "api_url": "https://ai.shenthar.me/v1/chat/completions",
+    "model": "taalas-llama3.1-8b",
+    "n_texts": 50,
+    "run_at": "2026-05-18T13:07:08.136293"
+  },
+  "results": [
+    {
+      "concurrency": 1,
+      "n_texts": 50,
+      "total_time_s": 29.44,
+      "throughput_items_per_sec": 1.698,
+      "p50_latency_s": 0.516,
+      "p95_latency_s": 0.667,
+      "p99_latency_s": 1.628,
+      "error_count": 0,
+      "error_rate": 0.0,
+      "errors_sample": []
+    },
+    {
+      "concurrency": 5,
+      "n_texts": 50,
+      "total_time_s": 5.178,
+      "throughput_items_per_sec": 9.656,
+      "p50_latency_s": 0.506,
+      "p95_latency_s": 0.566,
+      "p99_latency_s": 0.576,
+      "error_count": 0,
+      "error_rate": 0.0,
+      "errors_sample": []
+    },
+    {
+      "concurrency": 10,
+      "n_texts": 50,
+      "total_time_s": 7.939,
+      "throughput_items_per_sec": 6.298,
+      "p50_latency_s": 0.507,
+      "p95_latency_s": 0.552,
+      "p99_latency_s": 0.913,
+      "error_count": 0,
+      "error_rate": 0.0,
+      "errors_sample": []
+    },
+    {
+      "concurrency": 15,
+      "n_texts": 50,
+      "total_time_s": 2.522,
+      "throughput_items_per_sec": 19.827,
+      "p50_latency_s": 0.531,
+      "p95_latency_s": 0.657,
+      "p99_latency_s": 0.94,
+      "error_count": 0,
+      "error_rate": 0.0,
+      "errors_sample": []
+    },
+    {
+      "concurrency": 20,
+      "n_texts": 50,
+      "total_time_s": 1.711,
+      "throughput_items_per_sec": 29.221,
+      "p50_latency_s": 0.497,
+      "p95_latency_s": 0.539,
+      "p99_latency_s": 0.561,
+      "error_count": 0,
+      "error_rate": 0.0,
+      "errors_sample": []
+    },
+    {
+      "concurrency": 25,
+      "n_texts": 50,
+      "total_time_s": 1.531,
+      "throughput_items_per_sec": 32.666,
+      "p50_latency_s": 0.508,
+      "p95_latency_s": 0.535,
+      "p99_latency_s": 0.545,
+      "error_count": 1,
+      "error_rate": 0.02,
+      "errors_sample": [
+        "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
+      ]
+    },
+    {
+      "concurrency": 30,
+      "n_texts": 50,
+      "total_time_s": 1.056,
+      "throughput_items_per_sec": 47.337,
+      "p50_latency_s": 0.494,
+      "p95_latency_s": 0.527,
+      "p99_latency_s": 0.544,
+      "error_count": 0,
+      "error_rate": 0.0,
+      "errors_sample": []
+    },
+    {
+      "concurrency": 40,
+      "n_texts": 50,
+      "total_time_s": 1.073,
+      "throughput_items_per_sec": 46.594,
+      "p50_latency_s": 0.494,
+      "p95_latency_s": 0.917,
+      "p99_latency_s": 0.922,
+      "error_count": 0,
+      "error_rate": 0.0,
+      "errors_sample": []
+    }
+  ],
+  "ceiling": {
+    "concurrency": 30,
+    "throughput_items_per_sec": 47.337,
+    "p50_latency_s": 0.494,
+    "p95_latency_s": 0.527,
+    "p99_latency_s": 0.544,
+    "error_rate": 0.0
+  }
+}

@@ -1,0 +1,1942 @@
+{
+  "model": "taalas-llama3.1-8b",
+  "api_url": "https://ai.shenthar.me/v1/chat/completions",
+  "repeats": 3,
+  "ground_truth": {
+    "persons": [
+      "eleanor voss",
+      "marcus chen",
+      "priya nair",
+      "thomas hartwell",
+      "sofia delgado",
+      "james okafor",
+      "linda beaumont",
+      "raj patel"
+    ],
+    "companies": [
+      "nexagen biotech",
+      "meridian capital partners",
+      "solaris energy group",
+      "fortridge logistics",
+      "quantum dynamics inc",
+      "blue harbor ventures"
+    ],
+    "locations": [
+      "san francisco",
+      "singapore",
+      "berlin",
+      "nairobi",
+      "toronto",
+      "austin",
+      "amsterdam",
+      "boston"
+    ],
+    "dates": [
+      "march 14 2024",
+      "july 2 2024",
+      "september 30 2024",
+      "october 15 2024",
+      "december 1 2024"
+    ],
+    "amounts": [
+      "$2.4 billion",
+      "$850 million",
+      "$340 million",
+      "$17.5 million",
+      "$4.2 billion"
+    ]
+  },
+  "inflection_point": {
+    "target_words": 200,
+    "actual_words": 200,
+    "prompt_tokens_est": 260,
+    "prompt_tokens_api": 460,
+    "precision": 0.9444,
+    "recall": 0.25,
+    "f1": 0.3953,
+    "f1_std": 0.1873,
+    "per_run_f1": [
+      0.0,
+      0.3721,
+      0.4186
+    ],
+    "consistent": false,
+    "failures": {
+      "hallucinated": {
+        "persons": [],
+        "companies": [],
+        "locations": [],
+        "dates": [
+          "march 14, 2024"
+        ],
+        "amounts": []
+      },
+      "missed": {
+        "persons": [
+          "linda beaumont",
+          "raj patel",
+          "priya nair",
+          "thomas hartwell",
+          "james okafor",
+          "sofia delgado"
+        ],
+        "companies": [
+          "fortridge logistics",
+          "solaris energy group",
+          "blue harbor ventures",
+          "quantum dynamics inc"
+        ],
+        "locations": [
+          "toronto",
+          "singapore",
+          "boston",
+          "amsterdam",
+          "berlin",
+          "nairobi",
+          "austin"
+        ],
+        "dates": [
+          "march 14 2024",
+          "september 30 2024",
+          "october 15 2024",
+          "december 1 2024",
+          "july 2 2024"
+        ],
+        "amounts": [
+          "$340 million",
+          "$17.5 million",
+          "$4.2 billion",
+          "$850 million"
+        ]
+      }
+    },
+    "raw_extractions": [
+      {},
+      {
+        "persons": [
+          "eleanor voss",
+          "marcus chen",
+          "eleanor voss"
+        ],
+        "companies": [
+          "nexagen biotech",
+          "meridian capital partners"
+        ],
+        "locations": [
+          "san francisco"
+        ],
+        "dates": [
+          "march 14, 2024"
+        ],
+        "amounts": [
+          "$2.4 billion",
+          "$2.4 billion"
+        ]
+      },
+      {
+        "persons": [
+          "eleanor voss",
+          "marcus chen",
+          "eleanor voss"
+        ],
+        "companies": [
+          "nexagen biotech",
+          "meridian capital partners"
+        ],
+        "locations": [
+          "san francisco"
+        ],
+        "dates": [
+          "march 14 2024"
+        ],
+        "amounts": [
+          "2.4 billion",
+          "2.4"
+        ]
+      }
+    ]
+  },
+  "results": [
+    {
+      "target_words": 200,
+      "actual_words": 200,
+      "prompt_tokens_est": 260,
+      "prompt_tokens_api": 460,
+      "precision": 0.9444,
+      "recall": 0.25,
+      "f1": 0.3953,
+      "f1_std": 0.1873,
+      "per_run_f1": [
+        0.0,
+        0.3721,
+        0.4186
+      ],
+      "consistent": false,
+      "failures": {
+        "hallucinated": {
+          "persons": [],
+          "companies": [],
+          "locations": [],
+          "dates": [
+            "march 14, 2024"
+          ],
+          "amounts": []
+        },
+        "missed": {
+          "persons": [
+            "linda beaumont",
+            "raj patel",
+            "priya nair",
+            "thomas hartwell",
+            "james okafor",
+            "sofia delgado"
+          ],
+          "companies": [
+            "fortridge logistics",
+            "solaris energy group",
+            "blue harbor ventures",
+            "quantum dynamics inc"
+          ],
+          "locations": [
+            "toronto",
+            "singapore",
+            "boston",
+            "amsterdam",
+            "berlin",
+            "nairobi",
+            "austin"
+          ],
+          "dates": [
+            "march 14 2024",
+            "september 30 2024",
+            "october 15 2024",
+            "december 1 2024",
+            "july 2 2024"
+          ],
+          "amounts": [
+            "$340 million",
+            "$17.5 million",
+            "$4.2 billion",
+            "$850 million"
+          ]
+        }
+      },
+      "raw_extractions": [
+        {},
+        {
+          "persons": [
+            "eleanor voss",
+            "marcus chen",
+            "eleanor voss"
+          ],
+          "companies": [
+            "nexagen biotech",
+            "meridian capital partners"
+          ],
+          "locations": [
+            "san francisco"
+          ],
+          "dates": [
+            "march 14, 2024"
+          ],
+          "amounts": [
+            "$2.4 billion",
+            "$2.4 billion"
+          ]
+        },
+        {
+          "persons": [
+            "eleanor voss",
+            "marcus chen",
+            "eleanor voss"
+          ],
+          "companies": [
+            "nexagen biotech",
+            "meridian capital partners"
+          ],
+          "locations": [
+            "san francisco"
+          ],
+          "dates": [
+            "march 14 2024"
+          ],
+          "amounts": [
+            "2.4 billion",
+            "2.4"
+          ]
+        }
+      ]
+    },
+    {
+      "target_words": 500,
+      "actual_words": 500,
+      "prompt_tokens_est": 650,
+      "prompt_tokens_api": 955,
+      "precision": 0.9091,
+      "recall": 0.4167,
+      "f1": 0.5714,
+      "f1_std": 0.0585,
+      "per_run_f1": [
+        0.4889,
+        0.5957,
+        0.625
+      ],
+      "consistent": false,
+      "failures": {
+        "hallucinated": {
+          "persons": [],
+          "companies": [],
+          "locations": [],
+          "dates": [
+            "2025",
+            "2024-03-14"
+          ],
+          "amounts": [
+            "2,400,000,000"
+          ]
+        },
+        "missed": {
+          "persons": [
+            "james okafor",
+            "sofia delgado",
+            "linda beaumont",
+            "raj patel"
+          ],
+          "companies": [
+            "solaris energy group",
+            "quantum dynamics inc"
+          ],
+          "locations": [
+            "toronto",
+            "singapore",
+            "boston",
+            "amsterdam",
+            "austin"
+          ],
+          "dates": [
+            "march 14 2024",
+            "september 30 2024",
+            "october 15 2024",
+            "december 1 2024",
+            "july 2 2024"
+          ],
+          "amounts": [
+            "$4.2 billion",
+            "$340 million",
+            "$2.4 billion",
+            "$17.5 million",
+            "$850 million"
+          ]
+        }
+      },
+      "raw_extractions": [
+        {
+          "persons": [
+            "eleanor voss",
+            "marcus chen",
+            "thomas hartwell",
+            "priya nair"
+          ],
+          "companies": [
+            "nexagen biotech",
+            "meridian capital partners",
+            "fortridge logistics",
+            "blue harbor ventures"
+          ],
+          "locations": [
+            "san francisco",
+            "nairobi",
+            "berlin"
+          ],
+          "dates": [
+            "2024-03-14"
+          ],
+          "amounts": [
+            "2,400,000,000"
+          ]
+        },
+        {
+          "persons": [
+            "eleanor voss",
+            "marcus chen",
+            "thomas hartwell",
+            "priya nair"
+          ],
+          "companies": [
+            "nexagen biotech",
+            "meridian capital partners",
+            "fortridge logistics",
+            "blue harbor ventures"
+          ],
+          "locations": [
+            "san francisco",
+            "nairobi",
+            "berlin"
+          ],
+          "dates": [
+            "march 14 2024",
+            "2025",
+            "september 30 2024"
+          ],
+          "amounts": [
+            "$2.4 billion"
+          ]
+        },
+        {
+          "persons": [
+            "eleanor voss",
+            "marcus chen",
+            "thomas hartwell",
+            "priya nair"
+          ],
+          "companies": [
+            "nexagen biotech",
+            "meridian capital partners",
+            "fortridge logistics",
+            "blue harbor ventures"
+          ],
+          "locations": [
+            "san francisco",
+            "nairobi",
+            "berlin",
+            "singapore"
+          ],
+          "dates": [
+            "march 14 2024",
+            "2025",
+            "september 30 2024"
+          ],
+          "amounts": [
+            "2.4 billion"
+          ]
+        }
+      ]
+    },
+    {
+      "target_words": 1000,
+      "actual_words": 1000,
+      "prompt_tokens_est": 1300,
+      "prompt_tokens_api": 1798,
+      "precision": 0.8202,
+      "recall": 0.73,
+      "f1": 0.7725,
+      "f1_std": 0.0305,
+      "per_run_f1": [
+        0.7302,
+        0.7879,
+        0.8
+      ],
+      "consistent": true,
+      "failures": {
+        "hallucinated": {
+          "persons": [],
+          "companies": [],
+          "locations": [
+            "tanzania",
+            "johannesburg",
+            "europe",
+            "kenya",
+            "lagos",
+            "east africa",
+            "rwanda"
+          ],
+          "dates": [
+            "2025",
+            "february"
+          ],
+          "amounts": [
+            "$14 billion"
+          ]
+        },
+        "missed": {
+          "persons": [
+            "james okafor",
+            "sofia delgado",
+            "raj patel"
+          ],
+          "companies": [
+            "blue harbor ventures"
+          ],
+          "locations": [
+            "toronto",
+            "austin",
+            "amsterdam"
+          ],
+          "dates": [
+            "october 15 2024",
+            "september 30 2024",
+            "december 1 2024",
+            "july 2 2024"
+          ],
+          "amounts": [
+            "$340 million",
+            "$4.2 billion"
+          ]
+        }
+      },
+      "raw_extractions": [
+        {
+          "persons": [
+            "eleanor voss",
+            "marcus chen",
+            "thomas hartwell",
+            "priya nair",
+            "james okafor",
+            "linda beaumont",
+            "raj patel"
+          ],
+          "companies": [
+            "nexagen biotech",
+            "fortridge logistics",
+            "meridian capital partners",
+            "meridian capital partners",
+            "quantum dynamics inc",
+            "solaris energy group"
+          ],
+          "locations": [
+            "san francisco",
+            "berlin",
+            "nairobi",
+            "lagos",
+            "johannesburg",
+            "singapore",
+            "boston",
+            "europe",
+            "east africa"
+          ],
+          "dates": [
+            "march 14 2024",
+            "2025",
+            "2024"
+          ],
+          "amounts": [
+            "$2.4 billion",
+            "$14 billion",
+            "$850 million",
+            "$17.5 million"
+          ]
+        },
+        {
+          "persons": [
+            "eleanor voss",
+            "marcus chen",
+            "thomas hartwell",
+            "priya nair",
+            "linda beaumont",
+            "raj patel"
+          ],
+          "companies": [
+            "nexagen biotech",
+            "meridian capital partners",
+            "fortridge logistics",
+            "quantum dynamics inc",
+            "solaris energy group",
+            "blue harbor ventures"
+          ],
+          "locations": [
+            "san francisco",
+            "nairobi",
+            "berlin",
+            "singapore",
+            "boston",
+            "lagos",
+            "johannesburg",
+            "amsterdam",
+            "toronto",
+            "kenya",
+            "tanzania",
+            "rwanda",
+            "east africa"
+          ],
+          "dates": [
+            "march 14 2024",
+            "2025",
+            "july 2 2024",
+            "september 30 2024"
+          ],
+          "amounts": [
+            "2.4 billion",
+            "$2.4 billion",
+            "$850 million",
+            "$17.5 million"
+          ]
+        },
+        {
+          "persons": [
+            "eleanor voss",
+            "marcus chen",
+            "thomas hartwell",
+            "linda beaumont",
+            "priya nair",
+            "james okafor"
+          ],
+          "companies": [
+            "nexagen biotech",
+            "meridian capital partners",
+            "fortridge logistics",
+            "solaris energy group",
+            "blue harbor ventures",
+            "quantum dynamics inc"
+          ],
+          "locations": [
+            "san francisco",
+            "nairobi",
+            "berlin",
+            "singapore",
+            "boston",
+            "lagos",
+            "johannesburg",
+            "toronto"
+          ],
+          "dates": [
+            "march 14 2024",
+            "march 14 2024",
+            "february",
+            "july 2 2024"
+          ],
+          "amounts": [
+            "$2.4 billion",
+            "$850 million",
+            "$17.5 million"
+          ]
+        }
+      ]
+    },
+    {
+      "target_words": 1500,
+      "actual_words": 1500,
+      "prompt_tokens_est": 1950,
+      "prompt_tokens_api": 2617,
+      "precision": 0.8364,
+      "recall": 0.9109,
+      "f1": 0.872,
+      "f1_std": 0.023,
+      "per_run_f1": [
+        0.8451,
+        0.9014,
+        0.8696
+      ],
+      "consistent": true,
+      "failures": {
+        "hallucinated": {
+          "persons": [],
+          "companies": [],
+          "locations": [
+            "johannesburg",
+            "africa",
+            "europe",
+            "united states",
+            "kenya",
+            "lagos",
+            "east africa"
+          ],
+          "dates": [
+            "2025",
+            "february"
+          ],
+          "amounts": []
+        },
+        "missed": {
+          "persons": [],
+          "companies": [],
+          "locations": [
+            "singapore",
+            "boston",
+            "amsterdam"
+          ],
+          "dates": [
+            "december 1 2024",
+            "september 30 2024"
+          ],
+          "amounts": [
+            "$340 million"
+          ]
+        }
+      },
+      "raw_extractions": [
+        {
+          "persons": [
+            "eleanor voss",
+            "marcus chen",
+            "priya nair",
+            "thomas hartwell",
+            "raj patel",
+            "linda beaumont",
+            "james okafor",
+            "sofia delgado"
+          ],
+          "companies": [
+            "nexagen biotech",
+            "meridian capital partners",
+            "fortridge logistics",
+            "solaris energy group",
+            "quantum dynamics inc",
+            "blue harbor ventures"
+          ],
+          "locations": [
+            "san francisco",
+            "nairobi",
+            "berlin",
+            "singapore",
+            "boston",
+            "africa",
+            "europe",
+            "toronto",
+            "lagos",
+            "johannesburg",
+            "east africa",
+            "united states",
+            "austin"
+          ],
+          "dates": [
+            "march 14 2024",
+            "2025",
+            "2024",
+            "july 2 2024",
+            "october 15 2024"
+          ],
+          "amounts": [
+            "2.4 billion",
+            "$2.4 billion",
+            "850 million",
+            "4.2 billion",
+            "17.5 million"
+          ]
+        },
+        {
+          "persons": [
+            "eleanor voss",
+            "marcus chen",
+            "thomas hartwell",
+            "priya nair",
+            "linda beaumont",
+            "raj patel",
+            "sofia delgado",
+            "james okafor"
+          ],
+          "companies": [
+            "nexagen biotech",
+            "meridian capital partners",
+            "fortridge logistics",
+            "solaris energy group",
+            "quantum dynamics inc",
+            "blue harbor ventures"
+          ],
+          "locations": [
+            "san francisco",
+            "nairobi",
+            "berlin",
+            "lagos",
+            "johannesburg",
+            "africa",
+            "europe",
+            "austin",
+            "toronto",
+            "amsterdam"
+          ],
+          "dates": [
+            "march 14 2024",
+            "february",
+            "july 2 2024",
+            "october 15 2024",
+            "december 1 2024",
+            "september 30 2024",
+            "september 30 2024"
+          ],
+          "amounts": [
+            "2.4 billion",
+            "2 billion",
+            "4.2 billion",
+            "17.5 million",
+            "850 million",
+            "340 million"
+          ]
+        },
+        {
+          "persons": [
+            "eleanor voss",
+            "marcus chen",
+            "thomas hartwell",
+            "priya nair",
+            "linda beaumont",
+            "raj patel",
+            "sofia delgado",
+            "james okafor"
+          ],
+          "companies": [
+            "nexagen biotech",
+            "meridian capital partners",
+            "fortridge logistics",
+            "solaris energy group",
+            "quantum dynamics inc",
+            "blue harbor ventures"
+          ],
+          "locations": [
+            "san francisco",
+            "africa",
+            "nairobi",
+            "berlin",
+            "europe",
+            "lagos",
+            "johannesburg",
+            "amsterdam",
+            "toronto",
+            "austin",
+            "kenya"
+          ],
+          "dates": [
+            "march 14 2024",
+            "july 2 2024",
+            "october 15 2024",
+            "september 30 2024",
+            "2025"
+          ],
+          "amounts": [
+            "2.4 billion",
+            "2.4 billion",
+            "850 million",
+            "4.2 billion",
+            "17.5 million",
+            "340 million"
+          ]
+        }
+      ]
+    },
+    {
+      "target_words": 2000,
+      "actual_words": 2000,
+      "prompt_tokens_est": 2600,
+      "prompt_tokens_api": 3425,
+      "precision": 0.8286,
+      "recall": 0.9587,
+      "f1": 0.8889,
+      "f1_std": 0.0153,
+      "per_run_f1": [
+        0.8986,
+        0.8687,
+        0.9032
+      ],
+      "consistent": true,
+      "failures": {
+        "hallucinated": {
+          "persons": [],
+          "companies": [],
+          "locations": [
+            "tanzania",
+            "johannesburg",
+            "europe",
+            "africa",
+            "uganda",
+            "kenya",
+            "texas",
+            "lagos",
+            "east africa",
+            "rwanda"
+          ],
+          "dates": [
+            "2025",
+            "first quarter 2025",
+            "february"
+          ],
+          "amounts": [
+            "1.4 billion",
+            "2.2 billion",
+            "$14 billion"
+          ]
+        },
+        "missed": {
+          "persons": [],
+          "companies": [],
+          "locations": [
+            "boston",
+            "toronto",
+            "austin"
+          ],
+          "dates": [],
+          "amounts": [
+            "$340 million"
+          ]
+        }
+      },
+      "raw_extractions": [
+        {
+          "persons": [
+            "eleanor voss",
+            "marcus chen",
+            "priya nair",
+            "thomas hartwell",
+            "linda beaumont",
+            "james okafor",
+            "raj patel",
+            "sofia delgado"
+          ],
+          "companies": [
+            "nexagen biotech",
+            "meridian capital partners",
+            "fortridge logistics",
+            "quantum dynamics inc",
+            "blue harbor ventures",
+            "solaris energy group"
+          ],
+          "locations": [
+            "san francisco",
+            "singapore",
+            "nairobi",
+            "berlin",
+            "lagos",
+            "johannesburg",
+            "austin",
+            "texas",
+            "europe",
+            "amsterdam"
+          ],
+          "dates": [
+            "march 14 2024",
+            "july 2 2024",
+            "october 15 2024",
+            "september 30 2024",
+            "december 1 2024",
+            "2025"
+          ],
+          "amounts": [
+            "2.4 billion",
+            "2.4 billion",
+            "4.2 billion",
+            "850 million",
+            "340 million",
+            "17.5 million"
+          ]
+        },
+        {
+          "persons": [
+            "eleanor voss",
+            "marcus chen",
+            "linda beaumont",
+            "thomas hartwell",
+            "raj patel",
+            "priya nair",
+            "sofia delgado",
+            "linda beaumont",
+            "james okafor",
+            "priya nair",
+            "sofia delgado",
+            "marcus chen",
+            "james okafor",
+            "raj patel",
+            "thomas hartwell",
+            "linda beaumont"
+          ],
+          "companies": [
+            "nexagen biotech",
+            "meridian capital partners",
+            "fortridge logistics",
+            "quantum dynamics inc",
+            "blue harbor ventures",
+            "solaris energy group",
+            "meridian capital partners",
+            "fortridge logistics",
+            "solaris energy group"
+          ],
+          "locations": [
+            "san francisco",
+            "nairobi",
+            "berlin",
+            "boston",
+            "singapore",
+            "toron",
+            "amsterdam",
+            "africa",
+            "east africa",
+            "europe",
+            "kenya",
+            "tanzania",
+            "uganda",
+            "rwanda",
+            "texas"
+          ],
+          "dates": [
+            "march 14 2024",
+            "october 15 2024",
+            "july 2 2024",
+            "september 30 2024",
+            "december 1 2024",
+            "first quarter 2025"
+          ],
+          "amounts": [
+            "2.4 billion",
+            "2.4 billion",
+            "17.5 million",
+            "2.2 billion",
+            "1.4 billion",
+            "4.2 billion",
+            "1.4 billion",
+            "$850 million",
+            "$340 million"
+          ]
+        },
+        {
+          "persons": [
+            "eleanor voss",
+            "marcus chen",
+            "priya nair",
+            "james okafor",
+            "linda beaumont",
+            "raj patel",
+            "sofia delgado",
+            "thomas hartwell",
+            "linda beaumont",
+            "james okafor",
+            "priya nair",
+            "eleanor voss",
+            "raj patel",
+            "marcus chen",
+            "sofia delgado"
+          ],
+          "companies": [
+            "nexagen biotech",
+            "meridian capital partners",
+            "fortridge logistics",
+            "quantum dynamics inc",
+            "solaris energy group",
+            "blue harbor ventures",
+            "meridian capital partners",
+            "fortridge logistics",
+            "solaris energy group"
+          ],
+          "locations": [
+            "san francisco",
+            "africa",
+            "europe",
+            "nairobi",
+            "berlin",
+            "singapore",
+            "amsterdam",
+            "austin",
+            "toronto",
+            "lagos",
+            "johannesburg"
+          ],
+          "dates": [
+            "march 14 2024",
+            "february",
+            "july 2 2024",
+            "september 30 2024",
+            "october 15 2024",
+            "october 15 2024",
+            "december 1 2024",
+            "2025"
+          ],
+          "amounts": [
+            "$2.4 billion",
+            "$850 million",
+            "$4.2 billion",
+            "$14 billion",
+            "$17.5 million",
+            "$2.4 billion"
+          ]
+        }
+      ]
+    },
+    {
+      "target_words": 2500,
+      "actual_words": 2500,
+      "prompt_tokens_est": 3250,
+      "prompt_tokens_api": 4243,
+      "precision": 0.7462,
+      "recall": 0.8981,
+      "f1": 0.8151,
+      "f1_std": 0.0853,
+      "per_run_f1": [
+        0.9429,
+        0.7556,
+        0.7692
+      ],
+      "consistent": false,
+      "failures": {
+        "hallucinated": {
+          "persons": [],
+          "companies": [],
+          "locations": [
+            "tanzania",
+            "germany",
+            "johannesburg",
+            "africa",
+            "europe",
+            "uganda",
+            "kenya",
+            "lagos",
+            "east africa",
+            "rwanda"
+          ],
+          "dates": [
+            "january",
+            "2025-01-01",
+            "2024-04-01",
+            "2025-09-30",
+            "2024-10-15",
+            "2025-12-01",
+            "2024-12-01",
+            "2024-07-02",
+            "2024-03-14"
+          ],
+          "amounts": [
+            "$14 billion"
+          ]
+        },
+        "missed": {
+          "persons": [],
+          "companies": [],
+          "locations": [],
+          "dates": [
+            "march 14 2024",
+            "september 30 2024",
+            "october 15 2024",
+            "december 1 2024",
+            "july 2 2024"
+          ],
+          "amounts": [
+            "$340 million",
+            "$4.2 billion"
+          ]
+        }
+      },
+      "raw_extractions": [
+        {
+          "persons": [
+            "eleanor voss",
+            "marcus chen",
+            "priya nair",
+            "linda beaumont",
+            "james okafor",
+            "raj patel",
+            "sofia delgado",
+            "thomas hartwell",
+            "linda beaumont"
+          ],
+          "companies": [
+            "nexagen biotech",
+            "meridian capital partners",
+            "fortridge logistics",
+            "solaris energy group",
+            "quantum dynamics inc",
+            "blue harbor ventures"
+          ],
+          "locations": [
+            "san francisco",
+            "nairobi",
+            "berlin",
+            "austin",
+            "toronto",
+            "singapore",
+            "amsterdam",
+            "boston",
+            "lagos",
+            "johannesburg"
+          ],
+          "dates": [
+            "march 14 2024",
+            "july 2 2024",
+            "september 30 2024",
+            "october 15 2024",
+            "december 1 2024",
+            "january"
+          ],
+          "amounts": [
+            "$2.4 billion",
+            "$14 billion",
+            "$4.2 billion",
+            "$17.5 million",
+            "$850 million",
+            "$340 million"
+          ]
+        },
+        {
+          "persons": [
+            "eleanor voss",
+            "marcus chen",
+            "priya nair",
+            "linda beaumont",
+            "sofia delgado",
+            "thomas hartwell",
+            "james okafor",
+            "raj patel",
+            "linda beaumont",
+            "sofia delgado",
+            "marcus chen",
+            "eleanor voss"
+          ],
+          "companies": [
+            "nexagen biotech",
+            "meridian capital partners",
+            "fortridge logistics",
+            "solaris energy group",
+            "quantum dynamics inc",
+            "blue harbor ventures"
+          ],
+          "locations": [
+            "san francisco",
+            "nairobi",
+            "berlin",
+            "africa",
+            "europe",
+            "boston",
+            "singapore",
+            "toronto",
+            "amsterdam",
+            "east africa",
+            "lagos",
+            "johannesburg",
+            "austin",
+            "san francisco bay area"
+          ],
+          "dates": [
+            "2024-03-14",
+            "2025-01-01",
+            "2025-12-01",
+            "2025-01-01",
+            "2025-09-30",
+            "2024-04-01",
+            "2024-07-02",
+            "2024-10-15",
+            "2024-12-01",
+            "2025-01-01"
+          ],
+          "amounts": [
+            "2.4 billion",
+            "2.4 billion",
+            "2.4 billion",
+            "2.4 billion",
+            "2.4 billion",
+            "17.5 million",
+            "850 million"
+          ]
+        },
+        {
+          "persons": [
+            "eleanor voss",
+            "marcus chen",
+            "priya nair",
+            "linda beaumont",
+            "thomas hartwell",
+            "sofia delgado",
+            "james okafor",
+            "raj patel",
+            "linda beaumont"
+          ],
+          "companies": [
+            "nexagen biotech",
+            "meridian capital partners",
+            "fortridge logistics",
+            "solaris energy group",
+            "quantum dynamics inc",
+            "blue harbor ventures"
+          ],
+          "locations": [
+            "san francisco",
+            "africa",
+            "europe",
+            "nairobi",
+            "berlin",
+            "boston",
+            "austin",
+            "amsterdam",
+            "toronto",
+            "lagos",
+            "johannesburg",
+            "singapore",
+            "kenya",
+            "tanzania",
+            "uganda",
+            "rwanda",
+            "germany"
+          ],
+          "dates": [
+            "march 14 2024",
+            "2024-07-02",
+            "2025-09-30",
+            "2025-12-01",
+            "2024-10-15"
+          ],
+          "amounts": [
+            "$2.4 billion",
+            "$14 billion",
+            "$2.4 billion",
+            "$4.2 billion",
+            "$17.5 million",
+            "$340 million",
+            "$850 million"
+          ]
+        }
+      ]
+    },
+    {
+      "target_words": 3000,
+      "actual_words": 3000,
+      "prompt_tokens_est": 3900,
+      "prompt_tokens_api": 5098,
+      "precision": 0.7445,
+      "recall": 0.9903,
+      "f1": 0.85,
+      "f1_std": 0.0366,
+      "per_run_f1": [
+        0.8,
+        0.875,
+        0.88
+      ],
+      "consistent": true,
+      "failures": {
+        "hallucinated": {
+          "persons": [],
+          "companies": [],
+          "locations": [
+            "tanzania",
+            "germany",
+            "southeast asia",
+            "johannesburg",
+            "africa",
+            "europe",
+            "uganda",
+            "kenya",
+            "sub-saharan africa",
+            "lagos",
+            "east africa",
+            "rwanda"
+          ],
+          "dates": [
+            "february",
+            "january",
+            "late january",
+            "late 2025",
+            "2020"
+          ],
+          "amounts": [
+            "14 billion",
+            "$14 billion",
+            "$2.5 million"
+          ]
+        },
+        "missed": {
+          "persons": [],
+          "companies": [],
+          "locations": [
+            "austin"
+          ],
+          "dates": [],
+          "amounts": []
+        }
+      },
+      "raw_extractions": [
+        {
+          "persons": [
+            "eleanor voss",
+            "marcus chen",
+            "thomas hartwell",
+            "linda beaumont",
+            "james okafor",
+            "priya nair",
+            "raj patel",
+            "sofia delgado",
+            "linda beaumont",
+            "marcus chen",
+            "sofia delgado"
+          ],
+          "companies": [
+            "nexagen biotech",
+            "meridian capital partners",
+            "fortridge logistics",
+            "quantum dynamics inc",
+            "solaris energy group",
+            "blue harbor ventures"
+          ],
+          "locations": [
+            "san francisco",
+            "nairobi",
+            "berlin",
+            "east africa",
+            "lagos",
+            "johannesburg",
+            "singapore",
+            "toronto",
+            "amsterdam",
+            "boston",
+            "kenya",
+            "tanzania",
+            "uganda",
+            "rwanda",
+            "africa",
+            "europe",
+            "sub-saharan africa",
+            "southeast asia"
+          ],
+          "dates": [
+            "march 14 2024",
+            "july 2 2024",
+            "september 30 2024",
+            "october 15 2024",
+            "december 1 2024",
+            "2020",
+            "january",
+            "late january"
+          ],
+          "amounts": [
+            "$2.4 billion",
+            "$14 billion",
+            "$17.5 million",
+            "$4.2 billion",
+            "$340 million",
+            "$850 million",
+            "$2.5 million"
+          ]
+        },
+        {
+          "persons": [
+            "eleanor voss",
+            "marcus chen",
+            "linda beaumont",
+            "thomas hartwell",
+            "priya nair",
+            "james okafor",
+            "sofia delgado",
+            "raj patel",
+            "linda beaumont",
+            "raj patel"
+          ],
+          "companies": [
+            "nexagen biotech",
+            "meridian capital partners",
+            "fortridge logistics",
+            "solaris energy group",
+            "quantum dynamics inc",
+            "blue harbor ventures"
+          ],
+          "locations": [
+            "san francisco",
+            "nairobi",
+            "berlin",
+            "austin",
+            "lagos",
+            "johannesburg",
+            "singapore",
+            "amsterdam",
+            "toronto",
+            "boston",
+            "kenya",
+            "tanzania",
+            "uganda",
+            "rwanda",
+            "germany"
+          ],
+          "dates": [
+            "march 14 2024",
+            "july 2 2024",
+            "september 30 2024",
+            "october 15 2024",
+            "december 1 2024",
+            "january",
+            "2020"
+          ],
+          "amounts": [
+            "2.4 billion",
+            "2.4 billion",
+            "14 billion",
+            "4.2 billion",
+            "17.5 million",
+            "340 million",
+            "850 million"
+          ]
+        },
+        {
+          "persons": [
+            "eleanor voss",
+            "marcus chen",
+            "linda beaumont",
+            "thomas hartwell",
+            "sofia delgado",
+            "priya nair",
+            "james okafor",
+            "raj patel",
+            "linda beaumont"
+          ],
+          "companies": [
+            "nexagen biotech",
+            "meridian capital partners",
+            "fortridge logistics",
+            "solaris energy group",
+            "quantum dynamics inc",
+            "blue harbor ventures"
+          ],
+          "locations": [
+            "san francisco",
+            "nairobi",
+            "berlin",
+            "austin",
+            "boston",
+            "singapore",
+            "amsterdam",
+            "toronto",
+            "kenya",
+            "tanzania",
+            "uganda",
+            "rwanda",
+            "lagos",
+            "johannesburg"
+          ],
+          "dates": [
+            "march 14 2024",
+            "february",
+            "october 15 2024",
+            "december 1 2024",
+            "january",
+            "july 2 2024",
+            "september 30 2024",
+            "late 2025"
+          ],
+          "amounts": [
+            "2.4 billion",
+            "850 million",
+            "4.2 billion",
+            "340 million",
+            "17.5 million"
+          ]
+        }
+      ]
+    },
+    {
+      "target_words": 3500,
+      "actual_words": 3500,
+      "prompt_tokens_est": 4550,
+      "prompt_tokens_api": 5905,
+      "precision": 0.8908,
+      "recall": 1.0,
+      "f1": 0.9422,
+      "f1_std": 0.0192,
+      "per_run_f1": [
+        0.9706,
+        0.9315,
+        0.9286
+      ],
+      "consistent": true,
+      "failures": {
+        "hallucinated": {
+          "persons": [],
+          "companies": [],
+          "locations": [
+            "tanzania",
+            "austria",
+            "kampala",
+            "johannesburg",
+            "europe",
+            "africa",
+            "kenya",
+            "lagos",
+            "rwanda"
+          ],
+          "dates": [],
+          "amounts": [
+            "$14 billion"
+          ]
+        },
+        "missed": {
+          "persons": [],
+          "companies": [],
+          "locations": [],
+          "dates": [],
+          "amounts": []
+        }
+      },
+      "raw_extractions": [
+        {
+          "persons": [
+            "eleanor voss",
+            "marcus chen",
+            "linda beaumont",
+            "thomas hartwell",
+            "sofia delgado",
+            "priya nair",
+            "raj patel",
+            "james okafor"
+          ],
+          "companies": [
+            "nexagen biotech",
+            "meridian capital partners",
+            "fortridge logistics",
+            "quantum dynamics inc",
+            "solaris energy group",
+            "blue harbor ventures"
+          ],
+          "locations": [
+            "san francisco",
+            "nairobi",
+            "berlin",
+            "austin",
+            "boston",
+            "singapore",
+            "toronto",
+            "amsterdam",
+            "lagos",
+            "johannesburg"
+          ],
+          "dates": [
+            "march 14 2024",
+            "july 2 2024",
+            "september 30 2024",
+            "october 15 2024",
+            "december 1 2024"
+          ],
+          "amounts": [
+            "$2.4 billion",
+            "$2.4 billion",
+            "$17.5 million",
+            "$4.2 billion",
+            "$850 million",
+            "$340 million"
+          ]
+        },
+        {
+          "persons": [
+            "eleanor voss",
+            "marcus chen",
+            "linda beaumont",
+            "thomas hartwell",
+            "james okafor",
+            "priya nair",
+            "sofia delgado",
+            "linda beaumont",
+            "raj patel"
+          ],
+          "companies": [
+            "nexagen biotech",
+            "meridian capital partners",
+            "fortridge logistics",
+            "quantum dynamics inc",
+            "solaris energy group",
+            "blue harbor ventures"
+          ],
+          "locations": [
+            "nairobi",
+            "berlin",
+            "san francisco",
+            "singapore",
+            "amsterdam",
+            "lagos",
+            "johannesburg",
+            "kampala",
+            "austin",
+            "toronto",
+            "europe",
+            "austria",
+            "boston"
+          ],
+          "dates": [
+            "march 14 2024",
+            "march 14 2024",
+            "july 2 2024",
+            "september 30 2024",
+            "october 15 2024",
+            "december 1 2024"
+          ],
+          "amounts": [
+            "2.4 billion",
+            "850 million",
+            "17.5 million",
+            "340 million",
+            "4.2 billion"
+          ]
+        },
+        {
+          "persons": [
+            "eleanor voss",
+            "marcus chen",
+            "linda beaumont",
+            "james okafor",
+            "linda beaumont",
+            "thomas hartwell",
+            "priya nair",
+            "sofia delgado",
+            "raj patel",
+            "sofia delgado",
+            "marcus chen",
+            "james okafor",
+            "linda beaumont",
+            "raj patel"
+          ],
+          "companies": [
+            "nexagen biotech",
+            "meridian capital partners",
+            "fortridge logistics",
+            "quantum dynamics inc",
+            "solaris energy group",
+            "blue harbor ventures"
+          ],
+          "locations": [
+            "san francisco",
+            "africa",
+            "europe",
+            "nairobi",
+            "berlin",
+            "amsterdam",
+            "boston",
+            "singapore",
+            "toronto",
+            "kenya",
+            "tanzania",
+            "rwanda",
+            "austin"
+          ],
+          "dates": [
+            "march 14 2024",
+            "october 15 2024",
+            "december 1 2024",
+            "september 30 2024",
+            "july 2 2024"
+          ],
+          "amounts": [
+            "$2.4 billion",
+            "$14 billion",
+            "$4.2 billion",
+            "$17.5 million",
+            "$2.4 billion",
+            "$340 million",
+            "$850 million"
+          ]
+        }
+      ]
+    },
+    {
+      "target_words": 4000,
+      "actual_words": 4000,
+      "prompt_tokens_est": 5200,
+      "prompt_tokens_api": 6694,
+      "precision": 0.8444,
+      "recall": 0.9194,
+      "f1": 0.8803,
+      "f1_std": 0.0378,
+      "per_run_f1": [
+        0.9278,
+        0.8378,
+        0.8636
+      ],
+      "consistent": true,
+      "failures": {
+        "hallucinated": {
+          "persons": [],
+          "companies": [],
+          "locations": [
+            "tanzania",
+            "johannesburg",
+            "africa",
+            "europe",
+            "kenya",
+            "texas",
+            "lagos",
+            "rwanda"
+          ],
+          "dates": [
+            "2024-09-30",
+            "2025",
+            "2025-10-15",
+            "2025-12-01",
+            "2024-07-02",
+            "2024-03-14",
+            "2020"
+          ],
+          "amounts": [
+            "$340,000,000",
+            "$850,000,000"
+          ]
+        },
+        "missed": {
+          "persons": [],
+          "companies": [],
+          "locations": [
+            "toronto"
+          ],
+          "dates": [
+            "march 14 2024",
+            "september 30 2024",
+            "october 15 2024",
+            "december 1 2024",
+            "july 2 2024"
+          ],
+          "amounts": [
+            "$340 million",
+            "$850 million"
+          ]
+        }
+      },
+      "raw_extractions": [
+        {
+          "persons": [
+            "eleanor voss",
+            "marcus chen",
+            "priya nair",
+            "sofia delgado",
+            "linda beaumont",
+            "james okafor",
+            "raj patel",
+            "thomas hartwell",
+            "linda beaumont",
+            "sofia delgado",
+            "raj patel",
+            "marcus chen",
+            "linda beaumont",
+            "james okafor",
+            "raj patel",
+            "eleanor voss",
+            "priya nair",
+            "sofia delgado",
+            "thomas hartwell",
+            "linda beaumont",
+            "james okafor"
+          ],
+          "companies": [
+            "nexagen biotech",
+            "meridian capital partners",
+            "fortridge logistics",
+            "quantum dynamics inc",
+            "solaris energy group",
+            "blue harbor ventures"
+          ],
+          "locations": [
+            "san francisco",
+            "africa",
+            "nairobi",
+            "europe",
+            "berliner",
+            "berlin",
+            "boston",
+            "amsterdam",
+            "singapore",
+            "toronto",
+            "austin"
+          ],
+          "dates": [
+            "march 14 2024",
+            "july 2 2024",
+            "september 30 2024",
+            "october 15 2024",
+            "december 1 2024",
+            "2025"
+          ],
+          "amounts": [
+            "$2.4 billion",
+            "$2.4 billion",
+            "$850,000,000",
+            "$4.2 billion",
+            "$17.5 million",
+            "$340,000,000"
+          ]
+        },
+        {
+          "persons": [
+            "eleanor voss",
+            "marcus chen",
+            "linda beaumont",
+            "thomas hartwell",
+            "priya nair",
+            "sofia delgado",
+            "raj patel",
+            "james okafor",
+            "linda beaumont"
+          ],
+          "companies": [
+            "nexagen biotech",
+            "meridian capital partners",
+            "fortridge logistics",
+            "quantum dynamics inc",
+            "solaris energy group",
+            "blue harbor ventures"
+          ],
+          "locations": [
+            "san francisco",
+            "nairobi",
+            "berlin",
+            "austin",
+            "lagos",
+            "johannesburg",
+            "kenya",
+            "tanzania",
+            "rwanda",
+            "singapore",
+            "amsterdam",
+            "boston",
+            "toronto",
+            "texas"
+          ],
+          "dates": [
+            "march 14 2024",
+            "july 2 2024",
+            "september 30 2024",
+            "october 15 2024",
+            "december 1 2024",
+            "2020",
+            "2025"
+          ],
+          "amounts": [
+            "$2.4 billion",
+            "$4.2 billion",
+            "$17.5 million",
+            "$850,000,000",
+            "$340,000,000"
+          ]
+        },
+        {
+          "persons": [
+            "eleanor voss",
+            "marcus chen",
+            "priya nair",
+            "linda beaumont",
+            "james okafor",
+            "raj patel",
+            "sofia delgado",
+            "thomas hartwell",
+            "james okafor",
+            "linda beaumont",
+            "raj patel",
+            "marcus chen",
+            "priya nair",
+            "sofia delgado",
+            "thomas hartwell",
+            "eleanor voss",
+            "marcus chen",
+            "raj patel",
+            "linda beaumont"
+          ],
+          "companies": [
+            "nexagen biotech",
+            "meridian capital partners",
+            "fortridge logistics",
+            "quantum dynamics inc",
+            "solaris energy group",
+            "blue harbor ventures"
+          ],
+          "locations": [
+            "san francisco",
+            "nairobi",
+            "singapore",
+            "berlin",
+            "austin",
+            "texas",
+            "amsterdam",
+            "boston"
+          ],
+          "dates": [
+            "2024-03-14",
+            "2024-07-02",
+            "2024-09-30",
+            "2025-10-15",
+            "2025-12-01"
+          ],
+          "amounts": [
+            "2.4 billion",
+            "2.4 billion",
+            "4.2 billion",
+            "850 million",
+            "340 million",
+            "17.5 million"
+          ]
+        }
+      ]
+    }
+  ]
+}
