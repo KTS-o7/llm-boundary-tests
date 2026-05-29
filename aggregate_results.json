@@ -1,0 +1,432 @@
+{
+  "api_feature_discovery": {
+    "response_format_json_object": {
+      "supported": true,
+      "json_parse_rate_with": 0.0,
+      "json_parse_rate_without": 0.0
+    },
+    "seed_parameter": {
+      "accepted": true,
+      "deterministic": false,
+      "different_seeds_different": false
+    },
+    "stop_sequences": {
+      "works": true,
+      "correct_truncations": 3,
+      "failures": 0
+    },
+    "logprobs": {
+      "accepted": true,
+      "logprobs_returned": false
+    },
+    "tools_function_calling": {
+      "accepted": true,
+      "returned_tool_calls": false
+    },
+    "n_multiple_choices": {
+      "accepted": true,
+      "choices_returned": 1
+    },
+    "max_output_tokens_ceiling": {
+      "max_output_tokens_observed": 2769,
+      "max_requested_before_error": 131072
+    },
+    "error_informativeness": {
+      "informative": 0,
+      "total_error_tests": 0
+    },
+    "_unsupported_features": [
+      "logprobs"
+    ]
+  },
+  "parameter_optimization": {
+    "temperature_sweep": {
+      "best": {
+        "value": 0.0,
+        "faithfulness": 0.7667,
+        "consistency": 0.8268
+      },
+      "values": [
+        0.0,
+        0.2,
+        0.5,
+        0.7,
+        1.0
+      ],
+      "results": {
+        "0.0": {
+          "faithfulness": 0.7667,
+          "consistency": 0.8268,
+          "hallucination_count": 0
+        },
+        "0.2": {
+          "faithfulness": 0.7333,
+          "consistency": 0.9423,
+          "hallucination_count": 0
+        },
+        "0.5": {
+          "faithfulness": 0.7333,
+          "consistency": 0.9423,
+          "hallucination_count": 0
+        },
+        "0.7": {
+          "faithfulness": 0.7,
+          "consistency": 0.8845,
+          "hallucination_count": 0
+        },
+        "1.0": {
+          "faithfulness": 0.7,
+          "consistency": 0.8845,
+          "hallucination_count": 0
+        }
+      }
+    },
+    "top_p_sweep": {
+      "best": {
+        "value": 0.1,
+        "faithfulness": 0.7333,
+        "consistency": 0.9423
+      },
+      "values": [
+        0.1,
+        0.3,
+        0.5,
+        0.7,
+        0.9,
+        1.0
+      ],
+      "results": {
+        "0.1": {
+          "faithfulness": 0.7333,
+          "consistency": 0.9423,
+          "hallucination_count": 0
+        },
+        "0.3": {
+          "faithfulness": 0.7,
+          "consistency": 1.0,
+          "hallucination_count": 0
+        },
+        "0.5": {
+          "faithfulness": 0.7,
+          "consistency": 0.8845,
+          "hallucination_count": 0
+        },
+        "0.7": {
+          "faithfulness": 0.7,
+          "consistency": 1.0,
+          "hallucination_count": 0
+        },
+        "0.9": {
+          "faithfulness": 0.7,
+          "consistency": 1.0,
+          "hallucination_count": 0
+        },
+        "1.0": {
+          "faithfulness": 0.7,
+          "consistency": 1.0,
+          "hallucination_count": 0
+        }
+      }
+    },
+    "frequency_penalty_sweep": {
+      "best": {
+        "value": 0.2,
+        "faithfulness": 0.8,
+        "consistency": 0.586
+      },
+      "values": [
+        0.0,
+        0.2,
+        0.5,
+        1.0,
+        1.5,
+        2.0
+      ],
+      "results": {
+        "0.0": {
+          "faithfulness": 0.7333,
+          "consistency": 0.5423,
+          "avg_token_count": 377.7,
+          "avg_word_count": 236.4,
+          "extra_content_rate": 0.8
+        },
+        "0.2": {
+          "faithfulness": 0.8,
+          "consistency": 0.586,
+          "avg_token_count": 394.9,
+          "avg_word_count": 250.5,
+          "extra_content_rate": 0.8
+        },
+        "0.5": {
+          "faithfulness": 0.7333,
+          "consistency": 0.5423,
+          "avg_token_count": 476,
+          "avg_word_count": 299.1,
+          "extra_content_rate": 0.8667
+        },
+        "1.0": {
+          "faithfulness": 0.7333,
+          "consistency": 0.5423,
+          "avg_token_count": 422.1,
+          "avg_word_count": 267.5,
+          "extra_content_rate": 0.8
+        },
+        "1.5": {
+          "faithfulness": 0.8,
+          "consistency": 0.586,
+          "avg_token_count": 455.1,
+          "avg_word_count": 290.1,
+          "extra_content_rate": 0.8667
+        },
+        "2.0": {
+          "faithfulness": 0.6667,
+          "consistency": 0.512,
+          "avg_token_count": 442.9,
+          "avg_word_count": 284.5,
+          "extra_content_rate": 0.8667
+        }
+      }
+    },
+    "presence_penalty_sweep": {
+      "best": {
+        "value": 0.2,
+        "faithfulness": 0.8,
+        "consistency": 0.586
+      },
+      "values": [
+        0.0,
+        0.2,
+        0.5,
+        1.0,
+        1.5,
+        2.0
+      ],
+      "results": {
+        "0.0": {
+          "faithfulness": 0.7333,
+          "consistency": 0.5423,
+          "avg_token_count": 337.3,
+          "avg_word_count": 216.7,
+          "extra_content_rate": 0.8667
+        },
+        "0.2": {
+          "faithfulness": 0.8,
+          "consistency": 0.586,
+          "avg_token_count": 389.5,
+          "avg_word_count": 243.3,
+          "extra_content_rate": 0.8
+        },
+        "0.5": {
+          "faithfulness": 0.7333,
+          "consistency": 0.5423,
+          "avg_token_count": 442,
+          "avg_word_count": 274.5,
+          "extra_content_rate": 0.8
+        },
+        "1.0": {
+          "faithfulness": 0.6667,
+          "consistency": 0.512,
+          "avg_token_count": 385.9,
+          "avg_word_count": 243.3,
+          "extra_content_rate": 0.8
+        },
+        "1.5": {
+          "faithfulness": 0.7333,
+          "consistency": 0.5423,
+          "avg_token_count": 402.1,
+          "avg_word_count": 259.7,
+          "extra_content_rate": 0.8667
+        },
+        "2.0": {
+          "faithfulness": 0.8,
+          "consistency": 0.586,
+          "avg_token_count": 390.2,
+          "avg_word_count": 253.9,
+          "extra_content_rate": 0.8
+        }
+      }
+    },
+    "best_combo": {
+      "optimal_config": {
+        "temperature": 0.0,
+        "top_p": 0.1,
+        "frequency_penalty": 0.2,
+        "presence_penalty": 0.2
+      },
+      "optimal_scores": {
+        "faithfulness": 0.72,
+        "consistency": 0.9553
+      },
+      "default_scores": {
+        "faithfulness": 0.7,
+        "consistency": 1.0
+      },
+      "delta": {
+        "faithfulness": 0.02,
+        "consistency": -0.0447
+      }
+    },
+    "overall_assessment": "Default parameters (temp=0, no penalties) are essentially optimal. Penalty parameters provide no meaningful reduction in scope creep. Higher temperatures degrade faithfulness without improving consistency."
+  },
+  "reliability_and_boundaries": {
+    "multi_turn": {
+      "Chain A (Fact retention)": {
+        "facts_remembered": 5,
+        "facts_asked": 5,
+        "context_exhausted": false,
+        "exhausted_at_turn": null
+      },
+      "Chain B (Instruction drift)": {
+        "drifted": true,
+        "drifted_at_turn": 14
+      },
+      "Chain C (Role consistency)": {
+        "role_violations": 0,
+        "total_questions": 15
+      }
+    },
+    "sustained_load": {
+      "overall": {
+        "total_errors": 0,
+        "error_rate": 0.0,
+        "mean_latency": 0.884,
+        "total_wall_time_s": 885.261
+      },
+      "buckets": [
+        {
+          "range": 1,
+          "errors": 0,
+          "p50": 0.565,
+          "p95": 1.064,
+          "p99": 3.072
+        },
+        {
+          "range": 2,
+          "errors": 0,
+          "p50": 0.587,
+          "p95": 1.524,
+          "p99": 3.023
+        },
+        {
+          "range": 3,
+          "errors": 0,
+          "p50": 0.578,
+          "p95": 1.821,
+          "p99": 3.016
+        },
+        {
+          "range": 4,
+          "errors": 0,
+          "p50": 0.647,
+          "p95": 1.351,
+          "p99": 1.907
+        },
+        {
+          "range": 5,
+          "errors": 0,
+          "p50": 0.613,
+          "p95": 1.649,
+          "p99": 7.634
+        },
+        {
+          "range": 6,
+          "errors": 0,
+          "p50": 0.65,
+          "p95": 1.601,
+          "p99": 2.41
+        },
+        {
+          "range": 7,
+          "errors": 0,
+          "p50": 0.643,
+          "p95": 2.096,
+          "p99": 3.39
+        },
+        {
+          "range": 8,
+          "errors": 0,
+          "p50": 0.614,
+          "p95": 1.243,
+          "p99": 3.49
+        },
+        {
+          "range": 9,
+          "errors": 0,
+          "p50": 0.613,
+          "p95": 1.449,
+          "p99": 2.204
+        },
+        {
+          "range": 10,
+          "errors": 0,
+          "p50": 0.689,
+          "p95": 1.709,
+          "p99": 2.571
+        }
+      ]
+    },
+    "error_catalog": {
+      "summary": {
+        "tests": 10,
+        "informative_errors": 4,
+        "opaque_errors": 6
+      },
+      "details": [
+        {
+          "test": "missing_auth",
+          "status": 401,
+          "informative": true
+        },
+        {
+          "test": "invalid_api_key",
+          "status": 401,
+          "informative": true
+        },
+        {
+          "test": "missing_model",
+          "status": 200,
+          "informative": false
+        },
+        {
+          "test": "invalid_model",
+          "status": 200,
+          "informative": false
+        },
+        {
+          "test": "empty_messages",
+          "status": 400,
+          "informative": true
+        },
+        {
+          "test": "missing_content",
+          "status": 200,
+          "informative": false
+        },
+        {
+          "test": "invalid_role",
+          "status": 200,
+          "informative": false
+        },
+        {
+          "test": "negative_temp",
+          "status": 200,
+          "informative": false
+        },
+        {
+          "test": "large_max_tokens",
+          "status": 200,
+          "informative": false
+        },
+        {
+          "test": "invalid_json",
+          "status": 400,
+          "informative": true
+        }
+      ]
+    },
+    "edge_inputs": {
+      "handled_gracefully": 12,
+      "total": 12
+    }
+  }
+}

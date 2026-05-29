@@ -1,0 +1,445 @@
+{
+  "timestamp": "2026-05-29T16:02:21.614344+00:00",
+  "model": "taalas-llama3.1-8b",
+  "test_groups": {
+    "response_format": {
+      "accepted": true,
+      "json_success_rate_with": 0.0,
+      "json_success_rate_without": 0.0,
+      "sample_responses": {
+        "with": [
+          {
+            "prompt": "Extract the name, age, and city from: \"Alice is 30 years old",
+            "ok": true,
+            "status_code": 200,
+            "content": "Here is the extracted data in JSON format:\n\n```\n{\n  \"name\": \"Alice\",\n  \"age\": 30,\n  \"city\": \"Paris\"\n}\n```\n\nLet me know if you'd like me to format it differently."
+          },
+          {
+            "prompt": "List 3 colors as a JSON array of objects with name and hex f",
+            "ok": true,
+            "status_code": 200,
+            "content": "Here are 3 colors as a JSON array of objects with name and hex fields:\n\n```\n[\n  {\n    \"name\": \"Red\",\n    \"hex\": \"#FF0000\"\n  },\n  {\n    \"name\": \"Blue\",\n    \"hex\": \"#0000FF\"\n  },\n  {\n    \"name\": \"Yellow..."
+          },
+          {
+            "prompt": "Create a JSON object representing a book with title, author,",
+            "ok": true,
+            "status_code": 200,
+            "content": "Here is an example of a JSON object representing a book:\n\n```json\n{\n  \"title\": \"To Kill a Mockingbird\",\n  \"author\": \"Harper Lee\",\n  \"year\": 1960,\n  \"genres\": [\n    \"Classics\",\n    \"Fiction\"\n  ]\n}\n```\n..."
+          }
+        ],
+        "without": [
+          {
+            "prompt": "Extract the name, age, and city from: \"Alice is 30 years old",
+            "ok": true,
+            "status_code": 200,
+            "content": "Here is the extracted information in JSON format:\n\n```\n{\n  \"name\": \"Alice\",\n  \"age\": 30,\n  \"city\": \"Paris\"\n}\n```\n\nIf you'd like, I can also add more details to the JSON, such as a \"country\" or \"state\"..."
+          },
+          {
+            "prompt": "List 3 colors as a JSON array of objects with name and hex f",
+            "ok": true,
+            "status_code": 200,
+            "content": "Here is a JSON array of 3 colors as objects with name and hex fields:\n\n```\n[\n  {\n    \"name\": \"Red\",\n    \"hex\": \"#FF0000\"\n  },\n  {\n    \"name\": \"Blue\",\n    \"hex\": \"#0000FF\"\n  },\n  {\n    \"name\": \"Yellow\"..."
+          },
+          {
+            "prompt": "Create a JSON object representing a book with title, author,",
+            "ok": true,
+            "status_code": 200,
+            "content": "Here is a JSON object representing a book:\n\n```json\n{\n  \"title\": \"The Great Gatsby\",\n  \"author\": \"F. Scott Fitzgerald\",\n  \"year\": 1925,\n  \"genres\": [\"Classic\", \"Romance\", \"Literary Fiction\"]\n}\n```\n\nLe..."
+          }
+        ]
+      }
+    },
+    "seed": {
+      "deterministic_with_seed": false,
+      "deterministic_without_seed": false,
+      "different_seeds_produce_different_outputs": false
+    },
+    "stop": {
+      "stop_works": true,
+      "correctly_truncated": 3,
+      "failed": 0,
+      "examples": [
+        {
+          "stop": "\n",
+          "prompt": "Write three short sentences about AI, each on a new line.",
+          "ok": true,
+          "status_code": 200,
+          "content": "Here are three short sentences about AI:\n\nArtificial Intelligence is a field of computer science that focuses on creating intelligent machines that can think and act like humans.\n\nAI systems are desig...",
+          "contains_stop": false
+        },
+        {
+          "stop": [
+            "\n",
+            "."
+          ],
+          "prompt": "Write three short sentences about AI, each on a new line.",
+          "ok": true,
+          "status_code": 200,
+          "content": "Here are three short sentences about AI:\n\nArtificial intelligence has become a vital tool in various industries such as healthcare, finance, and transportation, making tasks more efficient and accurat...",
+          "contains_stop": true
+        },
+        {
+          "stop": "I",
+          "prompt": "Write a paragraph about artificial intelligence.",
+          "ok": true,
+          "status_code": 200,
+          "content": "Artificial intelligence (AI) refers to the ability of machines to think and act independently, mimicking human-like intelligence and decision-making abilities. AI technology involves the creation of c...",
+          "contains_stop": true
+        },
+        {
+          "stop": "XXXXXXXX",
+          "prompt": "Write a short haiku about programming.",
+          "ok": true,
+          "status_code": 200,
+          "content": "Here is a short haiku about programming:\n\nCode flows like a stream\nDebugging errors dance slow\nSolutions found in night",
+          "contains_stop": false
+        },
+        {
+          "stop": ".",
+          "prompt": "Write three sentences about machine learning.",
+          "ok": true,
+          "status_code": 200,
+          "content": "Here are three sentences about machine learning:\n\nMachine learning is a type of artificial intelligence (AI) that involves training algorithms to learn from data and make predictions or decisions base...",
+          "contains_stop": true
+        },
+        {
+          "stop": [
+            "?",
+            "!",
+            "."
+          ],
+          "prompt": "Write three sentences about deep learning.",
+          "ok": true,
+          "status_code": 200,
+          "content": "Here are three sentences about deep learning:\n\nDeep learning is a subfield of machine learning that specializes in learning from complex data sets and recognizing patterns, using multilayered neural n...",
+          "contains_stop": true
+        },
+        {
+          "stop": " intelligence",
+          "prompt": "Define artificial intelligence in one sentence.",
+          "ok": true,
+          "status_code": 200,
+          "content": "Artificial intelligence (AI) refers to the simulation of human intelligence in machines, such as computers, that can think and learn to perform a wide range of tasks, including reasoning, problem-solv...",
+          "contains_stop": true
+        },
+        {
+          "stop": [
+            "\n\n",
+            "."
+          ],
+          "prompt": "Write two paragraphs about neural networks.",
+          "ok": true,
+          "status_code": 200,
+          "content": "Here are two paragraphs about neural networks:\n\nNeural networks, also known as neural nets or simply \"nets,\" are a family of algorithms that are inspired by the structure and function of the human bra...",
+          "contains_stop": true
+        },
+        {
+          "stop": "assistant",
+          "prompt": "Write a short greeting to the user.",
+          "ok": true,
+          "status_code": 200,
+          "content": "Hello! How can I help you today?",
+          "contains_stop": false
+        },
+        {
+          "stop": [
+            " the ",
+            " The "
+          ],
+          "prompt": "Explain what a transformer model is.",
+          "ok": true,
+          "status_code": 200,
+          "content": "**Transformer Model**\n\nA transformer model is a type of neural network architecture that is primarily used for sequence-to-sequence tasks, such as machine translation, text summarization, and language...",
+          "contains_stop": true
+        }
+      ]
+    },
+    "logprobs": {
+      "supported": true,
+      "logprobs_returned": false,
+      "top_logprobs_returned": 0,
+      "sample_data": null
+    },
+    "tools": {
+      "supported": true,
+      "returned_tool_calls": false,
+      "invocation_details": [
+        {
+          "prompt": "What is the weather in Paris today?",
+          "ok": true,
+          "status_code": 200,
+          "returned_tool_calls": false,
+          "tool_calls_count": 0,
+          "tool_calls": []
+        },
+        {
+          "prompt": "Search the web for latest AI research papers.",
+          "ok": true,
+          "status_code": 200,
+          "returned_tool_calls": false,
+          "tool_calls_count": 0,
+          "tool_calls": []
+        },
+        {
+          "prompt": "Calculate 1234 multiplied by 5678.",
+          "ok": true,
+          "status_code": 200,
+          "returned_tool_calls": false,
+          "tool_calls_count": 0,
+          "tool_calls": []
+        },
+        {
+          "prompt": "What is the weather in Tokyo and calculate 50 time",
+          "ok": true,
+          "status_code": 200,
+          "returned_tool_calls": false,
+          "tool_calls_count": 0,
+          "tool_calls": []
+        },
+        {
+          "prompt": "Search for news about climate change.",
+          "ok": true,
+          "status_code": 200,
+          "returned_tool_calls": false,
+          "tool_calls_count": 0,
+          "tool_calls": []
+        }
+      ]
+    },
+    "n_choices": {
+      "supported": true,
+      "choices_count": 1,
+      "responses_different": false
+    },
+    "max_tokens_ceiling": {
+      "max_output_tokens": 2769,
+      "max_before_error": 131072,
+      "truncation_point": null,
+      "step_results": [
+        {
+          "max_tokens": 4096,
+          "ok": true,
+          "status_code": 200,
+          "completion_tokens": 2077,
+          "truncated": false
+        },
+        {
+          "max_tokens": 8192,
+          "ok": true,
+          "status_code": 200,
+          "completion_tokens": 1712,
+          "truncated": false
+        },
+        {
+          "max_tokens": 16384,
+          "ok": true,
+          "status_code": 200,
+          "completion_tokens": 2390,
+          "truncated": false
+        },
+        {
+          "max_tokens": 32768,
+          "ok": true,
+          "status_code": 200,
+          "completion_tokens": 2071,
+          "truncated": false
+        },
+        {
+          "max_tokens": 65536,
+          "ok": true,
+          "status_code": 200,
+          "completion_tokens": 1875,
+          "truncated": false
+        },
+        {
+          "max_tokens": 131072,
+          "ok": true,
+          "status_code": 200,
+          "completion_tokens": 2109,
+          "truncated": false
+        },
+        {
+          "max_tokens": 67584,
+          "ok": true,
+          "status_code": 200,
+          "completion_tokens": 2769,
+          "truncated": false
+        },
+        {
+          "max_tokens": 99328,
+          "ok": true,
+          "status_code": 200,
+          "completion_tokens": 1738,
+          "truncated": false
+        },
+        {
+          "max_tokens": 115200,
+          "ok": true,
+          "status_code": 200,
+          "completion_tokens": 2060,
+          "truncated": false
+        },
+        {
+          "max_tokens": 123136,
+          "ok": true,
+          "status_code": 200,
+          "completion_tokens": 1748,
+          "truncated": false
+        },
+        {
+          "max_tokens": 127104,
+          "ok": true,
+          "status_code": 200,
+          "completion_tokens": 1973,
+          "truncated": false
+        },
+        {
+          "max_tokens": 129088,
+          "ok": true,
+          "status_code": 200,
+          "completion_tokens": 1524,
+          "truncated": false
+        },
+        {
+          "max_tokens": 130080,
+          "ok": true,
+          "status_code": 200,
+          "completion_tokens": 1694,
+          "truncated": false
+        },
+        {
+          "max_tokens": 130576,
+          "ok": true,
+          "status_code": 200,
+          "completion_tokens": 1817,
+          "truncated": false
+        },
+        {
+          "max_tokens": 130824,
+          "ok": true,
+          "status_code": 200,
+          "completion_tokens": 0,
+          "truncated": false
+        },
+        {
+          "max_tokens": 130948,
+          "ok": true,
+          "status_code": 200,
+          "completion_tokens": 1728,
+          "truncated": false
+        },
+        {
+          "max_tokens": 131010,
+          "ok": true,
+          "status_code": 200,
+          "completion_tokens": 2305,
+          "truncated": false
+        },
+        {
+          "max_tokens": 131041,
+          "ok": true,
+          "status_code": 200,
+          "completion_tokens": 2204,
+          "truncated": false
+        },
+        {
+          "max_tokens": 131056,
+          "ok": true,
+          "status_code": 200,
+          "completion_tokens": 1843,
+          "truncated": false
+        },
+        {
+          "max_tokens": 131064,
+          "ok": true,
+          "status_code": 200,
+          "completion_tokens": 2227,
+          "truncated": false
+        },
+        {
+          "max_tokens": 131068,
+          "ok": true,
+          "status_code": 200,
+          "completion_tokens": 1670,
+          "truncated": false
+        },
+        {
+          "max_tokens": 131070,
+          "ok": true,
+          "status_code": 200,
+          "completion_tokens": 1707,
+          "truncated": false
+        },
+        {
+          "max_tokens": 131071,
+          "ok": true,
+          "status_code": 200,
+          "completion_tokens": 2591,
+          "truncated": false
+        }
+      ]
+    },
+    "message_validation": {
+      "empty_messages_list": {
+        "status_code": 400,
+        "error_message": "{'message': 'messages is required', 'type': 'invalid_request_error', 'param': None, 'code': None}",
+        "handled_gracefully": true
+      },
+      "empty_content_string": {
+        "status_code": 200,
+        "error_message": "",
+        "handled_gracefully": true
+      },
+      "missing_role_field": {
+        "status_code": 200,
+        "error_message": "",
+        "handled_gracefully": true
+      },
+      "invalid_role": {
+        "status_code": 200,
+        "error_message": "",
+        "handled_gracefully": true
+      },
+      "only_assistant_messages": {
+        "status_code": 200,
+        "error_message": "",
+        "handled_gracefully": true
+      },
+      "system_user_assistant_empty": {
+        "status_code": 200,
+        "error_message": "",
+        "handled_gracefully": true
+      },
+      "very_long_system_prompt": {
+        "status_code": 200,
+        "error_message": "",
+        "handled_gracefully": true
+      },
+      "whitespace_only_content": {
+        "status_code": 200,
+        "error_message": "",
+        "handled_gracefully": true
+      },
+      "null_bytes_in_message": {
+        "status_code": 200,
+        "error_message": "",
+        "handled_gracefully": true
+      },
+      "unicode_only_message": {
+        "status_code": 200,
+        "error_message": "",
+        "handled_gracefully": true
+      },
+      "content_as_integer": {
+        "status_code": 200,
+        "error_message": "",
+        "handled_gracefully": true
+      },
+      "content_as_null": {
+        "status_code": 200,
+        "error_message": "",
+        "handled_gracefully": true
+      }
+    }
+  }
+}
