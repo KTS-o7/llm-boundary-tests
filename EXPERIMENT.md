@@ -158,6 +158,52 @@ Simulates 7 tools (calculator, weather, calendar, search, email, code, database)
 
 ---
 
+## 4b. Extended Benchmarks (Sections 19–21 of REPORT.md)
+
+These three benchmarks probe undocumented API features, optimize sampling parameters, and stress-test reliability. Run after the 6 core benchmarks.
+
+### Benchmark 7 — API Feature Discovery
+
+**What it measures:** Support for undocumented OpenAI API parameters: `response_format`, `seed`, `stop`, `logprobs`, `tools`/function calling, `n` (multiple choices), `max_tokens` ceiling, and message validation edge cases.
+
+```bash
+python 7-api-features/benchmark.py
+```
+
+Output: `7-api-features/results.json`
+
+Makes ~80 API calls. Takes 3–5 minutes.
+
+---
+
+### Benchmark 8 — Parameter Optimization
+
+**What it measures:** Temperature sweep (0.0–1.0), top_p sweep, frequency_penalty sweep, presence_penalty sweep, and best-combo comparison vs. defaults.
+
+```bash
+python 8-parameter-tuning/benchmark.py
+```
+
+Output: `8-parameter-tuning/results.json`
+
+Makes ~610 API calls. Takes 15–25 minutes.
+
+---
+
+### Benchmark 9 — Reliability & Boundaries
+
+**What it measures:** Multi-turn conversation (3 chains × 15 turns), sustained load (1,000 sequential requests), error catalog (10 invalid configurations), and edge inputs (12 edge cases).
+
+```bash
+python 9-reliability/benchmark.py
+```
+
+Output: `9-reliability/results.json`
+
+Makes ~1,070 API calls. Takes 20–30 minutes (1,000-request sustained load test dominates).
+
+---
+
 ## 5. Run the Evaluation Scripts
 
 These scripts read the `results.json` files produced by the benchmarks plus call the API with new probes. Run them after all 6 benchmarks complete.
@@ -304,7 +350,7 @@ cp .env.example .env
 # edit .env with your API key
 export LLM_API_KEY=$(grep LLM_API_KEY .env | cut -d= -f2)
 
-# 1. Benchmarks (can run in any order; run in parallel if you have multiple terminals)
+# 1. Core Benchmarks (can run in any order; parallel ok)
 python 1-classification-pipeline/benchmark.py
 python 2-structured-extraction/benchmark.py
 python 3-routing-filter/benchmark.py
@@ -312,20 +358,25 @@ python 4-chunked-documents/benchmark.py
 python 5-realtime-interactive/benchmark.py
 python 6-agent-tool-routing/benchmark.py
 
-# 2. Evaluations (after benchmarks complete)
+# 2. Extended Benchmarks (requires core results)
+python 7-api-features/benchmark.py
+python 8-parameter-tuning/benchmark.py
+python 9-reliability/benchmark.py
+
+# 3. Evaluations (after all benchmarks)
 python eval_recall.py
 python eval_instruction_faithfulness.py
 python eval_intent_faithfulness.py
 python eval_xml_vs_plain.py
 python eval_xml_weakspots.py
 
-# 3. Prompt technique experiments (independent; run any time)
+# 4. Prompt technique experiments (independent; run any time)
 python prompt-techniques/few-shot/experiment.py
 python prompt-techniques/cot-scratchpad/experiment.py
 python prompt-techniques/instruction-decomposition/experiment.py
 ```
 
-Total wall time: approximately **45–90 minutes** depending on API latency.
+Total wall time: approximately **90–180 minutes** depending on API latency (extended benchmarks add 35–60 min).
 
 ---
 
@@ -346,6 +397,9 @@ After each script completes, the key numbers to check against `REPORT.md` are:
 | `eval_xml_vs_plain.py` | XML delta | −17.9 pp |
 | `prompt-techniques/few-shot/experiment.py` | Array sort delta | +10.7 pp |
 | `prompt-techniques/cot-scratchpad/experiment.py` | Factual delta | −13.3 pp |
+| `7-api-features/benchmark.py` | Supported features (of 8) | 1/8 (only `stop` works) |
+| `8-parameter-tuning/benchmark.py` | Optimal temp | 0.0 (default is optimal) |
+| `9-reliability/benchmark.py` | Sustained load errors | 0 / 1,000 |
 
 Minor variation (±5%) is expected due to temperature sampling. All benchmarks use `temperature=0` where possible; some tasks require nonzero temperature and will show run-to-run variance.
 
@@ -373,6 +427,15 @@ llm-boundary-tests/
 ├── 6-agent-tool-routing/
 │   ├── benchmark.py
 │   └── results.json              ← generated
+├── 7-api-features/                          ← Section 19
+│   ├── benchmark.py
+│   └── results.json              ← generated
+├── 8-parameter-tuning/                      ← Section 20
+│   ├── benchmark.py
+│   └── results.json              ← generated
+├── 9-reliability/                           ← Section 21
+│   ├── benchmark.py
+│   └── results.json              ← generated
 ├── eval_recall.py
 ├── eval_recall_results.json       ← generated
 ├── eval_instruction_faithfulness.py
@@ -383,6 +446,8 @@ llm-boundary-tests/
 ├── eval_xml_vs_plain_results.json              ← generated
 ├── eval_xml_weakspots.py
 ├── eval_xml_weakspots_results.json             ← generated
+├── aggregate_results.py
+├── aggregate_results.json          ← generated
 ├── prompt-techniques/
 │   ├── few-shot/
 │   │   ├── experiment.py
@@ -425,6 +490,8 @@ find . -name "*.py" -exec sed -i '' \
 
 No other changes are required. The evaluation methodology is model-agnostic.
 
+> **Note on User-Agent blocking:** The specific API tested in this report blocks non-`curl` User-Agent strings. If you encounter `403` errors from a different provider, remove or change the `User-Agent` header in the benchmark scripts.
+
 ---
 
 ## 12. Troubleshooting
@@ -439,6 +506,8 @@ echo $LLM_API_KEY
 **`ConnectionError` / timeout** — The API endpoint is unreachable. The scripts do not retry by default. Re-run the script; partial results are not saved mid-run.
 
 **Results differ significantly from `REPORT.md`** — Small variance is normal. Large variance (>10 pp) most likely means the model was updated on the server side. Pin the `model` field and check with the server operator.
+
+**`403 Forbidden` from Python but `200` from curl** — The API blocks non-`curl` User-Agent strings. Set `"User-Agent": "curl/8.4.0"` in your request headers. All scripts in this repo handle this automatically.
 
 **`ModuleNotFoundError: requests`** — Run `pip install requests==2.32.5`.
 

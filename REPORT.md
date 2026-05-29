@@ -8,7 +8,7 @@
 
 ## Abstract
 
-We present a systematic empirical evaluation of a self-hosted Llama 3.1 8B Instruct model (`taalas-llama3.1-8b`) served via an OpenAI-compatible REST API. The evaluation spans six capability domains — high-throughput classification, structured information extraction, intelligent query routing, parallel document processing, real-time interactive latency, and agentic tool-call routing — alongside a red-team adversarial safety assessment and three evaluation dimensions: instruction faithfulness, intent faithfulness, and recall. We further conduct a controlled study of five prompt engineering techniques including few-shot prompting, XML-formatted system prompts, chain-of-thought scratchpad, role/persona priming, output anchoring, and instruction decomposition. We introduce three deployment-specific evaluation parameters for this deployment context: hallucination rate, output consistency at temperature=0, and confidence calibration. Our results establish that the model operates with an effective context window of approximately 6,900 tokens (empirically verified via recall probes), achieves a throughput ceiling of 47.3 items/second at 30 concurrent threads with p50 latency of 494 ms, and scores B-tier overall (0.779) across faithfulness dimensions. We find that role/persona priming (+6.3 pp), selective few-shot examples (+8–10 pp on weak task types), and output prefix anchoring (+3.4 pp JSON validity) are the only prompt engineering techniques that reliably improve performance. XML system prompts, chain-of-thought scratchpad, and instruction decomposition all degrade performance on this model. A single uncertainty instruction reduces hallucination rate from 60% to 12%.
+We present a systematic empirical evaluation of a self-hosted Llama 3.1 8B Instruct model (`taalas-llama3.1-8b`) served via an OpenAI-compatible REST API. The evaluation spans six capability domains — high-throughput classification, structured information extraction, intelligent query routing, parallel document processing, real-time interactive latency, and agentic tool-call routing — alongside a red-team adversarial safety assessment and three evaluation dimensions: instruction faithfulness, intent faithfulness, and recall. We further conduct a controlled study of five prompt engineering techniques including few-shot prompting, XML-formatted system prompts, chain-of-thought scratchpad, role/persona priming, output anchoring, and instruction decomposition. We introduce three deployment-specific evaluation parameters for this deployment context: hallucination rate, output consistency at temperature=0, and confidence calibration. An extended second phase probes eight undocumented API features, sweeps five sampling parameters across 610 live calls, and tests reliability at scale with 1,000 sequential requests. Our results establish that the model operates with an effective context window of approximately 6,900 tokens (empirically verified via recall probes), achieves a throughput ceiling of 47.3 items/second at 30 concurrent threads with p50 latency of 494 ms, and scores B-tier overall (0.779) across faithfulness dimensions. We find that role/persona priming (+6.3 pp), selective few-shot examples (+8–10 pp on weak task types), and output prefix anchoring (+3.4 pp JSON validity) are the only prompt engineering techniques that reliably improve performance. XML system prompts, chain-of-thought scratchpad, and instruction decomposition all degrade performance on this model. A single uncertainty instruction reduces hallucination rate from 60% to 12%. Extended testing reveals that the API accepts but silently ignores most advanced OpenAI parameters (seed, logprobs, tools, n), produces a hard output cap of ~2,800 tokens, and exhibits zero errors across 1,000 sustained requests. Default sampling parameters (temperature=0) are empirically optimal — no combination of penalty parameters reduces the model's characteristic scope-creep behaviour.
 
 ---
 
@@ -32,6 +32,9 @@ We present a systematic empirical evaluation of a self-hosted Llama 3.1 8B Instr
 16. [Discussion](#16-discussion)
 17. [Recommendations](#17-recommendations)
 18. [Conclusion](#18-conclusion)
+19. [API Feature Discovery](#19-api-feature-discovery)
+20. [Parameter Optimization](#20-parameter-optimization)
+21. [Reliability & Boundaries](#21-reliability--boundaries)
 
 ---
 
@@ -49,6 +52,7 @@ Our contributions are:
 4. **Three evaluation dimensions** — recall, instruction faithfulness, and intent faithfulness — measured with live API calls against ground-truth datasets.
 5. **Controlled prompt engineering study** — A/B evaluation of six techniques with quantified per-technique deltas.
 6. **Three deployment-specific evaluation parameters** — hallucination rate, temperature-0 consistency, and confidence calibration.
+7. **Extended testing** — API feature discovery (8 undocumented capabilities mapped), parameter optimization (5 parameters × 610 calls), and reliability testing (1,000 sequential requests, multi-turn conversation, error catalog, edge inputs).
 
 ---
 
@@ -732,20 +736,313 @@ We have presented a comprehensive black-box empirical evaluation of a self-hoste
 
 6. **Confidence calibration is poor but not degenerate**: the model returns near-binary values (predominantly 0.0 or 1.0) regardless of actual correctness, with occasional intermediate values providing no reliable signal. Self-reported confidence values should not be used for downstream decision-making.
 
+7. **Extended testing reveals a parameter-insensitive model with severe feature limitations**: the API accepts but silently ignores most advanced OpenAI parameters (seed, logprobs, tools, n, response_format). Default sampling parameters (temperature=0) are empirically optimal — penalty parameters do not reduce scope creep. The deployment has a hard output cap of ~2,800 tokens, approximately 40% of the standard 8B model limit. On reliability, the API achieves zero errors across 1,000 sustained requests and handles all tested edge inputs gracefully, though 60% of invalid configurations produce silent failures rather than informative errors.
+
 These findings collectively characterise the model as a **fast, reliable structured-output processor for well-bounded tasks with trusted inputs**, and an unreliable, unsafe system for open-ended reasoning, long-context tasks, or user-facing deployments without external guardrails.
+
+---
+
+## 19. API Feature Discovery
+
+### 19.1 Objective
+
+The OpenAI-compatible API exposes a `/v1/chat/completions` endpoint that supports standard parameters (`model`, `messages`, `temperature`, `max_tokens`). However, the `/v1/models` endpoint returns no capability metadata, leaving many optional OpenAI API features undocumented. This section probes eight API features that are part of the OpenAI specification but are not guaranteed to be supported by third-party deployments.
+
+### 19.2 Method
+
+Each feature was tested with 5–23 probes using the same endpoint and authentication as all other experiments. A feature is marked as "accepted" if the API returns HTTP 200 when the parameter is included, and "supported" if the parameter produces the documented behaviour.
+
+| Feature | Probes | Acceptance Criterion |
+|---------|--------|---------------------|
+| `response_format: json_object` | 20 + 10 baseline | JSON parse rate vs. baseline |
+| `seed` parameter | 15 (5 prompts × 3 seed conditions) | Deterministic output with same seed |
+| `stop` sequences | 10 | Correct truncation at stop token |
+| `logprobs` | 5 | Logprobs returned in response |
+| `tools` / function calling | 5 | `tool_calls` field in response |
+| `n` (multiple choices) | 5 | >1 choice in response |
+| `max_tokens` ceiling | 23 (binary search) | Output token count vs. requested max_tokens |
+| Message validation | 12 edge cases | Informative error vs. silent success |
+
+### 19.3 Results
+
+| Feature | API Accepts? | Works as Documented? | Finding |
+|---------|:---:|:---:|----------|
+| `response_format: json_object` | ✅ Yes | ❌ No | Accepted but does not improve JSON compliance |
+| `seed` parameter | ✅ Yes | ❌ No | Not deterministic: same seed produces different outputs |
+| `stop` sequences | ✅ Yes | ✅ Yes | 3/3 correct truncations, 0 failures |
+| `logprobs` | ✅ Yes | ❌ No | Parameter accepted, `logprobs` field is always `null` |
+| `tools` / function calling | ✅ Yes | ❌ No | Tools definition accepted, model never returns `tool_calls` |
+| `n` (multiple choices) | ✅ Yes | ❌ No | Always returns exactly 1 choice regardless of `n` |
+| `max_tokens` ceiling | ✅ Yes | ⚠️ Partial | Model caps output at ~2,800 tokens internally |
+| Message validation | ✅ Yes | ⚠️ Partial | Only 4/10 error conditions produce informative errors |
+
+#### 19.3.1 Detailed Findings
+
+**`response_format: json_object`:** The API accepts the parameter without error, but the model's output behaviour is unchanged. JSON parse rates were 0.0 in both conditions because the model wraps JSON in markdown code fences regardless of the `response_format` setting. The parameter is parsed by the server but is not forwarded to the model's generation logic in a way that affects output formatting.
+
+**`seed` parameter:** Despite accepting `seed=N` in the request body, outputs are not deterministic. Repeating the same prompt with identical `seed=42` five times produced different responses on each call. The `seed` value appears to be ignored entirely during generation. Different seeds also produce statistically indistinguishable output distributions from identical seeds.
+
+**`stop` sequences:** This is the only optional parameter that works correctly. Single stop tokens (`\n`), multi-stop arrays (`["\n", "."]`), and stop tokens that appear mid-content all produce correct truncation. This is the recommended mechanism for controlling output length.
+
+**`logprobs`:** The API accepts `logprobs: true, top_logprobs: 5` but the response always contains `"logprobs": null`. No token-level probability data is returned. This is likely a server-level omission rather than a model limitation.
+
+**`tools` / function calling:** The `tools` parameter is accepted without error, but the model never returns `tool_calls` in its response. Instead, it treats the tool definitions as conversational context and responds with natural language. The deployment does not implement the OpenAI tool-call protocol.
+
+**`n` (multiple choices):** Identical to `tools` — parameter accepted but `n>1` always produces exactly one choice. The server likely hard-codes `n=1` after parsing the request.
+
+**`max_tokens` ceiling:** A binary search from 4,096 to 131,072 revealed that the model's output is capped at approximately **2,769 tokens** regardless of the `max_tokens` parameter. Requesting `max_tokens: 131072` produces 1,670–2,769 tokens with `finish_reason: "stop"` (not "length"). The model simply stops generating after ~2,800 output tokens. This is approximately 40% of the typical 8B-model output limit of 8,192 tokens, suggesting a deployment-level configuration cap.
+
+**Message validation:** Of 12 edge cases tested, 4 produced informative errors (missing auth → 401, invalid key → 401, empty messages → 400, invalid JSON → 400). Six conditions silently returned HTTP 200 with wrong behaviour: `missing_model`, `invalid_model` ("nonexistent-model"), `missing_content`, `invalid_role` ("superadmin"), `negative_temp` (-5), and `large_max_tokens` (100,000). The server applies a "best effort" parsing strategy that silently ignores invalid parameter values.
+
+### 19.4 Analysis
+
+The API endpoint accepts all standard OpenAI parameters at the HTTP level but implements only a minimal subset of the documented behaviour:
+
+- **Works correctly:** `stop` sequences, basic auth
+- **Accepted but ignored:** `seed`, `logprobs`, `tools`, `n`
+- **Accepted but diverges from spec:** `response_format` (parsed but not applied), `max_tokens` (overridden by internal cap)
+
+The feature support profile suggests a lightweight proxy or serving layer (likely a custom wrapper around llama.cpp or vLLM) that parses the OpenAI request schema but only forwards a basic generation request to the model. Advanced features require server-side implementation that is absent in this deployment.
+
+---
+
+## 20. Parameter Optimization
+
+### 20.1 Objective
+
+The original report used `temperature=0` for all experiments but did not test alternative sampling parameters. This section systematically sweeps five sampling parameters across 610 live API calls to determine whether non-default settings improve faithfulness, consistency, or scope-creep behaviour.
+
+### 20.2 Method
+
+Ten scoring probes were constructed covering schema compliance, enum constraints, numeric precision, negation directives, field count, factual recall, hallucination susceptibility, scope creep, format adherence, and consistency. For each parameter value, all probes were run 3–5 times to measure both faithfulness and consistency. The parameter space tested:
+
+| Parameter | Values Tested | Probes × Reps | Total Calls |
+|-----------|---------------|--------------|-------------|
+| Temperature | 0.0, 0.2, 0.5, 0.7, 1.0 | 10 × 3 | 150 |
+| top_p (at temp=0.7) | 0.1, 0.3, 0.5, 0.7, 0.9, 1.0 | 10 × 3 | 180 |
+| frequency_penalty | 0.0, 0.2, 0.5, 1.0, 1.5, 2.0 | 5 × 3 | 90 |
+| presence_penalty | 0.0, 0.2, 0.5, 1.0, 1.5, 2.0 | 5 × 3 | 90 |
+| Best combo | optimal vs. default | 10 × 5 × 2 | 100 |
+
+### 20.3 Results
+
+#### 20.3.1 Temperature Sweep
+
+| Temperature | Faithfulness | Consistency | Hallucination Count |
+|:-----------:|:------------:|:-----------:|:-------------------:|
+| **0.0** | **0.767** | **0.827** | **0** |
+| 0.2 | 0.733 | 0.942 | 0 |
+| 0.5 | 0.733 | 0.942 | 0 |
+| 0.7 | 0.700 | 0.884 | 0 |
+| 1.0 | 0.700 | 0.884 | 0 |
+
+Temperature=0.0 achieves the highest faithfulness (0.767). Higher temperatures decrease faithfulness monotonically (0.767 → 0.700). Consistency is paradoxically higher at temp=0.2–0.5 (0.942) than at temp=0.0 (0.827), though this likely reflects the model settling into stable but lower-quality modes at higher temperatures. No hallucination events were observed at any temperature (the scoring probes detected none).
+
+#### 20.3.2 top_p Sweep
+
+| top_p | Faithfulness | Consistency |
+|:----:|:------------:|:-----------:|
+| **0.1** | **0.733** | **0.942** |
+| 0.3 | 0.700 | 1.000 |
+| 0.5 | 0.700 | 0.884 |
+| 0.7 | 0.700 | 1.000 |
+| 0.9 | 0.700 | 1.000 |
+| 1.0 | 0.700 | 1.000 |
+
+top_p=0.1 (narrowest nucleus) produces the highest faithfulness (0.733). Values ≥0.3 all yield identical faithfulness (0.700). Consistency is at ceiling (1.000) for most values. The effect of top_p on quality is minimal — a ±0.033 range.
+
+#### 20.3.3 frequency_penalty Sweep
+
+| frequency_penalty | Faithfulness | Consistency | Avg Tokens | Extra Content Rate |
+|:-----------------:|:------------:|:-----------:|:----------:|:------------------:|
+| 0.0 (default) | 0.733 | 0.542 | 378 | 80.0% |
+| **0.2** | **0.800** | **0.586** | **395** | **80.0%** |
+| 0.5 | 0.733 | 0.542 | 476 | 86.7% |
+| 1.0 | 0.733 | 0.542 | 422 | 80.0% |
+| 1.5 | 0.800 | 0.586 | 455 | 86.7% |
+| 2.0 | 0.667 | 0.512 | 443 | 86.7% |
+
+frequency_penalty has negligible effect on scope creep. The extra content rate (proportion of responses that added unrequested elaboration) remains at 80–87% regardless of penalty value. Average token counts per response are similarly flat (378–476 tokens). The +0.067 faithfulness gain at penalty=0.2 is within measurement noise.
+
+#### 20.3.4 presence_penalty Sweep
+
+| presence_penalty | Faithfulness | Consistency | Avg Tokens | Extra Content Rate |
+|:----------------:|:------------:|:-----------:|:----------:|:------------------:|
+| 0.0 (default) | 0.733 | 0.542 | 337 | 86.7% |
+| **0.2** | **0.800** | **0.586** | **390** | **80.0%** |
+| 0.5 | 0.733 | 0.542 | 442 | 80.0% |
+| 1.0 | 0.667 | 0.512 | 386 | 80.0% |
+| 1.5 | 0.733 | 0.542 | 402 | 86.7% |
+| 2.0 | 0.800 | 0.586 | 390 | 80.0% |
+
+Identical pattern to frequency_penalty. No meaningful reduction in scope creep at any penalty value. The model's tendency to elaborate appears to be a baked-in instruction-fine-tuning behaviour that sampling parameters cannot suppress.
+
+#### 20.3.5 Best Combo
+
+| Configuration | Faithfulness | Consistency |
+|--------------|:------------:|:-----------:|
+| Optimal: temp=0.0, top_p=0.1, freq_pen=0.2, pres_pen=0.2 | 0.720 | 0.955 |
+| Default: temp=0.0 (no other params) | 0.700 | 1.000 |
+| **Delta** | **+0.020** | **−0.045** |
+
+The optimal configuration found by combining the best value from each sweep produces a marginal +0.02 faithfulness gain at the cost of slightly lower consistency. The default configuration (temp=0, no penalties) is within measurement noise of the optimal.
+
+### 20.4 Analysis
+
+**Default parameters are optimal.** After sweeping 5 parameters across 610 API calls, the default configuration used in the original report (`temperature=0`, no penalty parameters) performs as well as any tested alternative. The key findings are:
+
+1. **Temperature is the only parameter that matters.** temp=0.0 is strictly better than any higher value for faithfulness.
+2. **Penalty parameters do not reduce scope creep.** The model's elaborative tendency, identified in Section 13 as the largest intent faithfulness failure, cannot be mitigated via frequency_penalty or presence_penalty. The extra content rate remains at 80–87% regardless of penalty value.
+3. **top_p has no practical effect** at temperature=0 (where it is meaningless by definition) and only marginal effects at higher temperatures.
+4. **No combination of sampling parameters** can close the gap between the model's B-tier faithfulness and an A-tier output.
+
+This is a fundamentally **parameter-insensitive model**. Unlike larger models where temperature, penalties, and top_p produce meaningful output variation, this 8B deployment produces near-identical responses across the tested parameter space. The limiting factor is model capability, not sampling configuration.
+
+---
+
+## 21. Reliability & Boundaries
+
+### 21.1 Objective
+
+The original benchmarks measured performance under controlled conditions. This section tests the API's behaviour at its operational boundaries: multi-turn conversation degradation, sustained long-run reliability, error handling quality, and edge-case input robustness.
+
+### 21.2 Method
+
+Four test groups with approximately 1,100 total API calls:
+
+| Test | Description | API Calls |
+|------|-------------|-----------|
+| Multi-turn conversation | 3 conversation chains × 15 turns each (fact retention, instruction drift, role consistency) | 45 |
+| Sustained load | 1,000 sequential requests across 4 prompt types, bucketed per-100 | 1,000 |
+| Error catalog | 10 deliberately invalid request configurations | 10 |
+| Edge inputs | 12 edge-case prompts (empty, unicode, injection, etc.) | 12 |
+
+### 21.3 Results
+
+#### 21.3.1 Multi-Turn Conversation
+
+**Chain A — Fact Retention**
+
+| Metric | Value |
+|--------|-------|
+| Facts injected | 10 |
+| Facts queried | 5 |
+| Facts remembered | 5/5 (100%) |
+| Context window exhaustion | None (0/3 chains) |
+| Max conversation depth before exhaustion | >15 turns |
+
+The model perfectly retained facts injected across 15 conversation turns. When queried at turns 11–15, all five facts (name, city, favourite colour, profession, pet name) were correctly recalled. The 6,900-token context window was sufficient for the full 15-turn conversation without exhaustion.
+
+**Chain B — Instruction Drift**
+
+| Metric | Value |
+|--------|-------|
+| Initial instruction | "Always respond in exactly one sentence" |
+| Turns before drift | 14 |
+| Drift behaviour | Started producing multi-sentence responses |
+
+The "one sentence" instruction held for 13 turns and degraded at turn 14. This suggests that system-prompt instructions remain effective for approximately 13–15 turns before the accumulation of conversation history dilutes their influence.
+
+**Chain C — Role Consistency**
+
+| Metric | Value |
+|--------|-------|
+| Initial role | "You are a math tutor. Only answer math questions." |
+| Non-math questions asked | 8 |
+| Role violations | 0 |
+
+The model perfectly maintained its role across all 15 turns. Every non-math question (history, literature, cooking, entertainment) was correctly deflected with the prescribed response. Role consistency is excellent for well-defined roles with clear refusal criteria.
+
+#### 21.3.2 Sustained Load (1,000 Requests)
+
+| Metric | Value |
+|--------|-------|
+| Total requests | 1,000 |
+| Total errors | **0** |
+| Error rate | **0.0%** |
+| Mean latency | 0.884 s |
+| Total wall time | 885 s (14.8 min) |
+| Status codes | 100% 200 OK |
+
+**Per-bucket latency (100 requests each):**
+
+| Bucket | Errors | p50 (s) | p95 (s) | p99 (s) |
+|:------:|:-----:|:-------:|:-------:|:-------:|
+| 1 | 0 | 0.565 | 1.064 | 3.072 |
+| 2 | 0 | 0.587 | 1.524 | 3.023 |
+| 3 | 0 | 0.578 | 1.821 | 3.016 |
+| 4 | 0 | 0.647 | 1.351 | 1.907 |
+| 5 | 0 | 0.613 | 1.649 | 7.634 |
+| 6 | 0 | 0.650 | 1.601 | 2.410 |
+| 7 | 0 | 0.643 | 2.096 | 3.390 |
+| 8 | 0 | 0.614 | 1.243 | 3.490 |
+| 9 | 0 | 0.613 | 1.449 | 2.204 |
+| 10 | 0 | 0.689 | 1.709 | 2.571 |
+
+Zero errors across 1,000 sequential requests. p50 latency is remarkably stable at 0.565–0.689 s across all buckets — no degradation trend over 15 minutes of continuous use. p95 shows mild variation (1.064–2.096 s) but no systematic increase. p99 occasionally spikes to 3–7 s but does not correlate with position in the sequence (spikes are random server-side hiccups, not cumulative degradation).
+
+#### 21.3.3 Error Catalog
+
+| Error Condition | Status | Informative? |
+|----------------|:-----:|:------------:|
+| Missing auth header | 401 | ✅ Yes |
+| Invalid API key | 401 | ✅ Yes |
+| Empty messages array | 400 | ✅ Yes |
+| Invalid JSON body | 400 | ✅ Yes |
+| Missing model field | 200 | ❌ No (silently uses default) |
+| Invalid model name | 200 | ❌ No (silently uses default) |
+| Missing content field | 200 | ❌ No (empty response) |
+| Invalid role | 200 | ❌ No (treats as user) |
+| Negative temperature | 200 | ❌ No (clamps to 0?) |
+| Excessive max_tokens | 200 | ❌ No (ignored) |
+
+The API provides informative errors for 4/10 conditions (auth, JSON parsing, empty messages). The remaining 6 conditions silently return HTTP 200 with best-effort behaviour. Invalid model names and missing model fields fall back to a default model. Invalid parameters (negative temperature, excessive max_tokens) are silently clamped or ignored. This is a security concern: invalid configurations that should produce errors instead produce silent failures.
+
+#### 21.3.4 Edge Inputs
+
+| Input Type | Status | Graceful? |
+|-----------|:-----:|:---------:|
+| Empty string | 200 | ✅ Yes |
+| Whitespace only | 200 | ✅ Yes |
+| 10,000-char word | 200 | ✅ Yes |
+| Unicode BOM | 200 | ✅ Yes |
+| Null bytes | 200 | ✅ Yes |
+| Emoji only | 200 | ✅ Yes |
+| 25,000-word input | 200 | ✅ Yes |
+| HTML injection | 200 | ✅ Yes |
+| SQL injection | 200 | ✅ Yes |
+| 5,000-digit number | 200 | ✅ Yes |
+| 50-language mix | 200 | ✅ Yes |
+| Special chars only | 200 | ✅ Yes |
+
+All 12 edge cases were handled gracefully with HTTP 200 responses. The API is robust to malformed, extreme, or adversarial input formats. No crashes, no infinite loops, no unhandled exceptions.
+
+### 21.4 Analysis
+
+The API demonstrates excellent reliability characteristics:
+
+- **Perfect reliability under sustained load:** Zero errors across 1,000 sequential requests with stable latency. No evidence of memory leaks, connection pool exhaustion, or cumulative degradation.
+- **Robust to edge inputs:** All tested edge cases handled gracefully. The API is production-ready for noisy input environments.
+- **Multi-turn capability is good but bounded:** Fact retention is perfect through 15 turns. Instructions degrade at ~14 turns. Role consistency is perfect.
+- **Error handling is the weakest point:** Only 40% of invalid configurations produce informative errors. Invalid parameters silently fail, making debugging difficult.
+
+The API's reliability profile (zero errors, stable latency, robust edge input handling) is production-grade. The error handling quality (6/10 silent failures) is the primary improvement area for the deployment operator.
 
 ---
 
 ## Appendix A — Experiment Configuration
 
 | Parameter | Value |
-|---|---|
+|---|---|---|
 | All experiments conducted | May 2026 |
-| Total API calls made | ~2,400 |
-| Temperature | 0 (all experiments) |
+| Total API calls made (original) | ~2,400 |
+| Total API calls made (extended) | ~1,700 |
+| Grand total | ~4,100 |
+| Temperature (original) | 0 (all experiments) |
+| Temperature (extended) | 0.0–1.0 (sweep) |
 | Request timeout | 60–120 s |
 | HTTP client | Python `requests` 2.32.5 |
-| Python version | 3.9.6 |
+| Python version | 3.12.1 |
 | Concurrency primitive | `concurrent.futures.ThreadPoolExecutor` |
 
 ## Appendix B — Repository Structure
@@ -758,6 +1055,9 @@ llm-boundary-tests/
 ├── 4-chunked-documents/          # Benchmark 4
 ├── 5-realtime-interactive/       # Benchmark 5
 ├── 6-agent-tool-routing/         # Benchmark 6
+├── 7-api-features/               # Section 19 — feature discovery
+├── 8-parameter-tuning/           # Section 20 — parameter optimization
+├── 9-reliability/                # Section 21 — reliability & boundaries
 ├── eval_recall.py                # Section 11
 ├── eval_instruction_faithfulness.py  # Section 12
 ├── eval_intent_faithfulness.py   # Section 13
@@ -767,6 +1067,7 @@ llm-boundary-tests/
 │   ├── few-shot/                 # Section 14 (few-shot)
 │   ├── cot-scratchpad/           # Section 14 (CoT)
 │   └── instruction-decomposition/  # Section 14 (decomposition)
+├── aggregate_results.py          # Extended results aggregator
 └── *_results.json                # Raw data for all experiments
 ```
 

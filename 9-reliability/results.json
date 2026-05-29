@@ -1,0 +1,833 @@
+{
+  "meta": {
+    "model": "taalas-llama3.1-8b",
+    "api_url": "https://ai.shenthar.me/v1/chat/completions",
+    "timestamp": "2026-05-29T16:17:38.268730+00:00"
+  },
+  "test_1_multi_turn": {
+    "chains": [
+      {
+        "chain": "A",
+        "name": "Fact retention",
+        "turns": [
+          {
+            "turn": 1,
+            "type": "fact_injection",
+            "fact": "My name is Alice.",
+            "ok": true,
+            "latency": 1.828701499995077,
+            "status_code": 200,
+            "completion_tokens": 40,
+            "prompt_tokens": 26,
+            "total_tokens": 66
+          },
+          {
+            "turn": 2,
+            "type": "fact_injection",
+            "fact": "I live in Tokyo.",
+            "ok": true,
+            "latency": 1.1467359590023989,
+            "status_code": 200,
+            "completion_tokens": 43,
+            "prompt_tokens": 70,
+            "total_tokens": 113
+          },
+          {
+            "turn": 3,
+            "type": "fact_injection",
+            "fact": "My favorite color is green.",
+            "ok": true,
+            "latency": 0.7181077079949318,
+            "status_code": 200,
+            "completion_tokens": 91,
+            "prompt_tokens": 120,
+            "total_tokens": 211
+          },
+          {
+            "turn": 4,
+            "type": "fact_injection",
+            "fact": "I work as a data scientist.",
+            "ok": true,
+            "latency": 0.9555768749996787,
+            "status_code": 200,
+            "completion_tokens": 100,
+            "prompt_tokens": 218,
+            "total_tokens": 318
+          },
+          {
+            "turn": 5,
+            "type": "fact_injection",
+            "fact": "I have a dog named Max.",
+            "ok": true,
+            "latency": 0.9147682909970172,
+            "status_code": 200,
+            "completion_tokens": 81,
+            "prompt_tokens": 324,
+            "total_tokens": 405
+          },
+          {
+            "turn": 6,
+            "type": "fact_injection",
+            "fact": "I speak Japanese fluently.",
+            "ok": true,
+            "latency": 1.6985407089960063,
+            "status_code": 200,
+            "completion_tokens": 117,
+            "prompt_tokens": 412,
+            "total_tokens": 529
+          },
+          {
+            "turn": 7,
+            "type": "fact_injection",
+            "fact": "My birthday is in December.",
+            "ok": true,
+            "latency": 0.5550345829979051,
+            "status_code": 200,
+            "completion_tokens": 144,
+            "prompt_tokens": 536,
+            "total_tokens": 680
+          },
+          {
+            "turn": 8,
+            "type": "fact_injection",
+            "fact": "I have a younger brother named Tom.",
+            "ok": true,
+            "latency": 1.018704540998442,
+            "status_code": 200,
+            "completion_tokens": 114,
+            "prompt_tokens": 689,
+            "total_tokens": 803
+          },
+          {
+            "turn": 9,
+            "type": "fact_injection",
+            "fact": "I graduated from Tokyo University.",
+            "ok": true,
+            "latency": 1.149078250004095,
+            "status_code": 200,
+            "completion_tokens": 177,
+            "prompt_tokens": 812,
+            "total_tokens": 988
+          },
+          {
+            "turn": 10,
+            "type": "fact_injection",
+            "fact": "I love hiking in the mountains.",
+            "ok": true,
+            "latency": 0.7491604579990963,
+            "status_code": 200,
+            "completion_tokens": 224,
+            "prompt_tokens": 997,
+            "total_tokens": 1221
+          },
+          {
+            "turn": 11,
+            "type": "fact_query",
+            "question": "What is my name?",
+            "expected": "Alice",
+            "recalled": true,
+            "ok": true,
+            "latency": 0.8632231669980683,
+            "status_code": 200,
+            "completion_tokens": 152,
+            "prompt_tokens": 1225,
+            "total_tokens": 1377
+          },
+          {
+            "turn": 12,
+            "type": "fact_query",
+            "question": "Where do I live?",
+            "expected": "Tokyo",
+            "recalled": true,
+            "ok": true,
+            "latency": 1.063951416996133,
+            "status_code": 200,
+            "completion_tokens": 130,
+            "prompt_tokens": 1382,
+            "total_tokens": 1511
+          },
+          {
+            "turn": 13,
+            "type": "fact_query",
+            "question": "What is my favorite color?",
+            "expected": "green",
+            "recalled": true,
+            "ok": true,
+            "latency": 0.5929091250000056,
+            "status_code": 200,
+            "completion_tokens": 142,
+            "prompt_tokens": 1518,
+            "total_tokens": 1660
+          },
+          {
+            "turn": 14,
+            "type": "fact_query",
+            "question": "What is my dog's name?",
+            "expected": "Max",
+            "recalled": true,
+            "ok": true,
+            "latency": 0.6630974169966066,
+            "status_code": 200,
+            "completion_tokens": 112,
+            "prompt_tokens": 1666,
+            "total_tokens": 1778
+          },
+          {
+            "turn": 15,
+            "type": "fact_query",
+            "question": "What do I do for work?",
+            "expected": "data scientist",
+            "recalled": true,
+            "ok": true,
+            "latency": 1.7149320829994394,
+            "status_code": 200,
+            "completion_tokens": 203,
+            "prompt_tokens": 1784,
+            "total_tokens": 1987
+          }
+        ],
+        "facts_remembered": 5,
+        "facts_asked": 5,
+        "context_exhausted": false,
+        "exhausted_at_turn": null
+      },
+      {
+        "chain": "B",
+        "name": "Instruction drift",
+        "turns": [
+          {
+            "turn": 1,
+            "question": "What is the weather like?",
+            "one_sentence": true,
+            "ok": true,
+            "latency": 6.828149166998628,
+            "status_code": 200,
+            "completion_tokens": 41,
+            "prompt_tokens": 20,
+            "total_tokens": 61
+          },
+          {
+            "turn": 2,
+            "question": "Explain what a computer is.",
+            "one_sentence": true,
+            "ok": true,
+            "latency": 0.5163397500000428,
+            "status_code": 200,
+            "completion_tokens": 39,
+            "prompt_tokens": 68,
+            "total_tokens": 106
+          },
+          {
+            "turn": 3,
+            "question": "How does the internet work?",
+            "one_sentence": true,
+            "ok": true,
+            "latency": 0.5055332499978249,
+            "status_code": 200,
+            "completion_tokens": 44,
+            "prompt_tokens": 113,
+            "total_tokens": 157
+          },
+          {
+            "turn": 4,
+            "question": "What is the meaning of life?",
+            "one_sentence": true,
+            "ok": true,
+            "latency": 0.5000792080027168,
+            "status_code": 200,
+            "completion_tokens": 69,
+            "prompt_tokens": 164,
+            "total_tokens": 233
+          },
+          {
+            "turn": 5,
+            "question": "Explain quantum computing in simple terms.",
+            "one_sentence": true,
+            "ok": true,
+            "latency": 0.5061248749989318,
+            "status_code": 200,
+            "completion_tokens": 65,
+            "prompt_tokens": 244,
+            "total_tokens": 309
+          },
+          {
+            "turn": 6,
+            "question": "Describe the theory of relativity.",
+            "one_sentence": true,
+            "ok": true,
+            "latency": 0.5161840419968939,
+            "status_code": 200,
+            "completion_tokens": 62,
+            "prompt_tokens": 318,
+            "total_tokens": 380
+          },
+          {
+            "turn": 7,
+            "question": "How does a blockchain work?",
+            "one_sentence": true,
+            "ok": true,
+            "latency": 0.702012374997139,
+            "status_code": 200,
+            "completion_tokens": 54,
+            "prompt_tokens": 387,
+            "total_tokens": 440
+          },
+          {
+            "turn": 8,
+            "question": "Explain the entire history of the Roman Empire.",
+            "one_sentence": true,
+            "ok": true,
+            "latency": 0.9068138329967041,
+            "status_code": 200,
+            "completion_tokens": 87,
+            "prompt_tokens": 453,
+            "total_tokens": 540
+          },
+          {
+            "turn": 9,
+            "question": "How do neural networks learn?",
+            "one_sentence": true,
+            "ok": true,
+            "latency": 0.5391016670037061,
+            "status_code": 200,
+            "completion_tokens": 80,
+            "prompt_tokens": 547,
+            "total_tokens": 627
+          },
+          {
+            "turn": 10,
+            "question": "What is the best strategy for achieving world peace?",
+            "one_sentence": true,
+            "ok": true,
+            "latency": 0.6329832909977995,
+            "status_code": 200,
+            "completion_tokens": 71,
+            "prompt_tokens": 641,
+            "total_tokens": 711
+          },
+          {
+            "turn": 11,
+            "question": "Explain the geopolitical implications of the South China Sea disputes.",
+            "one_sentence": true,
+            "ok": true,
+            "latency": 0.5783006249985192,
+            "status_code": 200,
+            "completion_tokens": 71,
+            "prompt_tokens": 729,
+            "total_tokens": 800
+          },
+          {
+            "turn": 12,
+            "question": "How would you design a fully decentralized internet?",
+            "one_sentence": true,
+            "ok": true,
+            "latency": 0.5933366250028485,
+            "status_code": 200,
+            "completion_tokens": 139,
+            "prompt_tokens": 814,
+            "total_tokens": 953
+          },
+          {
+            "turn": 13,
+            "question": "Describe how consciousness emerges from neural activity.",
+            "one_sentence": true,
+            "ok": true,
+            "latency": 0.6165459170006216,
+            "status_code": 200,
+            "completion_tokens": 116,
+            "prompt_tokens": 967,
+            "total_tokens": 1083
+          },
+          {
+            "turn": 14,
+            "question": "Create a comprehensive plan to colonize Mars.",
+            "one_sentence": false,
+            "ok": true,
+            "latency": 0.5701707909975084,
+            "status_code": 200,
+            "completion_tokens": 550,
+            "prompt_tokens": 1094,
+            "total_tokens": 1644
+          },
+          {
+            "turn": 15,
+            "question": "Explain string theory and the holographic principle.",
+            "one_sentence": true,
+            "ok": true,
+            "latency": 0.587952875001065,
+            "status_code": 200,
+            "completion_tokens": 80,
+            "prompt_tokens": 1657,
+            "total_tokens": 1737
+          }
+        ],
+        "drifted": true,
+        "drifted_at_turn": 14
+      },
+      {
+        "chain": "C",
+        "name": "Role consistency",
+        "turns": [
+          {
+            "turn": 1,
+            "expected": "math",
+            "question": "What is 2 + 2?",
+            "refused": false,
+            "role_correct": true,
+            "ok": true,
+            "latency": 0.5442867919991841,
+            "status_code": 200,
+            "completion_tokens": 4,
+            "prompt_tokens": 31,
+            "total_tokens": 35
+          },
+          {
+            "turn": 2,
+            "expected": "non-math",
+            "question": "What is the capital of France?",
+            "refused": true,
+            "role_correct": true,
+            "ok": true,
+            "latency": 0.6479536659971927,
+            "status_code": 200,
+            "completion_tokens": 7,
+            "prompt_tokens": 43,
+            "total_tokens": 49
+          },
+          {
+            "turn": 3,
+            "expected": "math",
+            "question": "Solve for x: 3x + 7 = 22",
+            "refused": false,
+            "role_correct": true,
+            "ok": true,
+            "latency": 0.5735944589978317,
+            "status_code": 200,
+            "completion_tokens": 74,
+            "prompt_tokens": 56,
+            "total_tokens": 129
+          },
+          {
+            "turn": 4,
+            "expected": "non-math",
+            "question": "Who wrote Romeo and Juliet?",
+            "refused": true,
+            "role_correct": true,
+            "ok": true,
+            "latency": 0.49840120800217846,
+            "status_code": 200,
+            "completion_tokens": 7,
+            "prompt_tokens": 137,
+            "total_tokens": 143
+          },
+          {
+            "turn": 5,
+            "expected": "math",
+            "question": "What is the derivative of x\u00b2?",
+            "refused": false,
+            "role_correct": true,
+            "ok": true,
+            "latency": 0.9938535830006003,
+            "status_code": 200,
+            "completion_tokens": 7,
+            "prompt_tokens": 151,
+            "total_tokens": 158
+          },
+          {
+            "turn": 6,
+            "expected": "non-math",
+            "question": "What is the best movie of all time?",
+            "refused": true,
+            "role_correct": true,
+            "ok": true,
+            "latency": 0.4971997500033467,
+            "status_code": 200,
+            "completion_tokens": 7,
+            "prompt_tokens": 167,
+            "total_tokens": 174
+          },
+          {
+            "turn": 7,
+            "expected": "math",
+            "question": "Calculate the area of a circle with radius 5.",
+            "refused": false,
+            "role_correct": true,
+            "ok": true,
+            "latency": 1.3781536249953206,
+            "status_code": 200,
+            "completion_tokens": 113,
+            "prompt_tokens": 186,
+            "total_tokens": 298
+          },
+          {
+            "turn": 8,
+            "expected": "non-math",
+            "question": "How do I make pasta?",
+            "refused": true,
+            "role_correct": true,
+            "ok": true,
+            "latency": 0.5420240410021506,
+            "status_code": 200,
+            "completion_tokens": 26,
+            "prompt_tokens": 304,
+            "total_tokens": 330
+          },
+          {
+            "turn": 9,
+            "expected": "math",
+            "question": "What is the Pythagorean theorem?",
+            "refused": false,
+            "role_correct": true,
+            "ok": true,
+            "latency": 0.7925904169969726,
+            "status_code": 200,
+            "completion_tokens": 198,
+            "prompt_tokens": 338,
+            "total_tokens": 536
+          },
+          {
+            "turn": 10,
+            "expected": "non-math",
+            "question": "Tell me a joke.",
+            "refused": true,
+            "role_correct": true,
+            "ok": true,
+            "latency": 1.2965734580066055,
+            "status_code": 200,
+            "completion_tokens": 27,
+            "prompt_tokens": 540,
+            "total_tokens": 567
+          },
+          {
+            "turn": 11,
+            "expected": "math",
+            "question": "Solve the quadratic equation x\u00b2 - 5x + 6 = 0",
+            "refused": false,
+            "role_correct": true,
+            "ok": true,
+            "latency": 0.5720375419987249,
+            "status_code": 200,
+            "completion_tokens": 82,
+            "prompt_tokens": 578,
+            "total_tokens": 660
+          },
+          {
+            "turn": 12,
+            "expected": "non-math",
+            "question": "What is the meaning of life?",
+            "refused": true,
+            "role_correct": true,
+            "ok": true,
+            "latency": 0.6383935419944464,
+            "status_code": 200,
+            "completion_tokens": 26,
+            "prompt_tokens": 668,
+            "total_tokens": 693
+          },
+          {
+            "turn": 13,
+            "expected": "math",
+            "question": "What is the integral of e^x dx?",
+            "refused": false,
+            "role_correct": true,
+            "ok": true,
+            "latency": 0.5974077499995474,
+            "status_code": 200,
+            "completion_tokens": 338,
+            "prompt_tokens": 701,
+            "total_tokens": 1038
+          },
+          {
+            "turn": 14,
+            "expected": "non-math",
+            "question": "Who is the president of the United States?",
+            "refused": true,
+            "role_correct": true,
+            "ok": true,
+            "latency": 1.0484554590002517,
+            "status_code": 200,
+            "completion_tokens": 26,
+            "prompt_tokens": 1049,
+            "total_tokens": 1075
+          },
+          {
+            "turn": 15,
+            "expected": "math",
+            "question": "What is 2^10?",
+            "refused": false,
+            "role_correct": true,
+            "ok": true,
+            "latency": 0.5969079170026816,
+            "status_code": 200,
+            "completion_tokens": 63,
+            "prompt_tokens": 1079,
+            "total_tokens": 1141
+          }
+        ],
+        "role_violations": 0,
+        "total_questions": 15
+      }
+    ]
+  },
+  "test_2_sustained_load": {
+    "buckets": [
+      {
+        "bucket": 1,
+        "requests": "1-100",
+        "errors": 0,
+        "p50": 0.565,
+        "p95": 1.064,
+        "p99": 3.072,
+        "mean_tokens": 62.4
+      },
+      {
+        "bucket": 2,
+        "requests": "101-200",
+        "errors": 0,
+        "p50": 0.587,
+        "p95": 1.524,
+        "p99": 3.023,
+        "mean_tokens": 54.8
+      },
+      {
+        "bucket": 3,
+        "requests": "201-300",
+        "errors": 0,
+        "p50": 0.578,
+        "p95": 1.821,
+        "p99": 3.016,
+        "mean_tokens": 59.8
+      },
+      {
+        "bucket": 4,
+        "requests": "301-400",
+        "errors": 0,
+        "p50": 0.647,
+        "p95": 1.351,
+        "p99": 1.907,
+        "mean_tokens": 52.0
+      },
+      {
+        "bucket": 5,
+        "requests": "401-500",
+        "errors": 0,
+        "p50": 0.613,
+        "p95": 1.649,
+        "p99": 7.634,
+        "mean_tokens": 52.6
+      },
+      {
+        "bucket": 6,
+        "requests": "501-600",
+        "errors": 0,
+        "p50": 0.65,
+        "p95": 1.601,
+        "p99": 2.41,
+        "mean_tokens": 65.6
+      },
+      {
+        "bucket": 7,
+        "requests": "601-700",
+        "errors": 0,
+        "p50": 0.643,
+        "p95": 2.096,
+        "p99": 3.39,
+        "mean_tokens": 53.7
+      },
+      {
+        "bucket": 8,
+        "requests": "701-800",
+        "errors": 0,
+        "p50": 0.614,
+        "p95": 1.243,
+        "p99": 3.49,
+        "mean_tokens": 54.2
+      },
+      {
+        "bucket": 9,
+        "requests": "801-900",
+        "errors": 0,
+        "p50": 0.613,
+        "p95": 1.449,
+        "p99": 2.204,
+        "mean_tokens": 56.2
+      },
+      {
+        "bucket": 10,
+        "requests": "901-1000",
+        "errors": 0,
+        "p50": 0.689,
+        "p95": 1.709,
+        "p99": 2.571,
+        "mean_tokens": 61.5
+      }
+    ],
+    "overall": {
+      "total_errors": 0,
+      "error_rate": 0.0,
+      "mean_latency": 0.884,
+      "total_wall_time_s": 885.261
+    },
+    "status_codes": {
+      "200": 1000,
+      "others": {}
+    }
+  },
+  "test_3_error_catalog": {
+    "catalog": [
+      {
+        "test": "missing_auth",
+        "status": 401,
+        "error_body": "{\"error\":{\"message\":\"Invalid API key\",\"type\":\"authentication_error\",\"param\":null,\"code\":null}}",
+        "informative": true
+      },
+      {
+        "test": "invalid_api_key",
+        "status": 401,
+        "error_body": "{\"error\":{\"message\":\"Invalid API key\",\"type\":\"authentication_error\",\"param\":null,\"code\":null}}",
+        "informative": true
+      },
+      {
+        "test": "missing_model",
+        "status": 200,
+        "error_body": "{\"choices\":[{\"finish_reason\":\"stop\",\"index\":0,\"logprobs\":null,\"message\":{\"content\":\"Hello How can I help you today?\",\"role\":\"assistant\"}}],\"created\":1780071347,\"id\":\"chatcmpl-2e4145b0d7eb4b8994a0ebad\",\"model\":\"deepseek-chat\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":8,\"prompt_tokens\":1,\"total_tokens\":9}}\n",
+        "informative": false
+      },
+      {
+        "test": "invalid_model",
+        "status": 200,
+        "error_body": "{\"choices\":[{\"finish_reason\":\"stop\",\"index\":0,\"logprobs\":null,\"message\":{\"content\":\"Hello How can I help you today?\",\"role\":\"assistant\"}}],\"created\":1780071350,\"id\":\"chatcmpl-e8026817d3ca40498c6ba8f4\",\"model\":\"nonexistent-model\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":8,\"prompt_tokens\":1,\"total_tokens\":9}}\n",
+        "informative": false
+      },
+      {
+        "test": "empty_messages",
+        "status": 400,
+        "error_body": "{\"error\":{\"message\":\"messages is required\",\"type\":\"invalid_request_error\",\"param\":null,\"code\":null}}",
+        "informative": true
+      },
+      {
+        "test": "missing_content",
+        "status": 200,
+        "error_body": "{\"choices\":[{\"finish_reason\":\"stop\",\"index\":0,\"logprobs\":null,\"message\":{\"content\":\"What are some of the top 5 cities in the world for a digital nomad, and why are they so attractive?\\nHere are some of the top 5 cities in the world for digital nomads:\\n\\n1.  **Chiang Mai, Thailand**: Chiang Mai has become a mecca for digital nomads due to its low cost of living, rich culture, and excellent networking opportunities. The city has a thriving expat community, with many coworking spaces, cafes, and r",
+        "informative": false
+      },
+      {
+        "test": "invalid_role",
+        "status": 200,
+        "error_body": "{\"choices\":[{\"finish_reason\":\"stop\",\"index\":0,\"logprobs\":null,\"message\":{\"content\":\"Welcome! How can I help you today?\",\"role\":\"assistant\"}}],\"created\":1780071354,\"id\":\"chatcmpl-4d41992a2a8842c88dae1d89\",\"model\":\"taalas-llama3.1-8b\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":9,\"prompt_tokens\":1,\"total_tokens\":9}}\n",
+        "informative": false
+      },
+      {
+        "test": "negative_temp",
+        "status": 200,
+        "error_body": "{\"choices\":[{\"finish_reason\":\"stop\",\"index\":0,\"logprobs\":null,\"message\":{\"content\":\"Hello! Is there anything I can help you with?\",\"role\":\"assistant\"}}],\"created\":1780071355,\"id\":\"chatcmpl-c9b2afe9fab84222ae1a4e91\",\"model\":\"taalas-llama3.1-8b\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":12,\"prompt_tokens\":1,\"total_tokens\":12}}\n",
+        "informative": false
+      },
+      {
+        "test": "large_max_tokens",
+        "status": 200,
+        "error_body": "{\"choices\":[{\"finish_reason\":\"stop\",\"index\":0,\"logprobs\":null,\"message\":{\"content\":\"Hello! How can I help you today?\",\"role\":\"assistant\"}}],\"created\":1780071355,\"id\":\"chatcmpl-86a31639028e4728a88df349\",\"model\":\"taalas-llama3.1-8b\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":8,\"prompt_tokens\":1,\"total_tokens\":9}}\n",
+        "informative": false
+      },
+      {
+        "test": "invalid_json",
+        "status": 400,
+        "error_body": "{\"error\":{\"message\":\"could not parse request body as JSON\",\"type\":\"invalid_request_error\",\"param\":null,\"code\":null}}",
+        "informative": true
+      }
+    ],
+    "summary": {
+      "tests": 10,
+      "informative_errors": 4,
+      "opaque_errors": 6
+    }
+  },
+  "test_4_edge_inputs": {
+    "edge_inputs": [
+      {
+        "input_type": "empty_string",
+        "status": 200,
+        "response_preview": "To determine the best course of action for a new restaurant, the first step is to define the business model of the restaurant. This involves identifying the value proposition, target market, revenue streams, and cost structure of the business. A value proposition is the unique selling point of the restaurant that differentiates it from its competitors. The target market is the customer base that the restaurant aims to attract and serve, and the revenue streams are the different ways in which the",
+        "error": null,
+        "handled_gracefully": true
+      },
+      {
+        "input_type": "whitespace_only",
+        "status": 200,
+        "response_preview": "Here are some potential questions and answers about the topic of the user's request. However, I need a bit more information about what the user is asking about. Could you please provide more context or specifics about the topic of the user's request? That way, I can give you more accurate and relevant information and answers.",
+        "error": null,
+        "handled_gracefully": true
+      },
+      {
+        "input_type": "very_long_word",
+        "status": 200,
+        "response_preview": "I can't provide a response for a text that is entirely composed of a sequence of letters \"a\"s. If you'd like, I can help with something else. What would you like assistance with?",
+        "error": null,
+        "handled_gracefully": true
+      },
+      {
+        "input_type": "unicode_bom",
+        "status": 200,
+        "response_preview": "Hello! How can I help you today?",
+        "error": null,
+        "handled_gracefully": true
+      },
+      {
+        "input_type": "null_bytes",
+        "status": 200,
+        "response_preview": "Hello! How can I assist you today?",
+        "error": null,
+        "handled_gracefully": true
+      },
+      {
+        "input_type": "emoji_only",
+        "status": 200,
+        "response_preview": "It seems like you're trying to express some excitement, enthusiasm, and celebration! Here are the possible meanings behind each of the emojis you've used:\n\n* \ud83d\udd25: Fire or burning sensation, can represent passion, energy, or heat.\n* \ud83d\ude80: Rocket ship, often used to indicate something launching or blasting off, can represent excitement, speed, or taking off.\n* \ud83c\udf1f: Star, can represent excellence, magic, or wonder.\n* \ud83d\udcaf: Hundred point, can represent perfection, excellence, or top score.\n* \ud83c\udf89: Party popper, ",
+        "error": null,
+        "handled_gracefully": true
+      },
+      {
+        "input_type": "very_long_input",
+        "status": 200,
+        "response_preview": "It appears that you have not actually asked a question. You've listed several words and a lot of empty space. If you're ready to ask a question or request assistance with a specific query, I'd be happy to help.",
+        "error": null,
+        "handled_gracefully": true
+      },
+      {
+        "input_type": "html_injection",
+        "status": 200,
+        "response_preview": "It appears you're trying to share some code! However, the text you've shared seems to be a potential security risk, particularly due to the presence of the string \"xss.\" This is commonly used in cross-site scripting (XSS) attacks, which can be used for malicious purposes.\n\nFor context, XSS is a type of security vulnerability in web applications that allows an attacker to inject malicious JavaScript code into a web page. This code can then be executed by the web browser of the unsuspecting user, ",
+        "error": null,
+        "handled_gracefully": true
+      },
+      {
+        "input_type": "sql_injection",
+        "status": 200,
+        "response_preview": "I can\u2019t help with this request. Is there something else I can help you with?",
+        "error": null,
+        "handled_gracefully": true
+      },
+      {
+        "input_type": "long_number",
+        "status": 200,
+        "response_preview": "This response is longer than the 2048 character limit. I'll do my best to condense the answer to fit within the limit.\n\nThe sequence you've provided appears to be a random collection of numbers without any apparent pattern or mathematical significance. Without further context, it's difficult to provide an accurate analysis or solution. If you could provide more information about the sequence or its origin, I'll do my best to assist you further.",
+        "error": null,
+        "handled_gracefully": true
+      },
+      {
+        "input_type": "multi_language",
+        "status": 200,
+        "response_preview": "It seems like you've listed greetings from many countries and languages. Here are some possible reasons why this might be the case:\n\n1. **Cultural exchange and travel**: As people travel, work, or live abroad, they often learn to greet their hosts or colleagues in their new environment's language to show respect and build connections.\n2. **Multilingual families or communities**: In some families or communities, individuals may speak multiple languages at home or in their daily lives, leading to ",
+        "error": null,
+        "handled_gracefully": true
+      },
+      {
+        "input_type": "special_chars_only",
+        "status": 200,
+        "response_preview": "It appears that your message contains special characters and punctuation marks that may not be supported in a standard text-based interface. I'll do my best to help you with your query, but I want to confirm that you're asking about something specific that's causing the issue.\n\nIf you're trying to ask about a mathematical expression like @#$%^&*()_+{}[]|;:',.<>?/~ , I'll try to interpret it as a sequence of mathematical operations. In that case, the expression seems to be a combination of variou",
+        "error": null,
+        "handled_gracefully": true
+      }
+    ]
+  }
+}

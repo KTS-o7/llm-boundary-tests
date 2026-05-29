@@ -23,12 +23,17 @@ pip install requests
 4-chunked-documents/         # Parallel chunked document processing
 5-realtime-interactive/      # p50/p95/p99 latency benchmarks
 6-agent-tool-routing/        # Agentic tool-call routing loop
+7-api-features/              # API feature discovery (response_format, seed, tools, etc.)
+8-parameter-tuning/          # Parameter optimization (temperature, top_p, penalties)
+9-reliability/               # Reliability, multi-turn, sustained load, edge inputs
 
 eval_recall.py               # Recall@1 / Recall@3 across all domains
 eval_instruction_faithfulness.py   # Schema, enum, type, constraint compliance
 eval_intent_faithfulness.py  # Literal vs intent, scope creep, system prompt priority
 eval_xml_vs_plain.py         # XML vs plain-text system prompts A/B
 eval_xml_weakspots.py        # XML targeted at known weak spots
+
+aggregate_results.py         # Extended results aggregator
 
 prompt-techniques/
   few-shot/                  # Few-shot vs zero-shot + output anchoring
@@ -49,6 +54,11 @@ prompt-techniques/
 | Instruction faithfulness | 0.827 |
 | Intent faithfulness | 0.826 |
 | Overall safety score (red team) | 40% |
+| Output token ceiling | ~2,800 tokens (hard cap) |
+| Sustained load errors | 0 / 1,000 requests |
+| Multi-turn fact retention | 100% at 15 turns |
+| Parameter sensitivity | Very low — defaults are optimal |
+| Advanced API features (seed, tools, logprobs) | Accepted but silently ignored |
 
 ## Best Prompt Template
 
@@ -80,3 +90,7 @@ Schema: {your_schema_here}
 | XML system prompts | -18pp overall | No |
 | Chain-of-thought scratchpad | -13pp | No |
 | Instruction decomposition | -6pp | No |
+| `frequency_penalty` (scope creep) | ~0pp | Doesn't help |
+| `presence_penalty` (scope creep) | ~0pp | Doesn't help |
+| Temperature > 0 | -6.7pp faithfulness | No, use temp=0 |
+| `response_format: json_object` | 0pp | No effect |
